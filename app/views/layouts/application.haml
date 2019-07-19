@@ -57,8 +57,18 @@
                   %li.divider{role: "separator"}
                   %li
                     %a{href: "#"} Log out
-              %li
-                %a{href: "#"} My account
+                - if user_signed_in?
+                  %li
+                    -# Здравствуйте, #{current_user.email}
+                    %a{href: "#"} My account
+                  %li
+                    = link_to 'Выйти', destroy_user_session_path, :method => :delete
+                - else
+                  %li
+                    = link_to 'Войти', new_user_session_path
+                  %li
+                    = link_to 'Зарегистрироваться', new_user_registration_path
+                
 
     = yield
 

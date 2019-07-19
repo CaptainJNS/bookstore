@@ -7,6 +7,7 @@ gem 'activeadmin', '~> 2.1'
 gem 'devise', '~> 4.6', '>= 4.6.2'
 gem 'haml', '~> 5.1', '>= 5.1.1'
 
+gem 'omniauth', '~> 1.9'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use sqlite3 as the database for Active Record

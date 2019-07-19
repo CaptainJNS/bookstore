@@ -1,6 +1,6 @@
 = content_for(:title, @book.title)
 %main.container
-  %a.general-back-link{href: "#"}
+  = link_to :back, class: 'general-back-link' do
     %i.fa.fa-long-arrow-left.mr-15
     Back to results
   .row
@@ -26,7 +26,7 @@
           .input-group.general-position
             %a.input-link{href: "#"}
               %i.fa.fa-minus.line-height-40
-            %input.form-control.quantity-input{type: "text"}
+            %input.form-control.quantity-input{type: "text", value: "1"}
             %a.input-link{href: "#"}
               %i.fa.fa-plus.line-height-40
         .col-xs-7.col-md-5

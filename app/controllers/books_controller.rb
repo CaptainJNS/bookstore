@@ -6,12 +6,12 @@ class BooksController < ApplicationController
   def new
   end
 
-  def create
-    @book = Book.new(book_params)
+  # def create
+  #   @book = Book.new(book_params)
 
-    @book.save
-    redirect_to @book
-  end
+  #   @book.save
+  #   redirect_to @book
+  # end
 
   def show
     @book = Book.find(params[:id])
