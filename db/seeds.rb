@@ -1,7 +1,7 @@
 CATEGORIES = ['Mobile development', 'Photo', 'Web design', 'Web development'].freeze
-MATERIALS = ['glossy paper', 'hardcover', 'soft paper', 'cardboard'].freeze
-AUTHORS_COUNT = 15
-BOOKS_COUNT = 50
+MATERIALS = ['glossy paper', 'hardcover', 'soft paper', 'cardboard'].map(&:capitalize!).freeze
+AUTHORS_COUNT = 5
+BOOKS_COUNT = 30
 DIMENSION = (1.0..10.0).freeze
 
 Book.destroy_all
@@ -26,9 +26,11 @@ BOOKS_COUNT.times do |_index|
     book.quantity     = rand(1..100)
     book.dimensions   = "#{rand(DIMENSION).round(1)}\"x#{rand(DIMENSION).round(1)}\"x#{rand(DIMENSION).round(1)}\""
     book.year         = rand(1666..2019)
-    book.materials    = MATERIALS.sample(rand(1..3))
-    book.categories   = Category.all.sample
+    book.materials    = MATERIALS.sample(rand(1..3)).join(', ')
+    # book.materials    = MATERIALS.sample(rand(1..3))
+    book.categories   = Category.all.sample(rand(1..2))
     book.authors      = Author.all.sample(rand(1..3))
+    # binding.pry
   end
 end
 
@@ -41,3 +43,5 @@ end
 #     )
 #   end
 # end
+
+puts 'Succes!'

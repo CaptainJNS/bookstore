@@ -18,7 +18,7 @@
     .col-sm-6
       %h1.mt-res-0= @book.title
       %p.lead.small
-        = @book.authors.map{ |author| author.name + ' ' + author.surname }.join(', ')
+        = @book.authors.map{ |author| author.name }.join(', ')
       .row
         .col-xs-12.col-md-4
           %p.h1.in-gold-500.mt-10= '€' + @book.price.to_s
@@ -43,14 +43,12 @@
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left Dimensions
-          %p.lead.small.pull-right= @book.size
+          %p.lead.small.pull-right= @book.dimensions
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left Materials
           %p.lead.small.pull-right 
-            - @book.materials.each do |material|
-              = material.name
-              = ','
+            = @book.materials
   .mb-80
     %h3 Write a Review
     %p.general-info-text Score

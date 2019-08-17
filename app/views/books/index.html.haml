@@ -80,6 +80,6 @@
           %p.font-16.in-gold-500= '€'+book.price.to_s
           %span.divider-sm
           %p.lead.small
-            = book.authors.map{ |author| author.name + ' ' + author.surname }.join(', ')
+            = book.authors.map{ |author| author.name }.join(', ')
     .text-center
       %button.btn.btn-primary View More
