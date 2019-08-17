@@ -120,6 +120,7 @@ GEM
     fasterer (0.6.0)
       colorize (~> 0.7)
       ruby_parser (>= 3.13.0)
+    ffaker (2.11.0)
     ffi (1.11.1)
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
@@ -379,6 +380,7 @@ DEPENDENCIES
   database_cleaner
   devise (~> 4.6, >= 4.6.2)
   fasterer (~> 0.6.0)
+  ffaker (~> 2.11)
   haml (~> 5.1, >= 5.1.1)
   haml-rails (~> 2.0, >= 2.0.1)
   jbuilder (~> 2.5)
