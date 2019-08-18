@@ -63,26 +63,8 @@
         %li
           %a{href: "#"} Price: Hight to low
   .mb-120
-    -@books.sample(8).each do |book|
-      -# .row if (index % 4).zero?
-      .col-xs-6.col-sm-3
-        .general-thumb-wrap
-          .thumbnail.general-thumbnail
-            - if book.images.any?
-              = image_tag(book.images[0], class: 'img-shadow general-thumbnail-img')
-            - else
-              = image_tag('no_cover.jpg', class: 'img-shadow general-thumbnail-img')
-            .thumb-hover
-              .general-thumb-link-wrap
-                %a.thumb-hover-link{href: book_path(book)}
-                  %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
-                %a.thumb-hover-link{href: "#"}
-                  %i.fa.fa-shopping-cart.thumb-icon
-        .general-thumb-info
-          %p.title= link_to book.title, book_path(book)
-          %p.font-16.in-gold-500= '€'+book.price.to_s
-          %span.divider-sm
-          %p.lead.small
-            = book.authors.map{ |author| author.name }.join(', ')
+    = render partial: 'books', object: @books
+
     .text-center
-      %button.btn.btn-primary View More
+      - unless @books.last_page?
+        = link_to_next_page(@books, t('view_more'), remote: true, class: 'button btn btn-primary')
