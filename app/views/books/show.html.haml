@@ -14,7 +14,7 @@
               %a.img-link
                 = image_tag(image.variant(resize: "150x150>"), class: 'img-responsive')
         - else
-          = image_tag('book_no_cover.jpg', class: 'img-shadow general-thumbnail-img')
+          = image_tag('no_cover.jpg', class: 'img-shadow general-thumbnail-img')
 
     .col-sm-6
       %h1.mt-res-0= @book.title
@@ -43,6 +43,10 @@
           %p.lead.small.pull-right= @book.year
       .general-info-wrap.divider-lg
         .clearfix
+          %p.pull-left Category
+          %p.lead.small.pull-right= @book.categories.map{ |category| category.name }.join(', ')
+      .general-info-wrap.divider-lg
+        .clearfix
           %p.pull-left Dimensions
           %p.lead.small.pull-right= @book.dimensions
       .general-info-wrap.divider-lg
@@ -50,6 +54,7 @@
           %p.pull-left Materials
           %p.lead.small.pull-right 
             = @book.materials
+
   .mb-80
     %h3 Write a Review
     %p.general-info-text Score
