@@ -63,12 +63,15 @@
         %li
           %a{href: "#"} Price: Hight to low
   .mb-120
-    -@books[0..7].each do |book|
+    -@books.sample(8).each do |book|
       -# .row if (index % 4).zero?
       .col-xs-6.col-sm-3
         .general-thumb-wrap
           .thumbnail.general-thumbnail
-            %img.img-shadow.general-thumbnail-img{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+            - if book.images.any?
+              = image_tag(book.images[0], class: 'img-shadow general-thumbnail-img')
+            - else
+              = image_tag('no_cover.jpg', class: 'img-shadow general-thumbnail-img')
             .thumb-hover
               .general-thumb-link-wrap
                 %a.thumb-hover-link{href: book_path(book)}

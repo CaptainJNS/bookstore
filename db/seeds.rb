@@ -34,14 +34,14 @@ BOOKS_COUNT.times do |_index|
   end
 end
 
-# Book.all.each do |book|
-#   rand(0..4).times do
-#     book.images.attach(
-#       io: File.open(Rails.root.join("app/assets/images/#{rand(1..9)}.jpg")),
-#       filename: "cover.jpg",
-#       content_type: "image/jpg"
-#     )
-#   end
-# end
+Book.all.each do |book|
+  rand(0..3).times do
+    book.images.attach(
+      io: File.open(Rails.root.join("app/assets/images/#{rand(1..11)}.jpg")),
+      filename: "cover.jpg",
+      content_type: "image/jpg"
+    )
+  end
+end
 
 puts 'Succes!'

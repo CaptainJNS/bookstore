@@ -48,7 +48,10 @@
         .col-sm-6.col-md-3
           .general-thumb-wrap
             .thumbnail.general-thumbnail
-              %img.img-shadow.general-thumbnail-img{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+              - if book.images.any?
+                = image_tag(book.images[0], class: 'img-shadow general-thumbnail-img')
+              - else
+                = image_tag('no_cover.jpg', class: 'img-shadow general-thumbnail-img')
               .thumb-hover
                 .general-thumb-link-wrap
                   %a.thumb-hover-link{href: book_path(book)}
