@@ -5,6 +5,7 @@ ruby '2.6.3'
 
 gem 'aasm', '~> 5.0', '>= 5.0.5'
 gem 'activeadmin', '~> 2.1'
+gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 gem 'cancancan', '~> 3.0', '>= 3.0.1'
 gem 'carrierwave', '~> 1.3', '>= 1.3.1'
 gem 'devise', '~> 4.6', '>= 4.6.2'
@@ -51,6 +52,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
+  gem 'rspec', '~> 3.8'
+  gem 'rspec-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'ffaker', '~> 2.11'
@@ -71,7 +74,6 @@ end
 
 group :test do
   gem 'database_cleaner'
-  gem 'rspec', '~> 3.8'
   gem 'shoulda-matchers'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
