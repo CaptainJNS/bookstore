@@ -15,46 +15,7 @@
         %span.shop-quantity 3
     #navbar.navbar-collapse.collapse.pl-30{'aria-expanded': "false"}
       .visible-xs
-        %button.close{type: "button", 'aria-label': "Close"}
-          %span{'aria-hidden': "true"} &times;
-        %ul.nav.navbar-nav
-          %li
-            %a{href: "#"} Home
-          %li
-            %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"} Shop
-            %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
-              %li
-                %a.collapse-link{href: "#"} Mobile development
-              %li
-                %a.collapse-link{href: "#"} Photo
-              %li
-                %a.collapse-link{href: "#"} Web design
-          %li
-            %a{href: "#"} My account
+        = render partial: 'shared/mobile_menu'
+
       .hidden-xs
-        %ul.nav.navbar-nav
-          %li
-            %a{href: root_path} Home
-          %li.dropdown
-            %a.dropdown-toggle{href: books_path, 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} Shop
-            %ul.dropdown-menu
-              %li
-                %a{href: "#"} Mobile development
-              %li
-                %a{href: "#"} Photo
-              %li
-                %a{href: "#"} Web design
-              %li.divider{role: "separator"}
-              %li
-                %a{href: "#"} Log out
-            -# - if user_signed_in?
-            -#   %li
-            -#     -# Здравствуйте, #{current_user.email}
-            -#     %a{href: "#"} My account
-            -#   %li
-            -#     = link_to 'Выйти', destroy_user_session_path, :method => :delete
-            -# - else
-            %li
-              %a{href: "#"} LogIn
-            %li
-              %a{href: "#"} Register
+        = render partial: 'shared/menu'

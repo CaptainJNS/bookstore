@@ -1,0 +1,28 @@
+%ul.nav.navbar-nav
+  %li
+    %a{href: root_path} Home
+  %li
+    %a{href: books_path} Shop
+  %li.dropdown
+    %a.dropdown-toggle{href: books_path, 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} ShoEto?
+    %ul.dropdown-menu
+      %li
+        %a{href: "#"} Mobile development
+      %li
+        %a{href: "#"} Photo
+      %li
+        %a{href: "#"} Web design
+      %li.divider{role: "separator"}
+      %li
+        %a{href: "#"} Log out
+    -# - if user_signed_in?
+    -#   %li
+    -#     -# Здравствуйте, #{current_user.email}
+    -#     %a{href: "#"} My account
+    -#   %li
+    -#     = link_to 'Выйти', destroy_user_session_path, :method => :delete
+    -# - else
+    %li
+      %a{href: "#"} LogIn
+    %li
+      %a{href: "#"} Register

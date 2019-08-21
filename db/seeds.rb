@@ -27,7 +27,7 @@ BOOKS_COUNT.times do |_index|
     book.dimensions   = "#{rand(DIMENSION).round(1)}\"x#{rand(DIMENSION).round(1)}\"x#{rand(DIMENSION).round(1)}\""
     book.year         = rand(1666..2019)
     book.materials    = MATERIALS.sample(rand(1..3)).join(', ')
-    book.categories   = Category.all.sample(rand(1..2))
+    book.categories   = Category.all.sample(1)
     book.authors      = Author.all.sample(rand(1..2))
   end
 end
