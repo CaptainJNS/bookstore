@@ -73,6 +73,8 @@ group :development do
 end
 
 group :test do
+  gem 'factory_bot_rails', '~> 5.0'
+  gem 'rails-controller-testing', '~> 1.0', '>= 1.0.4'
   gem 'database_cleaner'
   gem 'shoulda-matchers'
   # Adds support for Capybara system testing and selenium driver

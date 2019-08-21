@@ -28,7 +28,7 @@ BOOKS_COUNT.times do |_index|
     book.year         = rand(1666..2019)
     book.materials    = MATERIALS.sample(rand(1..3)).join(', ')
     book.categories   = Category.all.sample(rand(1..2))
-    book.authors      = Author.all.sample(rand(1..3))
+    book.authors      = Author.all.sample(rand(1..2))
   end
 end
 
