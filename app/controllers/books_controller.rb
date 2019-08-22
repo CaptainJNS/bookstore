@@ -1,6 +1,8 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.all.page(params[:page]).per(8)
+    # binding.pry
+    @books = (params[:category_id] ? Category.find(params[:category_id]).books : Book.all).page(params[:page]).per(8)
+    # @books = Book.all.page(params[:page]).per(8)
   end
 
   def show
