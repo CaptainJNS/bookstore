@@ -9,5 +9,5 @@
       - Category.all.each do |category|
         %li.mr-35
           .filter-link
-            = link_to category.name, category_books_path(category), class: 'collapse-link'
+            = link_to category.name, books_path(category: category.id), class: 'collapse-link'
             %span.badge.general-badge= category.books.size
