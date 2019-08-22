@@ -4,11 +4,19 @@
       Newest first
       %i.fa.fa-angle-down.dropdown-icon.pull-right
     %ul.dropdown-menu
-      %li
-        %a{href: "#"} Newest first
-      %li
-        %a{href: "#"} Popular first
-      %li
-        %a{href: "#"} Price: Low to hight
-      %li
-        %a{href: "#"} Price: Hight to low
+      - @sorts.each_with_index do |sort, index|
+        %li
+          %a{href: category_books_path(params[:category_id], sort_by: index)}
+            = sort
+      -# %li
+      -#   %a{href: category_books_path(params[:category_id], sort_by: 'most_recent')} Newest first
+      -# %li
+      -#   %a{href: category_books_path(params[:category_id], sort_by: 'ascending_title')} ABC Title
+      -# %li
+      -#   %a{href: category_books_path(params[:category_id], sort_by: 'descending_title')} ZYX Title
+      -# %li
+      -#   %a{href: "#"} Popular first
+      -# %li
+      -#   %a{href: category_books_path(params[:category_id], sort_by: 'ascending_price')} Price: Low to hight
+      -# %li
+      -#   %a{href: category_books_path(params[:category_id], sort_by: 'descending_price')} Price: Hight to low
