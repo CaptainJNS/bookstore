@@ -1,5 +1,3 @@
-// Insert new data
 $("<%=j render(partial: 'books', object: @books) %>").insertBefore( ".text-center" );
 
-// Update pagination link
 $('.text-center').html("<%=j render(partial: 'view_more', object: @books) %>");

@@ -1,4 +1,4 @@
-= content_for(:title, @book.title)
+= content_for(:title, @book.title + ' | ')
 %main.container
   = link_to :back, class: 'general-back-link' do
     %i.fa.fa-long-arrow-left.mr-15
@@ -32,11 +32,12 @@
               %i.fa.fa-plus.line-height-40
         .col-xs-7.col-md-5
           %button.btn.btn-default.pull-right.general-position Add to Cart
-      .general-info-wrap.divider-lg
+      .general-info-wrap.divider-lg.description
         %p Description
         %p.lead.small.line-height-2
-          = @book.description[0..300]+'...'
-          %a.in-gold-500.ml-10{href: "#"} Read More
+          = truncate(@book.description, length: 250)
+          - if @book.description.size > 250
+            = link_to 'Read more', @book, class: 'in-gold-500 ml-10', remote: true
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left Year of publication
@@ -56,56 +57,7 @@
             = @book.materials
 
   .mb-80
-    %h3 Write a Review
-    %p.general-info-text Score
-    .mb-15
-      %i.fa.fa-star.rate-empty
-      %i.fa.fa-star.rate-empty
-      %i.fa.fa-star.rate-empty
-      %i.fa.fa-star.rate-empty
-      %i.fa.fa-star.rate-empty
-    %form.row
-      .col-md-8
-        .mb-40
-          .form-group
-            %label.control-label.input-label.in-grey-600{for: "title"} Title
-            %input#title.form-control{name:"title", type: "text"}
-          .form-group
-            %label.control-label.input-label.in-grey-600{for: "review"} Review
-            %textarea#review.form-control{name:"review", type: "text"}
-        .text-right
-          %button.btn.disabled.mb-20 Post
+    = render partial: 'write_review'
+
   .mb-80
-    %h3.in-gold-500.mb-25 Reviews (3)
-    .general-message-wrap.divider-lg
-      .clearfix
-        %img.img-circle.logo-size.inlide-block.pull-left{src: "https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/bdc2fdda-b5f1-4a43-ba5d-7dc317b440e3/joe-zimmerman-profile-pic-opt.jpg"}
-        .ml-70
-          %div
-            .general-message-date.hidden-xs 11/11/16
-            .max-240
-              .general-message-verified Verified Reviewer
-              .general-message-name Rita J. Lewis
-          .mb-15
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-          %p Thank you BookStore, I was very pleased to receive my order for the Moleskine diary so soon after placing the order.
-    .general-message-wrap.divider-lg
-      .clearfix
-        %span.img-circle.logo-size.inlide-block.pull-left.logo-empty M
-        .ml-70
-          %div
-            .general-message-date.hidden-xs 11/11/16
-            .max-240
-              .general-message-verified.pull-right Verified Reviewer
-              .general-message-name May J. Novoa
-          .mb-15
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star
-            %i.fa.fa-star.rate-star.rate-empty
-          %p If ‘Get a better job’ had landed on my desk a year ago, I might have been dismissive of it. Instead I was prepared to be open-minded. There have been many occasions where I turned to career books with practical activities to look for some inspiration when developing education activities for learners or assessment.
+    = render partial: 'reviews'

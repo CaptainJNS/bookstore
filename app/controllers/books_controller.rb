@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   def index
-    @sorts = ['Newest first', 'ABC Title', 'ZYX Title', 'Price UP', 'Price DOWN']
+    @sorts = ['Newest first', 'Title: A-Z ↑', 'Title: Z-A ↓', 'Price: to UP ↑', 'Price: to DOWN ↓']
     @books = (params[:category] ? Category.find(params[:category]).books : Book.all).page(params[:page]).per(8)
     @books = sort(params[:sort_by])
   end
