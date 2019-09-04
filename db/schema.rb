@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_19_153032) do
+ActiveRecord::Schema.define(version: 2019_09_04_085434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 2019_08_19_153032) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -36,8 +36,18 @@ ActiveRecord::Schema.define(version: 2019_08_19_153032) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "author_books", force: :cascade do |t|
+    t.bigint "book_id"
+    t.bigint "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_author_books_on_author_id"
+    t.index ["book_id"], name: "index_author_books_on_book_id"
+  end
+
   create_table "authors", force: :cascade do |t|
-    t.string "name"
+    t.string "first_name"
+    t.string "last_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -60,8 +70,8 @@ ActiveRecord::Schema.define(version: 2019_08_19_153032) do
   end
 
   create_table "books_categories", id: false, force: :cascade do |t|
-    t.integer "book_id", null: false
-    t.integer "category_id", null: false
+    t.bigint "book_id", null: false
+    t.bigint "category_id", null: false
   end
 
   create_table "categories", force: :cascade do |t|
@@ -75,4 +85,7 @@ ActiveRecord::Schema.define(version: 2019_08_19_153032) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "author_books", "authors"
+  add_foreign_key "author_books", "books"
 end

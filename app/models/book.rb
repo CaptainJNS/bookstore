@@ -1,5 +1,6 @@
 class Book < ApplicationRecord
-  has_and_belongs_to_many :authors
+  has_many :author_books, dependent: :destroy
+  has_many :authors, through: :author_books
   has_and_belongs_to_many :categories
   has_many_attached :images
 

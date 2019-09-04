@@ -19,7 +19,7 @@
     .col-sm-6
       %h1.mt-res-0= @book.title
       %p.lead.small
-        = @book.authors.map{ |author| author.name }.join(', ')
+        = @book.authors.map{ |author| author.first_name + ' ' + author.last_name }.join(', ')
       .row
         .col-xs-12.col-md-4
           %p.h1.in-gold-500.mt-10= '€' + @book.price.to_s
