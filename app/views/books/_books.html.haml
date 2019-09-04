@@ -14,7 +14,7 @@
               %i.fa.fa-shopping-cart.thumb-icon
     .general-thumb-info
       %p.title= link_to book.title, book_path(book)
-      %p.font-16.in-gold-500= '€'+book.price.to_s
+      %p.font-16.in-gold-500= number_to_currency(book.price)
       %span.divider-sm
       %p.lead.small
         = book.decorate.authors_names
