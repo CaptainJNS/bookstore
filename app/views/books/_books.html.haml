@@ -17,4 +17,4 @@
       %p.font-16.in-gold-500= '€'+book.price.to_s
       %span.divider-sm
       %p.lead.small
-        = book.authors.map{ |author| author.first_name + ' ' + author.last_name }.join(', ')
+        = book.decorate.authors_names

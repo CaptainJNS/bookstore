@@ -19,7 +19,7 @@
     .col-sm-6
       %h1.mt-res-0= @book.title
       %p.lead.small
-        = @book.authors.map{ |author| author.first_name + ' ' + author.last_name }.join(', ')
+        = @book.decorate.authors_names
       .row
         .col-xs-12.col-md-4
           %p.h1.in-gold-500.mt-10= '€' + @book.price.to_s
@@ -45,7 +45,7 @@
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left Category
-          %p.lead.small.pull-right= @book.categories.map{ |category| category.name }.join(', ')
+          %p.lead.small.pull-right= @book.decorate.categories_names
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left Dimensions

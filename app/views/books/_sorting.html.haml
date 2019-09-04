@@ -6,5 +6,4 @@
     %ul.dropdown-menu
       - @sorts.each_with_index do |sort, index|
         %li
-          %a{href: books_path(category: params[:category], sort_by: index)}
-            = sort
+          = link_to sort, books_path(category: params[:category], sort_by: index)

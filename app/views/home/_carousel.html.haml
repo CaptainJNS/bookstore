@@ -19,7 +19,7 @@
             .mb-60
               %h1= book.title
               %p.lead= book.description
-              %p.lead.small= book.authors.map{ |author| author.first_name + ' ' + author.last_name }.join(', ')
+              %p.lead.small= book.decorate.authors_names
               .general-align
                 - if book.quantity.positive?
                   %button.btn.btn-primary Buy Now

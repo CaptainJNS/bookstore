@@ -10,7 +10,7 @@ FactoryBot.define do
     dimensions {"#{rand(DIMENSION).round(1)}\"x#{rand(DIMENSION).round(1)}\"x#{rand(DIMENSION).round(1)}\""}
     year {rand(1666..2019)}
     materials {MATERIALS.sample(rand(1..3)).join(', ')}
-    categories {Array.new(1) { create(:category) } }
-    authors { Array.new(2) { create(:author) } }
+    categories { create_list(:category, 1) }
+    authors { create_list(:author, 2) }
   end
 end
