@@ -17,5 +17,10 @@ module Bookstore
     # the framework and any gems in your application.
     config.generators.system_tests = nil
     config.generators.test_framework :rspec
+
+    config.generators do |g|
+      g.test_framework :rspec
+      g.fixture_replacement :factory_bot, dir: 'spec/factories'
+    end
   end
 end

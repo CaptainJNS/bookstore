@@ -6,6 +6,6 @@ class Book < ApplicationRecord
 
   validates :title, :description, :price, :year, :quantity, presence: true
 
-  validates :price, numericality: { greater_or_equal_to: 0, less_than_or_equal_to: 100_000 }
-  validates :quantity, numericality: { only_integer: true, greater_or_equal_to: 0 }
+  validates :price, numericality: { greater_than: 0, less_than_or_equal_to: 100_000 }
+  validates :quantity, numericality: { greater_than_or_equal_to: 0, only_integer: true }
 end

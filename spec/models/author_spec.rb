@@ -1,5 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe Author, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'validation' do
+    it 'is invalid without first_name' do
+      expect(FactoryBot.build(:author, first_name: nil)).not_to be_valid
+    end
+
+    it 'is invalid without last_name' do
+      expect(FactoryBot.build(:author, last_name: nil)).not_to be_valid
+    end
+  end
+
+  context 'associations' do
+    it 'has many books' do
+      author = FactoryBot.create :author
+      expect(author).to respond_to :books
+    end
+  end
 end
