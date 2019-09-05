@@ -8,6 +8,6 @@ RSpec.describe BookDecorator do
   end
 
   it '#categories_names' do
-  expect(book.decorate.categories_names).to eq(book.categories.map{ |category| category.name }.join(', '))
+    expect(book.decorate.categories_names).to eq(book.categories.map{ |category| category.name }.join(', '))
   end
 end
