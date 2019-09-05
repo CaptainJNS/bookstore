@@ -6,6 +6,6 @@ class BookDecorator < Draper::Decorator
   end
 
   def categories_names
-    categories.map{ |category| category.name }.join(', ')
+    categories.map(&:name).join(', ')
   end
 end

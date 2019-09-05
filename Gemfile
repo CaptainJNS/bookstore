@@ -10,15 +10,15 @@ gem 'cancancan', '~> 3.0', '>= 3.0.1'
 gem 'carrierwave', '~> 1.3', '>= 1.3.1'
 gem 'devise', '~> 4.6', '>= 4.6.2'
 gem 'draper', '~> 3.1'
+gem 'ffaker', '~> 2.11'
 gem 'haml', '~> 5.1', '>= 5.1.1'
 gem 'haml-rails', '~> 2.0', '>= 2.0.1'
+gem 'image_processing', '~> 1.9'
 gem 'kaminari', '~> 1.1', '>= 1.1.1'
 gem 'mini_magick'
-gem 'image_processing', '~> 1.9'
 gem 'omniauth', '~> 1.9'
 gem 'omniauth-facebook', '~> 5.0'
 gem 'sass', '~> 3.7', '>= 3.7.4'
-gem 'ffaker', '~> 2.11'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
@@ -76,9 +76,9 @@ group :development do
 end
 
 group :test do
+  gem 'database_cleaner'
   gem 'factory_bot_rails', '~> 5.0'
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.4'
-  gem 'database_cleaner'
   gem 'shoulda-matchers'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
