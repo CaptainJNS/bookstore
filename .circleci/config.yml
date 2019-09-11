@@ -8,7 +8,7 @@ jobs:
           POSTGRES_USER: jason  
           POSTGRES_DB: test
           POSTGRES_PASSWORD: password
-          DATABASE_URL: "postgres://ubuntu@localhost:5432/test"
+          DATABASE_URL: "postgres://ubuntu@localhost:5432/bookstore_test"
     
     steps:
       - checkout
