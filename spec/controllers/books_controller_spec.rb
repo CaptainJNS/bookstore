@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe BooksController, type: :controller do
   describe 'GET #show' do
-    let(:book) { FactoryBot.create(:book) }
+    let(:book) { create(:book) }
 
     it 'renders :show template' do
       get :show, params: { id: book.id }

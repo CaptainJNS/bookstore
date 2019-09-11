@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe BookDecorator do
-  subject(:book) { FactoryBot.create(:book) }
+  subject(:book) { create(:book) }
 
   it '#authors_names' do
     expect(book.decorate.authors_names).to eq(book.authors.map { |author| author.decorate.full_name }.join(', '))
