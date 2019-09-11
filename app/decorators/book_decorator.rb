@@ -8,4 +8,8 @@ class BookDecorator < Draper::Decorator
   def categories_names
     categories.map(&:name).join(', ')
   end
+
+  def cover
+    images[0]
+  end
 end

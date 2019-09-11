@@ -12,7 +12,7 @@
           .col-sm-5
             .general-img-wrap
               - if book.images.any?
-                = image_tag(book.images[0], class: 'img-shadow general-thumbnail-img')
+                = image_tag(book.decorate.cover, class: 'img-shadow general-thumbnail-img')
               - else
                 = image_tag('no_cover.jpg', class: 'img-shadow general-thumbnail-img')
           .col-sm-7
@@ -22,12 +22,12 @@
               %p.lead.small= book.decorate.authors_names
               .general-align
                 - if book.quantity.positive?
-                  %button.btn.btn-primary Buy Now
+                  %button.btn.btn-primary= t(:buy_now)
                 -else
-                  %button.disabled.btn Buy Now
+                  %button.disabled.btn= t(:buy_now)
   %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
     %span.icon-prev{'aria-hidden': "true"}
-    %span.sr-only Previous
+    %span.sr-only= t(:previous)
   %a.right.carousel-control{href: "#slider", role: "button", 'data-slide': "next"}
     %span.icon-next{'aria-hidden': "true"}
-    %span.sr-only Next
+    %span.sr-only= t(:next)

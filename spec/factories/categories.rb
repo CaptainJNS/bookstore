@@ -1,7 +1,5 @@
-CATEGORIES = ['Mobile development', 'Photo', 'Web design', 'Web development'].freeze
-
 FactoryBot.define do
   factory :category do
-    name { CATEGORIES.sample }
+    name { FFaker::Book.genre}
   end
 end

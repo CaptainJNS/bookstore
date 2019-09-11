@@ -2,13 +2,13 @@
 %main.container
   = link_to :back, class: 'general-back-link' do
     %i.fa.fa-long-arrow-left.mr-15
-    Back to results
+    = t(:back_to)
   .row
     .col-sm-6
       .product-gallery
         - if @book.images.any?
           .mb-20
-            = image_tag(@book.images[0], class: 'img-responsive')
+            = image_tag(@book.decorate.cover, class: 'img-responsive')
           .images.clearfix
             - @book.images.each do |image|
               %a.img-link
@@ -31,28 +31,28 @@
             %a.input-link{href: "#"}
               %i.fa.fa-plus.line-height-40
         .col-xs-7.col-md-5
-          %button.btn.btn-default.pull-right.general-position Add to Cart
+          %button.btn.btn-default.pull-right.general-position= t(:add_to_cart)
       .general-info-wrap.divider-lg.description
-        %p Description
+        %p= t(:description)
         %p.lead.small.line-height-2
           = truncate(@book.description, length: 250)
           - if @book.description.size > 250
             = link_to 'Read more', @book, class: 'in-gold-500 ml-10', remote: true
       .general-info-wrap.divider-lg
         .clearfix
-          %p.pull-left Year of publication
+          %p.pull-left= t(:year)
           %p.lead.small.pull-right= @book.year
       .general-info-wrap.divider-lg
         .clearfix
-          %p.pull-left Category
+          %p.pull-left= t(:category)
           %p.lead.small.pull-right= @book.decorate.categories_names
       .general-info-wrap.divider-lg
         .clearfix
-          %p.pull-left Dimensions
+          %p.pull-left= t(:dimensions)
           %p.lead.small.pull-right= @book.dimensions
       .general-info-wrap.divider-lg
         .clearfix
-          %p.pull-left Materials
+          %p.pull-left= t(:materials)
           %p.lead.small.pull-right 
             = @book.materials
 

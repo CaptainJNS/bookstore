@@ -6,6 +6,6 @@ class LatestBooksQuery
   end
 
   def call
-    Book.all.last(LATEST_BOOKS_COUNT)
+    Book.last(LATEST_BOOKS_COUNT)
   end
 end

@@ -3,7 +3,7 @@
     .general-thumb-wrap
       .thumbnail.general-thumbnail
         - if book.images.any?
-          = image_tag(book.images[0], class: 'img-shadow general-thumbnail-img')
+          = image_tag(book.decorate.cover, class: 'img-shadow general-thumbnail-img')
         - else
           = image_tag('no_cover.jpg', class: 'img-shadow general-thumbnail-img')
         .thumb-hover

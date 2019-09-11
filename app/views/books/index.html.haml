@@ -1,17 +1,17 @@
-= content_for(:title, 'Catalog | ')
+= content_for(:title, t(:catalog) + ' | ')
 %main.container
-  %h1.general-title-margin Сatalog
+  %h1.general-title-margin= t(:catalog)
   .hidden-xs.clearfix
     = render partial: 'sorting'
 
     = render partial: 'filter'
 
   .dropdowns.mb-25.visible-xs
-    %p.lead.small.mb-10 Filter by category
+    %p.lead.small.mb-10= t(:filter_by)
     .dropdown
       = render partial: 'mobile_filter'
 
-    %p.lead.small.mb-10 Sort by
+    %p.lead.small.mb-10= t(:sort_by)
     .dropdown
       = render partial: 'mobile_sort'
 

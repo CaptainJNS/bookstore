@@ -10,4 +10,8 @@ RSpec.describe BookDecorator do
   it '#categories_names' do
     expect(book.decorate.categories_names).to eq(book.categories.map(&:name).join(', '))
   end
+
+  it '#cover' do
+    expect(book.decorate.cover).to eq(book.images[0])
+  end
 end

@@ -1,4 +1,16 @@
 class SortBooksQuery
+  SORT_OPTIONS = [
+    'Newest first',
+    'Title: A-Z ↑',
+    'Title: Z-A ↓',
+    'Price: to UP ↑',
+    'Price: to DOWN ↓'
+  ].freeze
+
+  def self.sort_options
+    SORT_OPTIONS
+  end
+
   def initialize(books, parameter)
     @books = books
     @parameter = parameter
