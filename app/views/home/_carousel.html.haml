@@ -22,12 +22,12 @@
               %p.lead.small= book.decorate.authors_names
               .general-align
                 - if book.quantity.positive?
-                  %button.btn.btn-primary= t(:buy_now)
+                  %button.btn.btn-primary= t('home.buy_now')
                 -else
-                  %button.disabled.btn= t(:buy_now)
+                  %button.disabled.btn= t('home.buy_now')
   %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
     %span.icon-prev{'aria-hidden': "true"}
-    %span.sr-only= t(:previous)
+    %span.sr-only= t('home.previous')
   %a.right.carousel-control{href: "#slider", role: "button", 'data-slide': "next"}
     %span.icon-next{'aria-hidden': "true"}
-    %span.sr-only= t(:next)
+    %span.sr-only= t('home.next')

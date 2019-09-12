@@ -1,8 +1,8 @@
 %ul.nav.navbar-nav
   %li
-    %a{href: root_path} Home
+    %a{href: root_path}= t('default.home')
   %li
-    %a{href: books_path} Shop
+    %a{href: books_path}= t('default.shop')
   %li.dropdown
     %a.dropdown-toggle{href: books_path, 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} ShoEto?
     %ul.dropdown-menu
@@ -14,8 +14,8 @@
         %a{href: "#"} Web design
       %li.divider{role: "separator"}
       %li
-        %a{href: "#"} Log out
+        %a{href: "#"}= t('default.logout') 
     %li
-      %a{href: "#"} LogIn
+      %a{href: "#"}= t('default.login')
     %li
-      %a{href: "#"} Register
+      %a{href: "#"}= t('default.register')

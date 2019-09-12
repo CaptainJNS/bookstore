@@ -4,9 +4,10 @@
   "dependencies": {
     "jquery": "^3.4.1"
   },
-  "version": "1.0.0",
+  "version": "1",
   "main": "index.js",
   "repository": "https://github.com/CaptainJNS/bookstore.git",
   "author": "Jason <sereda9623@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "description": "rg"
 }

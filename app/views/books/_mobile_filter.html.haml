@@ -1,9 +1,9 @@
 %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-  All
+  = t('shop.all')
   %i.fa.fa-angle-down.dropdown-icon.pull-right
 %ul.dropdown-menu
   %li
-    %a{href: "#"} All
+    %a{href: "#"} = t('shop.all')
   - Category.all.each do |category|
     %li
       %a{href: "#"}= category.name
