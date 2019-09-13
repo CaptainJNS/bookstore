@@ -7,7 +7,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find(params[:id])
+    @book = Book.find(params[:id]).decorate
     @description_limit = 100
   end
 end

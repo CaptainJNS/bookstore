@@ -8,7 +8,7 @@
       .product-gallery
         - if @book.images.any?
           .mb-20
-            = image_tag(@book.decorate.cover, class: 'img-responsive')
+            = image_tag(@book.cover, class: 'img-responsive')
           .images.clearfix
             - @book.images.each do |image|
               %a.img-link
@@ -19,7 +19,7 @@
     .col-sm-6
       %h1.mt-res-0= @book.title
       %p.lead.small
-        = @book.decorate.authors_names
+        = @book.authors_names
       .row
         .col-xs-12.col-md-4
           %p.h1.in-gold-500.mt-10= number_to_currency(@book.price)
@@ -45,7 +45,7 @@
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left= t('book.category')
-          %p.lead.small.pull-right= @book.decorate.categories_names
+          %p.lead.small.pull-right= @book.categories_names
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left= t('book.dimensions')
