@@ -63,6 +63,7 @@ group :development, :test do
   gem 'pry', '~> 0.12.2'
   gem 'rubocop', '~> 0.74.0'
   gem 'rubocop-rspec', '~> 1.35'
+  gem 'seedbank', '~> 0.5.0'
 end
 
 group :development do
