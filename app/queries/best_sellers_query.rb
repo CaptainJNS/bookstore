@@ -4,6 +4,7 @@ class BestSellersQuery
   end
 
   def call
-    Book.all.sample(4)
+    # It's only a plug. The real logic of this method will be realized later
+    Book.first(4)
   end
 end

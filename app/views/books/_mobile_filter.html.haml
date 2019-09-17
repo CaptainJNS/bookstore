@@ -3,7 +3,7 @@
   %i.fa.fa-angle-down.dropdown-icon.pull-right
 %ul.dropdown-menu
   %li
-    %a{href: "#"} = t('shop.all')
-  - Category.all.each do |category|
+    %a{href: "#"}= t('shop.all')
+  - @categories.each do |category|
     %li
-      %a{href: "#"}= category.name
+      = link_to category.name, books_path(category: category.id)

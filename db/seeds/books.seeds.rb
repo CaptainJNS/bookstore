@@ -1,8 +1,12 @@
-BOOKS_COUNT = 30
+BOOKS_COUNT = 50
 MATERIALS = ['glossy paper', 'hardcover', 'soft paper', 'cardboard'].map(&:capitalize!).freeze
 DIMENSION = (1.0..10.0).freeze
 
+start_time = 0
+
 after :authors, :categories do
+  start_time = Time.now
+
   Book.destroy_all
 
   BOOKS_COUNT.times do |_index|
@@ -20,4 +24,6 @@ after :authors, :categories do
   end
 end
 
-puts 'Books created'
+finish_time = Time.now
+
+puts "Books created in #{finish_time - start_time} seconds"

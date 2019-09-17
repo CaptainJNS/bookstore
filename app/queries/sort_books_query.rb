@@ -13,7 +13,7 @@ class SortBooksQuery
 
   def initialize(books, parameter)
     @books = books
-    @parameter = parameter
+    @parameter = parameter.to_i
   end
 
   def self.call(books, parameter)
@@ -26,13 +26,16 @@ class SortBooksQuery
 
   private
 
+  SORTING_HASH = {
+    1 => 'title ASC',
+    2 => 'title DESC',
+    3 => 'price ASC',
+    4 => 'price DESC'
+  }
+
   def sort(parameter)
-    case parameter
-    when '1' then @books.order('title ASC')
-    when '2' then @books.order('title DESC')
-    when '3' then @books.order('price ASC')
-    when '4' then @books.order('price DESC')
-    else @books.order('created_at DESC')
-    end
+    return @books.order('created_at DESC') unless parameter.between?(1, SORTING_HASH.count)
+
+    @books.order(SORTING_HASH[parameter])
   end
 end

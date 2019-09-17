@@ -2,6 +2,10 @@ CATEGORIES = ['Mobile development', 'Photo', 'Web design', 'Web development'].fr
 
 Category.destroy_all
 
+start_time = Time.now
+
 CATEGORIES.each { |category| Category.create!(name: category) }
 
-puts 'Categories created'
+finish_time = Time.now
+
+puts "Categories created in #{finish_time - start_time} seconds"

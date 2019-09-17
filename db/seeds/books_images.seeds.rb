@@ -1,4 +1,8 @@
+start_time = 0
+
 after :books do
+  start_time = Time.now
+
   Book.all.each do |book|
     rand(0..3).times do
       book.images.attach(
@@ -10,4 +14,6 @@ after :books do
   end
 end
 
-puts 'Images attached'
+finish_time = Time.now
+
+puts "Images attached in #{finish_time - start_time} seconds"

@@ -1,5 +1,7 @@
 AUTHORS_COUNT = 5
 
+start_time = Time.now
+
 Author.destroy_all
 
 AUTHORS_COUNT.times do |_index|
@@ -9,4 +11,6 @@ AUTHORS_COUNT.times do |_index|
   end
 end
 
-puts 'Authors created'
+finish_time = Time.now
+
+puts "Authors created in #{finish_time - start_time} seconds"
