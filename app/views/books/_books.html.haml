@@ -3,7 +3,7 @@
     .general-thumb-wrap
       .thumbnail.general-thumbnail
         - if book.images.any?
-          = image_tag(book.decorate.cover, class: 'img-shadow general-thumbnail-img')
+          = image_tag(book.cover, class: 'img-shadow general-thumbnail-img')
         - else
           = image_tag('no_cover.jpg', class: 'img-shadow general-thumbnail-img')
         .thumb-hover
@@ -17,4 +17,4 @@
       %p.font-16.in-gold-500= number_to_currency(book.price)
       %span.divider-sm
       %p.lead.small
-        = book.decorate.authors_names
+        = book.authors_names
