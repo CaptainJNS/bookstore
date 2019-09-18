@@ -16,23 +16,34 @@ RSpec.describe BooksController, type: :controller do
       expect(response).to render_template :index
     end
 
+    it 'when newest books' do
+      get :index, params: { sort_by: 'created_at_DESC' }
+      expect(response).to render_template :index
+    end
+
     it 'when ascending title' do
-      get :index, params: { sort_by: '1' }
+      get :index, params: { sort_by: 'title_ASC' }
       expect(response).to render_template :index
     end
 
     it 'when descending title' do
-      get :index, params: { sort_by: '2' }
+      get :index, params: { sort_by: 'title_DESC' }
       expect(response).to render_template :index
     end
 
     it 'when ascending price' do
-      get :index, params: { sort_by: '3' }
+      get :index, params: { sort_by: 'price_ASC' }
       expect(response).to render_template :index
     end
 
     it 'when descending price' do
-      get :index, params: { sort_by: '4' }
+      get :index, params: { sort_by: 'price_DESC' }
+      expect(response).to render_template :index
+    end
+
+    it 'when category' do
+      book = create(:book)
+      get :index, params: { category: book.categories.first.id }
       expect(response).to render_template :index
     end
   end

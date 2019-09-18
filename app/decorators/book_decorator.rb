@@ -14,6 +14,6 @@ class BookDecorator < Draper::Decorator
   end
 
   def cover
-    images[0]
+    images.first
   end
 end

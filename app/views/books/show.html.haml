@@ -30,8 +30,8 @@
       .general-info-wrap.divider-lg.description
         %p= t('book.description')
         %p.lead.small.line-height-2
-          = truncate(@book.description, length: @description_limit)
-          - if @book.description.size > @description_limit
+          = truncate(@book.description, length: t('constants.description_limit'))
+          - if @book.description.size > t('constants.description_limit')
             = link_to 'Read more', @book, class: 'in-gold-500 ml-10', remote: true
       .general-info-wrap.divider-lg
         .clearfix
