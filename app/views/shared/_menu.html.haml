@@ -14,8 +14,15 @@
         %a{href: "#"} Web design
       %li.divider{role: "separator"}
       %li
-        %a{href: "#"}= t('default.logout') 
+        %a{href: "#"}= t('default.logout')
+
+  - if user_signed_in?
     %li
-      %a{href: "#"}= t('default.login')
+      %a{href: "#", method: :delete}= current_user.email
     %li
-      %a{href: "#"}= t('default.register')
+      = link_to t('default.logout'), destroy_user_session_path, method: :delete
+  - else
+    %li
+      %a{href: new_user_session_path}= t('default.login')
+    %li
+      %a{href: new_user_registration_path}= t('default.register')
