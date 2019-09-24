@@ -26,7 +26,7 @@ class DefaultBooksQuery
   def latest_books(relation)
     return relation unless @params.include?(:latest_books)
 
-    relation.last(I18n.t('constants.latest_book_count'))
+    relation.last(Constants::LATEST_BOOK_COUNT)
   end
 
   def filter(relation)
@@ -38,7 +38,7 @@ class DefaultBooksQuery
   def sort(relation)
     return relation unless @params[:sort_param]
 
-    sort_param = @params[:sort_param].gsub(/([a-z_]*)_([A-Z]*)/, '\1 \2')
+    sort_param = @params[:sort_param]
     relation.order(sort_param)
   end
 end

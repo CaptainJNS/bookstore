@@ -4,6 +4,6 @@
       = t("constants.sorting.#{params[:sort_by]}")
       %i.fa.fa-angle-down.dropdown-icon.pull-right
     %ul.dropdown-menu
-      - t('constants.sorting').to_a.each do |sort|
+      - t(:sorting).to_a.each do |sort|
         %li
           = link_to sort.last, books_path(category: params[:category], sort_by: sort.first)

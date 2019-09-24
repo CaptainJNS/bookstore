@@ -1,13 +1,10 @@
 en:
-  constants:
-    description_limit: 100
-    latest_book_count: 3
-    sorting:
-      created_at_DESC: 'Newest first'
-      title_ASC: 'Title: A-Z ↑'
-      title_DESC: 'Title: Z-A ↓'
-      price_ASC: 'Price: to UP ↑'
-      price_DESC: 'Price: to DOWN ↓'
+  sorting:
+    "created_at DESC": 'Newest first'
+    "title ASC": 'Title: A-Z ↑'
+    "title DESC": 'Title: Z-A ↓'
+    "price ASC": 'Price: to UP ↑'
+    "price DESC": 'Price: to DOWN ↓'
 
   default:
     homepage: "Home"

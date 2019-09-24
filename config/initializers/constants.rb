@@ -1,0 +1,4 @@
+module Constants
+  DESCRIPTION_LIMIT = 100
+  LATEST_BOOK_COUNT = 3
+end
