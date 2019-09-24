@@ -19,6 +19,7 @@ gem 'mini_magick'
 gem 'omniauth', '~> 1.9'
 gem 'omniauth-facebook', '~> 5.0'
 gem 'sass', '~> 3.7', '>= 3.7.4'
+gem 'seedbank', '~> 0.5.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
@@ -63,7 +64,6 @@ group :development, :test do
   gem 'pry', '~> 0.12.2'
   gem 'rubocop', '~> 0.74.0'
   gem 'rubocop-rspec', '~> 1.35'
-  gem 'seedbank', '~> 0.5.0'
 end
 
 group :development do
