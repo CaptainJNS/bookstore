@@ -1,0 +1,27 @@
+.general-info-wrap.divider-lg.description
+  %p= t('book.description')
+  %p.lead.small.line-height-2
+    = truncate(@book.description, length: Constants::DESCRIPTION_LIMIT)
+    - if @book.description.size > Constants::DESCRIPTION_LIMIT
+      = link_to 'Read more', @book, class: 'in-gold-500 ml-10', remote: true
+
+.general-info-wrap.divider-lg
+  .clearfix
+    %p.pull-left= t('book.year')
+    %p.lead.small.pull-right= @book.year
+
+.general-info-wrap.divider-lg
+  .clearfix
+    %p.pull-left= t('book.category')
+    %p.lead.small.pull-right= @book.categories_names
+
+.general-info-wrap.divider-lg
+  .clearfix
+    %p.pull-left= t('book.dimensions')
+    %p.lead.small.pull-right= @book.dimensions
+
+.general-info-wrap.divider-lg
+  .clearfix
+    %p.pull-left= t('book.materials')
+    %p.lead.small.pull-right 
+      = @book.materials

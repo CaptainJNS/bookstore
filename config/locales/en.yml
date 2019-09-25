@@ -43,6 +43,8 @@ en:
     review: "Review"
     post: "Post"    
     add_to_cart: "Add to Cart"
+    out_of_stock: "Out of stock"
+    login_first: "Login first"
     year: "Year of publication"
     category: "Category"
     dimensions: "Dimensions"

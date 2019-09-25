@@ -2,20 +2,20 @@
 %main.container
   %h1.general-title-margin= t('shop.catalog')
   .hidden-xs.clearfix
-    = render partial: 'sorting'
+    = render partial: 'books/index/sorting'
 
-    = render partial: 'filter'
+    = render partial: 'books/index/filter'
 
   .dropdowns.mb-25.visible-xs
     %p.lead.small.mb-10= t('shop.filter_by')
     .dropdown
-      = render partial: 'mobile_filter'
+      = render partial: 'books/index/mobile_filter'
 
     %p.lead.small.mb-10= t('shop.sort_by')
     .dropdown
-      = render partial: 'mobile_sort'
+      = render partial: 'books/index/mobile_sort'
 
   .mb-120
-    = render partial: 'books', object: @books
+    = render partial: 'books/index/books', object: @books
     .text-center
-      = render partial: 'view_more', object: @books
+      = render partial: 'books/index/view_more', object: @books
