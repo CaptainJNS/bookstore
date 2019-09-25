@@ -99,7 +99,7 @@ Rails.application.configure do
     :authentication => :plain,
     :user_name      => ENV['SENDGRID_USERNAME'],
     :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => 'heroku.com',
+    :domain         => 'captainjns-bookstore.heroku.com',
     :enable_starttls_auto => true
     }
 end
