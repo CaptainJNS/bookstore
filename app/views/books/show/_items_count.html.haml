@@ -1,0 +1,7 @@
+.col-xs-5.col-md-3
+  .input-group.general-position
+    %a.input-link
+      %i.fa.fa-minus.line-height-40{ onclick: "decrementQuantity(#{@book.price});" }
+    %input.form-control.quantity-input{type: "text", value: "#{@book.quantity.positive? ? '1' : '0'}", id: 'quantity_input'}
+    %a.input-link
+      %i.fa.fa-plus.line-height-40{ onclick: "incrementQuantity(#{@book.price}, #{@book.quantity});" }

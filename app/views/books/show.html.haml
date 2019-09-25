@@ -20,7 +20,9 @@
 
       .row
         .col-xs-12.col-md-4
-          %p.h1.in-gold-500.mt-10= number_to_currency(@book.price)
+          %p.h1.in-gold-500.mt-10#price= number_to_currency(@book.price)
+        = render partial: 'books/show/items_count'
+
         - if @book.quantity.positive?
           = render partial: 'books/show/in_stock'
         - else
