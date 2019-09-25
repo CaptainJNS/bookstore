@@ -20,6 +20,7 @@ gem 'omniauth', '~> 1.9'
 gem 'omniauth-facebook', '~> 5.0'
 gem 'sass', '~> 3.7', '>= 3.7.4'
 gem 'seedbank', '~> 0.5.0'
+gem 'open_uri_redirections', '~> 0.2.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
