@@ -11,6 +11,14 @@ after :books do
         content_type: 'image/jpg'
       )
     end
+
+    next unless book.images.empty?
+
+    book.images.attach(
+      io: open('https://book-store-dmitriev.s3.eu-west-2.amazonaws.com/no_cover.jpg'),
+      filename: 'no_cover.jpg',
+      content_type: 'image/jpg'
+    )
   end
 end
 

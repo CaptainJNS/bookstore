@@ -13,13 +13,17 @@ class BooksController < ApplicationController
   end
 
   def update
+    return unless params[:book]
+
     @book = Book.find(params[:id])
-    # binding.pry
-    @book.images.attach(
-      io: params[:book][:images],
-      filename: 'cover.jpg',
-      content_type: 'image/jpg'
-    )
+
+    params.dig(:book, :images).each do |image|
+      @book.images.attach(
+        io: image,
+        filename: 'cover.jpg',
+        content_type: 'image/jpg'
+      )
+    end
   end
 
   private
