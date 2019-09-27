@@ -1,0 +1,7 @@
+= form_for(@book, multipart: true) do |f|
+  .field
+    = f.label :images
+    = f.file_field :images
+
+  .actions
+    = f.submit 'Upload'

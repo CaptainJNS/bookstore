@@ -11,4 +11,20 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id]).decorate
   end
+
+  def update
+    @book = Book.find(params[:id])
+    # binding.pry
+    @book.images.attach(
+      io: params[:book][:images],
+      filename: 'cover.jpg',
+      content_type: 'image/jpg'
+    )
+  end
+
+  private
+
+  def book_params
+    params.require(:book).permit(:images)
+  end
 end
