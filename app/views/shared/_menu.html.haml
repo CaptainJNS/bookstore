@@ -3,24 +3,26 @@
     %a{href: root_path}= t('default.home')
   %li
     %a{href: books_path}= t('default.shop')
-  %li.dropdown
-    %a.dropdown-toggle{href: books_path, 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} ShoEto?
-    %ul.dropdown-menu
-      %li
-        %a{href: "#"} Mobile development
-      %li
-        %a{href: "#"} Photo
-      %li
-        %a{href: "#"} Web design
-      %li.divider{role: "separator"}
-      %li
-        %a{href: "#"}= t('default.logout')
 
   - if user_signed_in?
     %li
-      %a{href: "#", method: :delete}= current_user.email
-    %li
-      = link_to t('default.logout'), destroy_user_session_path, method: :delete
+      %a{href: "", method: :delete}= current_user.name || current_user.email[/[^@]+/].capitalize
+    %li.dropdown
+      %a.dropdown-toggle{href: "", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+        - if current_user.image
+          = image_tag(current_user.image, class: 'img-responsive img-circle img-thumbnail')
+        - else
+          = image_tag('https://book-store-dmitriev.s3.eu-west-2.amazonaws.com/no_avatar.png', class: 'img-responsive img-circle img-thumbnail', size:'42x42')
+      %ul.dropdown-menu
+        %li
+          %a{href: "#"} Orders
+        %li
+          %a{href: "#"} Settings
+        %li.divider{role: "separator"}
+        %li
+          = link_to t('default.logout'), destroy_user_session_path, method: :delete
+    
+
   - else
     %li
       %a{href: new_user_session_path}= t('default.login')
