@@ -11,24 +11,4 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id]).decorate
   end
-
-  def update
-    return unless params[:book]
-
-    @book = Book.find(params[:id])
-
-    params.dig(:book, :images).each do |image|
-      @book.images.attach(
-        io: image,
-        filename: 'cover.jpg',
-        content_type: 'image/jpg'
-      )
-    end
-  end
-
-  private
-
-  def book_params
-    params.require(:book).permit(:images)
-  end
 end
