@@ -5,12 +5,9 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
     let(:current_user) { create(:user) }
 
     before do
-      OmniAuth.config.test_mode = true
-      OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({provider: :facebook, uid: '12345', credentials: {token: Rails.application.credentials.dig(:facebook, :app_id), secret: Rails.application.credentials.dig(:facebook, :app_secret)}})
+      OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({provider: :facebook, uid: '12345', info: { email: 'admin@example.com', name: 'John Doe', image: FFaker::Avatar.image}})
+      request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
       request.env["devise.mapping"] = Devise.mappings[:user]
-
-      # @controller.stub(:env).and_return({"omniauth.auth" => OmniAuth.config.mock_auth[:facebook]})
-      User.stub(:from_omniauth).and_return(current_user)
     end
 
     describe "#facebook" do
