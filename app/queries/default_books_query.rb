@@ -20,7 +20,7 @@ class DefaultBooksQuery
   def best_sellers(relation)
     return relation unless @params.include?(:best_sellers)
 
-    relation.where('id > ?', 0).limit(4)
+    relation.limit(4)
   end
 
   def latest_books(relation)
