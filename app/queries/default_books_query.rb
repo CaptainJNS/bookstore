@@ -20,13 +20,13 @@ class DefaultBooksQuery
   def best_sellers(relation)
     return relation unless @params.include?(:best_sellers)
 
-    relation.first(4)
+    relation.where('id > ?', 0).limit(4)
   end
 
   def latest_books(relation)
     return relation unless @params.include?(:latest_books)
 
-    relation.last(Constants::LATEST_BOOK_COUNT)
+    relation.order('created_at DESC').limit(Constants::LATEST_BOOK_COUNT)
   end
 
   def filter(relation)
@@ -36,8 +36,6 @@ class DefaultBooksQuery
   end
 
   def sort(relation)
-    return relation unless @params[:sort_param].present?
-
     sort_param = @params[:sort_param] || Constants::DEFAULT_BOOKS_ORDER
 
     relation.order(sort_param)
