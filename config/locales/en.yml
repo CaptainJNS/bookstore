@@ -23,6 +23,7 @@ en:
     next: "Next"
     greeting: "Welcome to our amazing Bookstore!"
     greeting_description: "We pore through hundreds of new books each month and select the five best we can find to share with our members."
+    get_started: 'Get started'
   
   shop:
     catalog: "Catalog"

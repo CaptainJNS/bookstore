@@ -32,7 +32,7 @@ class DefaultBooksQuery
   def filter(relation)
     return relation unless @params[:category].present?
 
-    relation.joins(:books_categories).where(books_categories: { category_id:  @params[:category] })
+    relation.joins(:books_categories).where(books_categories: { category_id: @params[:category] })
   end
 
   def sort(relation)

@@ -86,7 +86,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'simplecov', '~> 0.16.1'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  gem 'webdrivers', '~> 4.1', '>= 4.1.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

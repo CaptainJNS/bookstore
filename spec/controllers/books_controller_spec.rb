@@ -42,6 +42,7 @@ RSpec.describe BooksController, type: :controller do
     end
 
     it 'when category' do
+      create(:category)
       book = create(:book)
       get :index, params: { category: book.categories.first.id }
       expect(response).to render_template :index
