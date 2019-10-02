@@ -1,6 +1,7 @@
+= content_for(:title, t('auth.set_new_password') + ' | ')
 %main.container.general-main-wrap.mt-100
   .text-center
-    %p.in-gold-500.font-18.mb-25= 'Set new password'
+    %p.in-gold-500.font-18.mb-25= t('auth.set_new_password')
 
   .general-form
     = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
@@ -8,20 +9,20 @@
       = f.hidden_field :reset_password_token
 
       .form-group.mb-30
-        = f.label :password, 'Type a new Password'
+        = f.label :password, t('auth.type_new_password')
         = f.password_field(:password,
                           class: 'form-control',
                           id: 'new_password',
                           required: true,
-                          placeholder:'Type a new Password')
+                          placeholder: t('auth.type_new_password'))
 
       .form-group.mb-40
-        = f.label :password_confirmation, 'Confirm Password'
+        = f.label :password_confirmation, t('auth.confirm_password')
         = f.password_field(:password_confirmation,
                           class: 'form-control',
                           id: 'confirm_password',
                           required: true,
-                          placeholder: 'Confirm Password')
+                          placeholder: t('auth.confirm_password'))
 
       .text-center
-        = f.submit 'Change', class: 'btn btn-default mb-10'
+        = f.submit t('auth.change'), class: 'btn btn-default mb-10'

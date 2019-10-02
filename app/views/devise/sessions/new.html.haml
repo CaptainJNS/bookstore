@@ -1,31 +1,31 @@
-= content_for(:title, 'Login' + ' | ')
+= content_for(:title, t('default.login') + ' | ')
 %main.container.general-main-wrap
   .text-center
-    %h3.general-login-title Log In
+    %h3.general-login-title= t('default.login')
     %a.general-login-icon{href: user_facebook_omniauth_authorize_path}
       %i.fa.fa-facebook-official
 
-    %p.general-login-text or
+    %p.general-login-text= t('auth.or')
 
     .general-form
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .form-group.mb-30
-          = f.label :user_email, 'Enter email', class: 'control-label input-label'
+          = f.label :user_email, t('auth.enter_email'), class: 'control-label input-label'
           = f.email_field(:email,
                           autofocus: true,
                           autocomplete: 'email',
                           class: 'form-control',
                           required: true,
-                          placeholder: 'Enter email')
+                          placeholder: t('auth.enter_email'))
         .form-group.mb-30
-          = f.label :user_password, 'Password', class: 'control-label input-label'
+          = f.label :user_password, t('auth.password'), class: 'control-label input-label'
           = f.password_field(:password,
                           autocomplete: 'new password',
                           class: 'form-control',
                           required: true,
-                          placeholder: 'Password')
+                          placeholder: t('auth.password'))
 
-          = link_to 'Forgot password', new_user_password_path, class: 'help-block in-gold-500'
+          = link_to t('auth.forgot_password'), new_user_password_path, class: 'help-block in-gold-500'
 
         - if devise_mapping.rememberable?
           .form-group.checkbox.text-center.mb-30
@@ -33,7 +33,7 @@
               = f.check_box :remember_me, { class: 'checkbox-input', hidden: 'true', id: 'remember_me' }, 'true', 'false'
               %span.checkbox-icon
                 %i.fa.fa-check
-              %span.checkbox-text= 'Remember me'
+              %span.checkbox-text= t('auth.remember')
 
         .text-center
-          = f.submit 'Login', class: 'btn btn-default mb-20'
+          = f.submit t('default.login'), class: 'btn btn-default mb-20'
