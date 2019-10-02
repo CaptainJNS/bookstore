@@ -1,0 +1,27 @@
+.col-md-5.col-md-offset-1.mb-25
+  .visible-xs.visible-sm
+    %h3.general-subtitle.mt-0= t('settings.shipping')
+  .form-group.has-error
+    %label.control-label.input-label{for: "firstName"}= t('settings.first_name')
+    %input#firstName.form-control{name:"fname", type: "text", placeholder: t('settings.first_name')}
+    %span.help-block= t('settings.please_enter', data: t('settings.first_name').downcase)
+  .form-group
+    %label.control-label.input-label{for: "lastName"}= t('settings.last_name')
+    %input#lastName.form-control{name:"lname", type: "text", placeholder: t('settings.last_name')}
+  .form-group
+    %label.control-label.input-label{for: "address"}= t('settings.address')
+    %input#address.form-control{name: "address", type: "text", placeholder: t('settings.address')}
+  .form-group
+    %label.control-label.input-label{for: "city"}= t('settings.city')
+    %input#city.form-control{name: "city", type: "text", placeholder: t('settings.city')}
+  .form-group
+    %label.control-label.input-label{for: "zip"}= t('settings.zip')
+    %input#zip.form-control{name: "zip", type: "text", placeholder: t('settings.zip')}
+  .form-group
+    %label.control-label.input-label{for: "сountry"}= t('settings.country')
+    %input#country.form-control{name: "country", type: "text", placeholder: t('settings.country')}
+  .form-group.mb-55
+    %label.control-label.input-label{for: "phone"}= t('settings.phone')
+    %input#phone.form-control{name: "phone", type: "tel", placeholder: t('settings.phone_example')}
+  .text-center.general-text-align
+    %button.btn.disabled= t('settings.save')
