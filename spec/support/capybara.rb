@@ -1,3 +1,8 @@
+require 'webdrivers/chromedriver'
+require 'webdrivers/geckodriver'
+require 'webdrivers/iedriver'
+require 'webdrivers/edgedriver'
+
 Capybara.register_driver :selenium_chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
