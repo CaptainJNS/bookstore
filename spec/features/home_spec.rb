@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Home', type: :feature do
+RSpec.describe 'Home', type: :feature, js: true do
   before do
     create_list(:category, 4)
     create_list(:book, 7)
@@ -10,11 +10,9 @@ RSpec.describe 'Home', type: :feature do
 
   context 'with carousel' do
     it 'shows the latest books' do
+      stub_const('Constants::LATEST_BOOK_COUNT', 1)
       within('.carousel') do
-        DefaultBooksQuery.call(latest_books: nil).decorate.each do |book|
-          expect(page).to have_content(book.title)
-          expect(page).to have_content(book.authors_names)
-        end
+        expect(page).to have_content(DefaultBooksQuery.call(latest_books: nil).first.title)
       end
     end
   end
