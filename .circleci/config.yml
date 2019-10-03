@@ -16,8 +16,7 @@ jobs:
        # Install System Dependencies
       - run:
           name: Install System Dependencies
-          command: sudo apt-get update
-          command: sudo apt-get install qt-sdk
+          command: sudo apt-get update && sudo apt-get install qt-sdk
 
       - restore_cache:
           keys:
