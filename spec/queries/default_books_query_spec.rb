@@ -20,14 +20,10 @@ RSpec.describe DefaultBooksQuery do
   end
 
   context 'with filtering books' do
-    let(:category) { create(:category) }
-    let(:params) { { category: category.id } }
+    let(:params) { { category: third_book.categories.first.id } }
 
     it 'returns books from chosen category' do
-      third_book.categories << category
-      expect(result.include?(third_book)).to be true
-      expect(result.include?(first_book)).to be false
-      expect(result.include?(second_book)).to be false
+      expect(result).to match_array([third_book])
     end
   end
 
