@@ -20,27 +20,27 @@ RSpec.describe 'Catalog', type: :feature, js: true do
     end
   end
 
-  # context 'with sorting' do
-  #   it 'shows books in choosen order' do
-  #     create_list(:book, 8)
-  #     visit(books_path)
+  context 'with sorting' do
+    it 'shows books in choosen order' do
+      create_list(:book, 8)
+      visit(books_path)
 
-  #     I18n.t(:sorting).each_pair do |key, value|
-  #       find('li', text: value, match: :first).click
-  #       click_link(value, match: :first)
-  #       DefaultBooksQuery.call(sort_param: key).each_with_index do |book, index|
-  #         expect(all('.title')[index]).to have_content(book.title)
-  #       end
-  #     end
-  #   end
-  # end
+      I18n.t(:sorting).each_pair do |key, value|
+        find('li', text: value, match: :first).click
+        click_link(value, match: :first)
+        DefaultBooksQuery.call(sort_param: key).each_with_index do |book, index|
+          expect(all('.title')[index]).to have_content(book.title)
+        end
+      end
+    end
+  end
 
   context 'with view more', skip_before: true do
     it 'shows more books' do
       create_list(:book, 9)
       visit(books_path)
 
-      expect { click_link(I18n.t('shop.more')) }.to change { all('.title').count }.by(1)
+      expect { click_link(I18n.t('shop.more')); sleep(1) }.to change { all('.title').count }.by(1)
     end
 
     it 'hides when all books are shown' do

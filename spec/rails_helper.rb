@@ -6,6 +6,8 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 require 'rspec/rails'
 require 'capybara/rails'
 
+require 'capybara-webkit'
+
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 begin
@@ -20,6 +22,17 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
+
+  config.include Capybara::DSL
+  Capybara.default_driver = :webkit
+  Capybara.javascript_driver = :webkit
 end
 
-Capybara.ignore_hidden_elements = false
+
+
+
+Capybara::Webkit.configure(&:block_unknown_urls)
+
+
+
+# Capybara.ignore_hidden_elements = false
