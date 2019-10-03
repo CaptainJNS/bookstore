@@ -20,36 +20,28 @@ RSpec.describe DefaultBooksQuery do
   end
 
   context 'with filtering books' do
+    let(:category) { create(:category) }
+    let(:params) { { category: category.id } }
+
     it 'returns books from chosen category' do
-      create_list(:category, 2)
-      create_list(:book, 6)
-      Category.all.each do |category|
-        described_class.call(category: category.id).each do |book|
-          expect(book.categories.include?(category)).to be true
-        end
-      end
+      third_book.categories << category
+      expect(result.include?(third_book)).to be true
+      expect(result.include?(first_book)).to be false
+      expect(result.include?(second_book)).to be false
     end
   end
-#два контекста: с параметром (любым) и без
-  context 'with sorting books' do
-    it 'returns title ASC order' do
-      expect(described_class.call(sort_param: 'title ASC')).to match_array([first_book, second_book])
-    end
 
-    it 'returns title DESC order' do
-      expect(described_class.call(sort_param: 'title DESC')).to match_array([second_book, first_book])
-    end
+  context 'with sorting parameter' do
+    let(:params) { { sort_param: 'title ASC' } }
 
-    it 'returns price ASC order' do
-      expect(described_class.call(sort_param: 'price ASC')).to match_array([first_book, second_book])
+    it 'returns books in chosen order' do
+      expect(result).to match_array([first_book, second_book, third_book])
     end
+  end
 
-    it 'returns price DESC order' do
-      expect(described_class.call(sort_param: 'price DESC')).to match_array([second_book, first_book])
-    end
-
-    it 'returns newest order' do
-      expect(described_class.call(sort_param: 'created_at DESC')).to match_array([second_book, first_book])
+  context 'without sorting parameter' do
+    it 'returns books in default order (created_at DESC)' do
+      expect(result).to match_array([third_book, second_book, first_book])
     end
   end
 end
