@@ -10,8 +10,8 @@ after :authors, :categories do
       book.title        = FFaker::Book.unique.title
       book.description  = FFaker::Book.description
       book.price        = rand(5.0..500.00)
-      book.quantity     = rand(1..100)
       book.dimensions   = "#{rand(Constants::DIMENSION).round(1)}\"x#{rand(Constants::DIMENSION).round(1)}\"x#{rand(Constants::DIMENSION).round(1)}\""
+      book.quantity     = rand(0..10)
       book.year         = rand(1666..2019)
       book.materials    = Constants::MATERIALS.sample(rand(1..3)).join(', ')
       book.categories   = Category.all.sample(1)

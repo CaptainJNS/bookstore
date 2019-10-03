@@ -1,0 +1,5 @@
+.col-xs-7.col-md-5
+  - if user_signed_in?
+    %button.btn.btn-default.pull-right.general-position= t('book.add_to_cart')
+  - else
+    %button.btn.btn-default.pull-right.general-position.disabled= t('book.login_first') 
