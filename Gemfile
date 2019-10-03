@@ -86,6 +86,7 @@ group :test do
   gem 'shoulda-matchers'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
+  gem 'capybara-selenium', '~> 0.0.6'
   gem 'selenium-webdriver'
   gem 'simplecov', '~> 0.16.1'
   # Easy installation and use of chromedriver to run system tests with Chrome
