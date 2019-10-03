@@ -1,15 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe DefaultBooksQuery do
-  # before do
-  #   create_list(:category, 4)
-  #   create_list(:book, 10)
-  # end
+  let(:result) { described_class.call(params) }
+  let(:params) { {} }
+  let!(:first_book) { create(:book, title: 'AAA', price: 1) }
+  let!(:second_book) { create(:book, title: 'BBB', price: 2) }
+  let!(:third_book) { create(:book) }
 
   context 'with latest books' do
-    it 'returns 3 last books' do
-      create_list(:book, Constants::LATEST_BOOK_COUNT + 1)
-      expect(described_class.call(latest_books: nil)).to match_array(Book.last(Constants::LATEST_BOOK_COUNT))
+    let(:params) { { latest_books: nil } }
+
+    before do
+      stub_const('Constants::LATEST_BOOK_COUNT', 2)
+    end
+
+    it 'returns 2 last books' do
+      expect(result).to match_array([third_book, second_book])
     end
   end
 
@@ -24,11 +30,8 @@ RSpec.describe DefaultBooksQuery do
       end
     end
   end
-
+#два контекста: с параметром (любым) и без
   context 'with sorting books' do
-    let(:first_book) { create(:book, title: 'AAA', price: 1) }
-    let(:second_book) { create(:book, title: 'BBB', price: 2) }
-
     it 'returns title ASC order' do
       expect(described_class.call(sort_param: 'title ASC')).to match_array([first_book, second_book])
     end
