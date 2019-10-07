@@ -10,13 +10,7 @@
     -# %link{href: "../css/style.css", rel: "stylesheet"}
     -# %link{href: "../assets/style.css", rel: "stylesheet"}
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    -# = javascript_include_tag :defaults
   %body
-    - if notice
-      %p.alert.alert-success= notice
-    - if alert
-      %p.alert.alert-danger= alert
-
     = render partial: 'shared/header', cached: true                
 
     = yield
