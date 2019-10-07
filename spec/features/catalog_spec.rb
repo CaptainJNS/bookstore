@@ -20,18 +20,6 @@ RSpec.describe 'Catalog', type: :feature, js: true do
     end
   end
 
-  # context 'with sorting' do
-  #   it 'shows books in choosen order' do
-  #     create_list(:book, 2)
-  #     visit(books_path)
-
-  #     I18n.t(:sorting).each_pair do |key, value|
-  #       find('li', text: value, match: :first, visible: :hidden).trigger('click')
-  #       expect(all('.title')).to match_array(DefaultBooksQuery.call(sort_param: key).map(&:title))
-  #     end
-  #   end
-  # end
-
   context 'with view more', skip_before: true do
     it 'shows more books' do
       create_list(:book, 9)
