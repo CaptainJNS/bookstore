@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   get 'users/settings', to: 'users#settings', as: 'settings'
   post 'users/settings/update_billing', to: 'users#update_billing', as: 'update_billing'
   post 'users/settings/update_shipping', to: 'users#update_shipping', as: 'update_shipping'
+  post 'users/settings/update_email', to: 'users#update_email', as: 'update_email'
 end

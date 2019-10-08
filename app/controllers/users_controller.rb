@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def settings
     @billing = user_billing
     @shipping = user_shipping
+    @email = current_user.email
   end
 
   def update_billing
@@ -10,6 +11,12 @@ class UsersController < ApplicationController
 
   def update_shipping
     current_user.shipping.update(address_params(:shipping))
+  end
+
+  def update_email
+    current_user.update(email)
+    # binding.pry
+    # current_user.save
   end
 
   private
@@ -24,6 +31,10 @@ class UsersController < ApplicationController
       :country,
       :phone
     )
+  end
+
+  def email
+    params.require(:email).permit(:email)
   end
 
   def user_billing

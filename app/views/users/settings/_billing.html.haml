@@ -2,7 +2,7 @@
   .visible-xs.visible-sm
     %h3.general-subtitle.mt-0= t('settings.billing')
   = form_for(@billing, method: :post, remote: true, url: update_billing_path) do |f|
-    .form-group.has-error
+    .form-group
       = f.label :first_name, t('settings.first_name'), class: 'control-label input-label'
       = f.text_field(:first_name,
                       autofocus: true,
@@ -10,7 +10,6 @@
                       class: 'form-control',
                       required: true,
                       placeholder: t('settings.first_name'))
-      %span.help-block= t('settings.please_enter', data: t('settings.first_name').downcase)
 
     .form-group
       = f.label :last_name, t('settings.last_name'), class: 'control-label input-label'
