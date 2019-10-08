@@ -7,16 +7,12 @@ RSpec.describe 'Catalog', type: :feature, js: true do
 
   context 'with categories' do
     it 'shows books only from choosen category' do
-      create_list(:book, 8)
+      book = create(:book, categories: Category.all.sample(1))
+      extra_book = create(:book, categories: [])
       visit(books_path)
-      Category.all.each do |category|
-        find('.filter-link', text: category.name, match: :first).click
-        extra_book = Book.joins(:books_categories).where.not(books_categories: { category_id: category.id }).sample
-        DefaultBooksQuery.call(category: category.id).each do |book|
-          expect(page).to have_content(book.title)
-          expect(page).not_to have_content(extra_book.title)
-        end
-      end
+      find('.filter-link', text: book.categories.first.name, match: :first).click
+      expect(page).to have_content(book.title)
+      expect(page).not_to have_content(extra_book.title)
     end
   end
 

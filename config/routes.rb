@@ -4,8 +4,7 @@ Rails.application.routes.draw do
 
   resources :books
 
-  # get 'login', to: 'login#index'
-  # get 'register', to: 'register#index'
-
   get 'users/settings', to: 'users#settings', as: 'settings'
+  post 'users/settings/update_billing', to: 'users#update_billing', as: 'update_billing'
+  post 'users/settings/update_shipping', to: 'users#update_shipping', as: 'update_shipping'
 end

@@ -11,7 +11,7 @@ RSpec.describe 'Book page', type: :feature, js: true do
 
   # context 'with price' do
   #   it 'changes price when plus/minus clicked' do
-  #     expect { find('.fa-plus').click }.to change { find('.quantity-input')['value'].to_i }.by(1)
+  #     expect { find(:css, '.fa-plus').click }.to change { find(:css, '.quantity-input')['value'].to_i }.by(1)
   #     expect(page).to have_content(ActiveSupport::NumberHelper.number_to_currency(book.price * 2))
 
   #     expect { find('.fa-minus').click }.to change { find('.quantity-input')['value'].to_i }.by(-1)
