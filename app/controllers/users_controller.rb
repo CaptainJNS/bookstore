@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+
   def settings
     @billing = user_billing
     @shipping = user_shipping
