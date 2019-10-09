@@ -15,8 +15,10 @@ class UsersController < ApplicationController
 
   def update_email
     current_user.update(email)
-    # binding.pry
-    # current_user.save
+  end
+
+  def update_password
+    redirect_to root_path if current_user.update_with_password(password_params)
   end
 
   private
@@ -35,6 +37,10 @@ class UsersController < ApplicationController
 
   def email
     params.require(:email).permit(:email)
+  end
+
+  def password_params
+    params.require(:new_password).permit(:password, :password_confirmation, :current_password)
   end
 
   def user_billing

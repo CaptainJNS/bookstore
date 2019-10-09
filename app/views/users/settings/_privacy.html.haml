@@ -18,18 +18,34 @@
 
 .col-sm-5.col-sm-offset-1
   %p.in-gold-500.font-18.mb-25= t('auth.password')
-  %form.general-form-md.divider-lg-bottom.pb-25
+  = form_for(current_user, as: :new_password, method: :post, class: 'general-form-md divider-lg-bottom pb-25', remote: true, url: update_password_path) do |f|
     .form-group.mb-30
-      %label.control-label.input-label{for: "oldPassword"}= t('settings.old_password')
-      %input#oldPassword.form-control{name:"password", type: "password", placeholder: t('settings.old_password')}
+      = f.label :current_password, t('settings.old_password'), class: 'control-label input-label'
+      = f.password_field(:current_password,
+                        autocomplete: 'current_password',
+                        class: 'form-control',
+                        required: true,
+                        placeholder: t('settings.old_password'))
+
     .form-group.mb-30
-      %label.control-label.input-label{for: "password"}= t('auth.type_new_password')
-      %input#password.form-control{name:"password", type: "password", placeholder: t('auth.type_new_password')}
+      = f.label :password, t('auth.type_new_password'), class: 'control-label input-label'
+      = f.password_field(:password,
+                        autocomplete: 'password',
+                        class: 'form-control',
+                        required: true,
+                        placeholder: t('auth.type_new_password'))
+
     .form-group.mb-40
-      %label.control-label.input-label{for: "confirmPassword"}= t('auth.confirm_password')
-      %input#confirmPassword.form-control{name:"password", type: "password", placeholder: t('auth.confirm_password')}
+      = f.label :password_confirmation, t('auth.confirm_password'), class: 'control-label input-label'
+      = f.password_field(:password_confirmation,
+                      autocomplete: 'password_confirmation',
+                      class: 'form-control',
+                      required: true,
+                      placeholder: t('auth.confirm_password'))
+
     .general-text-align
-      %button.btn.disabled.mb-10= t('settings.save')
+      = f.submit t('settings.save'), class: 'btn btn-default mb-10'
+
 .col-sm-12
   %p.in-gold-500.font-18.mb-25= t('settings.remove')
   %form
