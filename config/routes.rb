@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   post 'users/settings/update_shipping', to: 'users#update_shipping', as: 'update_shipping'
   post 'users/settings/update_email', to: 'users#update_email', as: 'update_email'
   post 'users/settings/update_password', to: 'users#update_password', as: 'update_password'
+  post 'users/settings/destroy_account', to: 'users#destroy_account', as: 'destroy_account'
 end

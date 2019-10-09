@@ -21,6 +21,10 @@ class UsersController < ApplicationController
     redirect_to root_path if current_user.update_with_password(password_params)
   end
 
+  def destroy_account
+    redirect_to root_path, notice: "You've deleted your account." if current_user.destroy
+  end
+
   private
 
   def address_params(parameter)

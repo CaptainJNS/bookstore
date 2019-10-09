@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  has_one :billing
-  has_one :shipping
+  has_one :billing, dependent: :destroy
+  has_one :shipping, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
