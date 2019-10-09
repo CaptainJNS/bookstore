@@ -45,6 +45,7 @@
                       autocomplete: 'zip',
                       class: 'form-control',
                       required: true,
+                      type: "number",
                       placeholder: t('settings.zip'))
 
     .form-group
@@ -63,6 +64,7 @@
                       autocomplete: 'phone',
                       class: 'form-control',
                       required: true,
+                      pattern: '^[+]?[\d]{10,13}$',
                       placeholder: t('settings.phone'))
 
     .text-center.general-text-align
