@@ -5,8 +5,9 @@ require File.expand_path('../config/environment', __dir__)
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 require 'capybara/rails'
-
 require 'capybara-webkit'
+require 'devise'
+include Warden::Test::Helpers
 
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
@@ -26,13 +27,11 @@ RSpec.configure do |config|
   config.include Capybara::DSL
   Capybara.default_driver = :webkit
   Capybara.javascript_driver = :webkit
+
+  config.infer_spec_type_from_file_location!
+  config.include Warden::Test::Helpers
 end
 
-
-
-
 Capybara::Webkit.configure(&:block_unknown_urls)
-
-
 
 # Capybara.ignore_hidden_elements = false

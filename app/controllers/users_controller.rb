@@ -8,23 +8,23 @@ class UsersController < ApplicationController
   end
 
   def update_billing
-    current_user.billing.update(address_params(:billing))
+    redirect_to settings_path, notice: I18n.t('settings.billing_updated') if current_user.billing.update(address_params(:billing))
   end
 
   def update_shipping
-    current_user.shipping.update(address_params(:shipping))
+    redirect_to settings_path, notice: I18n.t('settings.shipping_updated') if current_user.shipping.update(address_params(:shipping))
   end
 
   def update_email
-    current_user.update(email)
+    redirect_to settings_path, notice: I18n.t('devise.registrations.update_needs_confirmation') if current_user.update(email)
   end
 
   def update_password
-    redirect_to root_path if current_user.update_with_password(password_params)
+    redirect_to new_user_session_path, notice: I18n.t('devise.passwords.updated_not_active') if current_user.update_with_password(password_params)
   end
 
   def destroy_account
-    redirect_to root_path, notice: "You've deleted your account." if current_user.destroy
+    redirect_to root_path, notice: I18n.t('devise.registrations.destroyed') if current_user.destroy
   end
 
   private
