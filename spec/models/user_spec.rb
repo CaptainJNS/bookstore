@@ -10,4 +10,16 @@ RSpec.describe User, type: :model do
       expect(build(:user, name: nil)).to be_valid
     end
   end
+
+  context 'with associations' do
+    it 'has one billing' do
+      user = create(:user)
+      expect(user).to respond_to :billing
+    end
+
+    it 'has one shipping' do
+      user = create(:user)
+      expect(user).to respond_to :shipping
+    end
+  end
 end
