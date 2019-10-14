@@ -69,6 +69,19 @@ ActiveAdmin.register Book do
       f.input :images, as: :file, input_html: { multiple: true }
     end
 
+    f.object.images.each do |image|
+      span image_tag image.variant(resize: '100x100')
+      span link_to('X', delete_book_image_admin_book_path(image.id),
+                   method: :delete, data: { confirm: 'Delete image?' })
+    end
+
     f.actions
+  end
+
+  member_action :delete_book_image, method: :delete do
+    @image = ActiveStorage::Attachment.find(params[:id])
+    @image.purge_later
+
+    redirect_back(fallback_location: edit_admin_book_path)
   end
 end
