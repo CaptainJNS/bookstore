@@ -1,21 +1,19 @@
 ActiveAdmin.register Book do
   permit_params :title, :description, :dimensions, :materials,
-                :quantity, :materials, :price, :year, :category_ids, :author_ids, images: []
+                :quantity, :materials, :price, :year, category_ids: [], author_ids: [], images: []
+
+  decorate_with BookDecorator
 
   index do
     selectable_column
 
     column :title do |resource|
-      link_to resource.title.to_s, resource_path(resource)
+      link_to resource.title, resource_path(resource)
     end
 
-    column :authors do |resource|
-      resource.authors.each do |author|
-        link_to author.decorate.full_name, resource_path(author)
-      end
-    end
+    column :authors, &:authors_names
 
-    column :category do |resource|
+    column :categories do |resource|
       resource.categories.each do |category|
         link_to category.name, resource_path(category)
       end
@@ -40,8 +38,8 @@ ActiveAdmin.register Book do
     end
 
     attributes_table do
-      row :authors
-      row :category
+      row :authors, &:authors_names
+      row :categories
       row :year
       row :description
       row :materials
@@ -57,7 +55,7 @@ ActiveAdmin.register Book do
   form do |f|
     f.inputs do
       f.input :title
-      f.input :category, as: :check_boxes, collection: Category.all
+      f.input :categories, as: :check_boxes, collection: Category.all
       f.input :authors, as: :check_boxes, collection: AuthorDecorator.decorate_collection(Author.all)
       f.input :description
       f.input :year
