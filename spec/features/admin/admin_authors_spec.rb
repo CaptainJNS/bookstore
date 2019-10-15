@@ -20,7 +20,7 @@ RSpec.describe 'Admin Authors' do
     fill_in 'author[first_name]', with: author_attributes[:first_name]
     fill_in 'author[last_name]', with: author_attributes[:last_name]
 
-    expect { click_button('Create Author'); sleep(1) }.to change { Author.count }.by(1)
+    expect { click_button('Create Author'); sleep(1) }.to change(Author, :count).by(1)
   end
 
   it 'Admin can view the Author' do

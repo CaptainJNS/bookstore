@@ -25,7 +25,7 @@ RSpec.describe 'Admin Books' do
     fill_in 'book[dimensions]', with: book_attributes[:dimensions]
     fill_in 'book[quantity]', with: book_attributes[:quantity]
 
-    expect { click_button('Create Book'); sleep(1) }.to change { Book.count }.by(1)
+    expect { click_button('Create Book'); sleep(1) }.to change(Book, :count).by(1)
   end
 
   it 'Admin can view the Book' do

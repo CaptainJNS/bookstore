@@ -19,7 +19,7 @@ RSpec.describe 'Admin Categories' do
 
     fill_in 'category[name]', with: category_attributes[:name]
 
-    expect { click_button('Create Category'); sleep(1) }.to change { Category.count }.by(1)
+    expect { click_button('Create Category'); sleep(1) }.to change(Category, :count).by(1)
   end
 
   it 'Admin can view the Category' do
