@@ -1,10 +1,8 @@
-AUTHORS_COUNT = 5
-
 start_time = Time.now
 
 Author.destroy_all
 
-AUTHORS_COUNT.times do |_index|
+Constants::AUTHORS_COUNT.times do
   Author.create! do |author|
     author.first_name = FFaker::Name.unique.first_name
     author.last_name = FFaker::Name.unique.last_name

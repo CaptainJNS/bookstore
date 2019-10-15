@@ -4,5 +4,6 @@ FactoryBot.define do
     status { I18n.t('review.unprocessed') }
     user
     book
+    rating { rand(1..5) }
   end
 end
