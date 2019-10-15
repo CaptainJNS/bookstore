@@ -9,9 +9,6 @@
           .max-240
             .general-message-name= review.user.name || review.user.email[/[^@]+/].capitalize
         .mb-15
-          %i.fa.fa-star.rate-star
-          %i.fa.fa-star.rate-star
-          %i.fa.fa-star.rate-star
-          %i.fa.fa-star.rate-star
-          %i.fa.fa-star.rate-star
+          - review.rating.times do
+            %i.fa.fa-star.rate-star
         %p= review.body
