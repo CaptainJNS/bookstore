@@ -24,8 +24,4 @@ ActiveAdmin.register AdminUser do
     end
     f.actions
   end
-<<<<<<< HEAD
-=======
-
->>>>>>> Created admin panel
 end
