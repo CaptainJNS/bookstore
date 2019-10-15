@@ -31,7 +31,8 @@
       = render partial: 'books/show/book_info'
 
   .mb-80
-    = render partial: 'books/show/write_review'
+    - if user_signed_in?
+      = render partial: 'books/show/write_review'
 
   .mb-80
     = render partial: 'books/show/reviews'

@@ -10,5 +10,6 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id]).decorate
+    @reviews = Review.where('book_id = ? and status = ?', "#{@book.id}", 'Approved')
   end
 end
