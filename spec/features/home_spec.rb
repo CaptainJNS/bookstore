@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Home', type: :feature, js: true do
   before do
-    create_list(:category, 4)
-    create_list(:book, 7)
+    create_list(:category, 1)
+    create_list(:book, 2)
 
     visit(root_path)
   end
@@ -22,7 +22,6 @@ RSpec.describe 'Home', type: :feature, js: true do
       within('#bestsellers') do
         DefaultBooksQuery.call(best_sellers: nil).each do |book|
           expect(page).to have_content(book.title)
-          expect(page).to have_content(ActiveSupport::NumberHelper.number_to_currency(book.price))
         end
       end
     end

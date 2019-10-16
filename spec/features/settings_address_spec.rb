@@ -58,15 +58,5 @@ RSpec.describe 'Register page', type: :feature, js: true do
         expect(page).to have_content(I18n.t('devise.passwords.updated_not_active'))
       end
     end
-
-    # context 'when users account destroy' do
-    #   it 'destroys users account' do
-    #     click_link(I18n.t('settings.privacy'))
-    #     find('.checkbox-icon').click
-    #     sleep(1)
-    #     find('#delete').click
-    #     expect(page).to have_content(I18n.t('devise.registrations.destroyed'))
-    #   end
-    # end
   end
 end

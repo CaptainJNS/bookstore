@@ -6,9 +6,10 @@ RSpec.describe 'Catalog', type: :feature, js: true do
   end
 
   context 'with categories' do
+    let(:book) { create(:book, categories: Category.all.sample(1)) }
+    let(:extra_book) { create(:book, categories: []) } 
+
     it 'shows books only from choosen category' do
-      book = create(:book, categories: Category.all.sample(1))
-      extra_book = create(:book, categories: [])
       visit(books_path)
       find('.filter-link', text: book.categories.first.name, match: :first).click
       expect(page).to have_content(book.title)
@@ -18,14 +19,16 @@ RSpec.describe 'Catalog', type: :feature, js: true do
 
   context 'with view more', skip_before: true do
     it 'shows more books' do
-      create_list(:book, 9)
+      create_list(:book, 2)
+      stub_const('Constants::BOOKS_PER_PAGE', 1)
       visit(books_path)
 
       expect { click_link(I18n.t('shop.more')); sleep(1) }.to change { all('.title').count }.by(1)
     end
 
     it 'hides when all books are shown' do
-      create_list(:book, 9)
+      create_list(:book, 2)
+      stub_const('Constants::BOOKS_PER_PAGE', 1)
       visit(books_path)
 
       expect(page).to have_content(I18n.t('shop.more'))

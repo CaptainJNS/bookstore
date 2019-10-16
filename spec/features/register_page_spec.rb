@@ -29,14 +29,6 @@ RSpec.describe 'Register page', type: :feature, js: true do
   end
 
   context 'when invalid data' do
-    # it 'when invalid email stays on Register page' do
-    #   fill_in 'user[email]', with: 'email'
-    #   fill_in 'user[password]', with: user.password
-    #   fill_in 'user[password_confirmation]', with: user.password
-    #   click_button I18n.t('default.register')
-    #   expect(page).to have_current_path(new_user_registration_path)
-    # end
-
     it 'when invalid confirm password shows message' do
       fill_in 'user[email]', with: 'email@host.com'
       fill_in 'user[password]', with: user.password
