@@ -2,7 +2,7 @@
 = simple_form_for ([@book, @book.reviews.build]), class: 'row' do |f|
   %p.general-info-text= t('book.score')
   .mb-15
-    - 5.times do |index|
+    - Constants::STARS_COUNT.times do |index|
       %i{class: 'fa fa-star rate-empty', id: "star_id_#{index}", onclick: "stars(#{index});", role: "button"}
 
   .mb-40

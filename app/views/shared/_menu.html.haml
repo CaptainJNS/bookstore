@@ -6,13 +6,10 @@
 
   - if user_signed_in?
     %li
-      %a{href: "", method: :delete}= current_user.name || current_user.email[/[^@]+/].capitalize
+      %a{href: "", method: :delete}= current_user.name
     %li.dropdown
       %a.dropdown-toggle{href: "", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-        - if current_user.image
-          = image_tag(current_user.image, class: 'img-responsive img-circle img-thumbnail logo-size pull-right')
-        - else
-          = image_tag('https://book-store-dmitriev.s3.eu-west-2.amazonaws.com/no_avatar.png', class: 'img-responsive img-circle img-thumbnail logo-size pull-right')
+        = image_tag(current_user.image, class: 'img-responsive img-circle img-thumbnail logo-size pull-right')
       %ul.dropdown-menu
         %li
           %a{href: "#"} Orders

@@ -1,12 +1,19 @@
 class ReviewDecorator < ApplicationDecorator
   delegate_all
 
-  # Define presentation-specific methods here. Helpers are accessed through
-  # `helpers` (aka `h`). You can override attributes, for example:
-  #
-  #   def created_at
-  #     helpers.content_tag :span, class: 'time' do
-  #       object.created_at.strftime("%a %m/%d/%y")
-  #     end
-  #   end
+  def to_string
+    I18n.t('book.review') + " \##{id}"
+  end
+
+  def author
+    user.decorate.name
+  end
+
+  def date
+    created_at.strftime('%d.%m.%Y')
+  end
+
+  def image
+    user.decorate.image
+  end
 end

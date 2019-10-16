@@ -1,6 +1,8 @@
 ActiveAdmin.register Review do
   permit_params :body, :status
 
+  decorate_with ReviewDecorator
+
   scope :all
   scope(I18n.t('review.unprocessed'), default: true) { |scope| scope.where(status: I18n.t('review.unprocessed')) }
   scope(I18n.t('review.approved')) { |scope| scope.where(status: I18n.t('review.approved')) }
@@ -31,7 +33,7 @@ ActiveAdmin.register Review do
 
     column :status
     column :review do |resource|
-      link_to I18n.t('book.review') + " \##{resource.id}", resource_path(resource)
+      link_to resource.to_string, resource_path(resource)
     end
     column :book
     column :user do |resource|

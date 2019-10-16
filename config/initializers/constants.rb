@@ -11,4 +11,6 @@ module Constants
   MATERIALS = ['Glossy paper', 'Hardcover', 'Soft paper', 'Cardboard'].freeze
   CATEGORIES = ['Mobile development', 'Photo', 'Web design', 'Web development'].freeze
   DIMENSION = (1.0..10.0).freeze
+  STARS_COUNT = 5
+  NO_IMAGE_PATH = 'https://book-store-dmitriev.s3.eu-west-2.amazonaws.com/no_avatar.png'
 end

@@ -10,6 +10,6 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id]).decorate
-    @reviews = Review.where('book_id = ? and status = ?', @book.id, I18n.t('review.approved'))
+    @reviews = ReviewDecorator.decorate_collection(Review.where('book_id = ? and status = ?', @book.id, I18n.t('review.approved')))
   end
 end

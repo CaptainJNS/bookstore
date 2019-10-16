@@ -2,12 +2,12 @@
 - @reviews.each do |review|
   .general-message-wrap.divider-lg
     .clearfix
-      %img.img-circle.logo-size.inlide-block.pull-left{src: review.user.image || 'https://book-store-dmitriev.s3.eu-west-2.amazonaws.com/no_avatar.png'}
+      %img.img-circle.logo-size.inlide-block.pull-left{src: review.image}
       .ml-70
         %div
-          .general-message-date.hidden-xs= review.created_at.strftime("%d.%m.%Y")
+          .general-message-date.hidden-xs= review.date
           .max-240
-            .general-message-name= review.user.name || review.user.email[/[^@]+/].capitalize
+            .general-message-name= review.author
         .mb-15
           - review.rating.times do
             %i.fa.fa-star.rate-star
