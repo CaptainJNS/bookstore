@@ -16,9 +16,9 @@
             .col-md-5.col-md-offset-1
               %h3.general-subtitle.mt-0= t('settings.shipping')
       .row
-        = render partial: 'users/settings/billing'
-        = render partial: 'users/settings/shipping'
-          
+        = render partial: 'devise/registrations/settings/address', locals: { address: :billing }
+        = render partial: 'devise/registrations/settings/address', locals: { address: :shipping }
+
     #privacy.tab-pane.fade{role: "tabpanel"}
       .row.mb-60
-        = render partial: 'users/settings/privacy'
+        = render partial: 'devise/registrations/settings/privacy'

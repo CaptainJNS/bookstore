@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe 'Register page', type: :feature, js: true do
+RSpec.describe 'Settings page', type: :feature, js: true do
   context 'when user unauthorized' do
     it 'wont let user to get access' do
-      visit(settings_path)
+      visit(edit_user_registration_path)
       expect(page).to have_current_path(new_user_session_path)
     end
   end
@@ -16,26 +16,26 @@ RSpec.describe 'Register page', type: :feature, js: true do
 
     before do
       login_as(user)
-      visit(settings_path)
+      visit(edit_user_registration_path)
     end
 
     context 'when billing address' do
       it 'updates users billing data' do
-        attributes_for(:billing).except(:user).each do |key, value|
-          fill_in "billing[#{key}]", with: value
+        attributes_for(:billing).each do |key, value|
+          fill_in "user[billing_attributes][#{key}]", with: value
         end
-        find('#saveBilling').click
-        expect(page).to have_content(I18n.t('settings.billing_updated'))
+        find('#save-billing').click
+        expect(page).to have_content(I18n.t('devise.registrations.updated'))
       end
     end
 
     context 'when shipping address' do
       it 'updates users shipping data' do
-        attributes_for(:shipping).except(:user).each do |key, value|
-          fill_in "shipping[#{key}]", with: value
+        attributes_for(:shipping).each do |key, value|
+          fill_in "user[shipping_attributes][#{key}]", with: value
         end
-        find('#saveShipping').click
-        expect(page).to have_content(I18n.t('settings.shipping_updated'))
+        find('#save-shipping').click
+        expect(page).to have_content(I18n.t('devise.registrations.updated'))
       end
     end
 
@@ -55,7 +55,7 @@ RSpec.describe 'Register page', type: :feature, js: true do
         fill_in 'password', with: 'newpassword'
         fill_in 'password_confirmation', with: 'newpassword'
         find('#savePassword').click
-        expect(page).to have_content(I18n.t('devise.passwords.updated_not_active'))
+        expect(page).to have_content(I18n.t('devise.registrations.updated'))
       end
     end
   end

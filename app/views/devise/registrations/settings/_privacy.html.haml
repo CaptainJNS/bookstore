@@ -1,6 +1,6 @@
 .col-sm-5
   %p.in-gold-500.font-18.mb-25= t('settings.email')
-  = form_for(current_user, as: :email, method: :post, class: 'general-form-md', remote: true, url: update_email_path) do |f|
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), method: :put) do |f|
     .form-group.mb-35
       = f.label :email, t('auth.enter_email'), class: 'control-label input-label'
       = f.email_field(:email,
@@ -15,7 +15,7 @@
 
 .col-sm-5.col-sm-offset-1
   %p.in-gold-500.font-18.mb-25= t('auth.password')
-  = form_for(current_user, as: :new_password, method: :post, class: 'general-form-md divider-lg-bottom pb-25', remote: true, url: update_password_path) do |f|
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), method: :put) do |f|
     .form-group.mb-30
       = f.label :current_password, t('settings.old_password'), class: 'control-label input-label'
       = f.password_field(:current_password,
@@ -48,9 +48,9 @@
 
 .col-sm-12
   %p.in-gold-500.font-18.mb-25= t('settings.remove')
-  = simple_form_for :user, url: destroy_account_path do |f|
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), method: :delete) do |f|
     .general-settings-btn
-      = f.button :submit, t('settings.please_remove'), class: 'btn mb-20', id: 'delete', disabled: true
+      = f.submit t('settings.please_remove'), class: 'btn mb-20', id: 'delete', disabled: true
 
     .form-group.checkbox.general-settings-checkbox
       %label.checkbox-label{ onclick: "account_destroy();" }
