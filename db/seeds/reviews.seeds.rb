@@ -8,7 +8,7 @@ after :users, :books do
   Constants::BOOKS_COUNT.times do |_index|
     Review.create! do |review|
       review.body       = FFaker::Lorem.paragraph
-      review.status     = I18n.t('review.approved')
+      review.status     = :approved
       review.book       = Book.all.sample
       review.user       = User.all.sample
       review.rating     = rand(1..5)
