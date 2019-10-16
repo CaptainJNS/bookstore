@@ -40,14 +40,14 @@ RSpec.describe 'Admin Review' do
 
     it 'admin can change status to approved' do
       click_link(I18n.t('admin.approve'))
-      sleep(1)
-      expect(Review.last.status).to eq(I18n.t('review.approved'))
+
+      expect(page.html).to include('<td>approved</td>')
     end
 
     it 'admin can change status to rejected' do
       click_link(I18n.t('admin.reject'))
-      sleep(1)
-      expect(Review.last.status).to eq(I18n.t('review.rejected'))
+
+      expect(page.html).to include('<td>rejected</td>')
     end
   end
 end

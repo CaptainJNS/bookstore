@@ -23,21 +23,21 @@ RSpec.describe 'Book page', type: :feature, js: true do
 
   context 'with show' do
     it 'users can see approved reviews' do
-      review = create(:review, book: book, status: I18n.t('review.approved'))
+      review = create(:review, book: book, status: :approved)
       visit(book_path(book))
 
       expect(page).to have_content(review.body)
     end
 
     it 'users cannot see rejected reviews' do
-      review = create(:review, book: book, status: I18n.t('review.rejected'))
+      review = create(:review, book: book, status: :rejected)
       visit(book_path(book))
 
       expect(page).not_to have_content(review.body)
     end
 
     it 'users cannot see unprocessed reviews' do
-      review = create(:review, book: book, status: I18n.t('review.unprocessed'))
+      review = create(:review, book: book, status: :unprocessed)
       visit(book_path(book))
 
       expect(page).not_to have_content(review.body)

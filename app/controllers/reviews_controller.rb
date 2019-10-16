@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
 
   def create
     review = Review.new(review_params)
-    review.status = I18n.t('review.unprocessed')
+    review.status = :unprocessed
     review.save
 
     redirect_to book_path(Book.find(params[:book_id]))

@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :review do
     body { FFaker::Lorem.paragraph }
-    status { I18n.t('review.unprocessed') }
+    status { :unprocessed }
     user
     book
     rating { rand(1..5) }
