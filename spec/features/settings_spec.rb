@@ -22,20 +22,20 @@ RSpec.describe 'Settings page', type: :feature, js: true do
     context 'when billing address' do
       it 'updates users billing data' do
         attributes_for(:billing).each do |key, value|
-          fill_in "user[billing_attributes][#{key}]", with: value
+          fill_in "billing[#{key}]", with: value
         end
         find('#save-billing').click
-        expect(page).to have_content(I18n.t('devise.registrations.updated'))
+        expect(page).to have_content(I18n.t('settings.billing_updated'))
       end
     end
 
     context 'when shipping address' do
       it 'updates users shipping data' do
         attributes_for(:shipping).each do |key, value|
-          fill_in "user[shipping_attributes][#{key}]", with: value
+          fill_in "shipping[#{key}]", with: value
         end
         find('#save-shipping').click
-        expect(page).to have_content(I18n.t('devise.registrations.updated'))
+        expect(page).to have_content(I18n.t('settings.shipping_updated'))
       end
     end
 

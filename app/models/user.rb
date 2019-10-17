@@ -2,11 +2,6 @@ class User < ApplicationRecord
   has_one :billing, dependent: :destroy
   has_one :shipping, dependent: :destroy
 
-  accepts_nested_attributes_for :billing
-  accepts_nested_attributes_for :shipping
-
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :omniauthable, omniauth_providers: [:facebook]
@@ -21,13 +16,5 @@ class User < ApplicationRecord
       user.uid = auth.uid
       user.skip_confirmation!
     end
-  end
-
-  def billing
-    super || create_billing
-  end
-
-  def shipping
-    super || create_shipping
   end
 end
