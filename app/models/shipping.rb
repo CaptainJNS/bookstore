@@ -12,6 +12,6 @@ class Shipping < ApplicationRecord
     presence: false
   )
 
-  validates_format_of :phone, with: /\A(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}\z/, allow_blank: true
+  validates_format_of :phone, with: Constants::PHONE_PATTERN, allow_blank: true
   validates :zip, numericality: { only_integer: true }, allow_blank: true
 end

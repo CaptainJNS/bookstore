@@ -2,10 +2,10 @@ class UserDecorator < ApplicationDecorator
   delegate_all
 
   def name
-    super || email[/[^@]+/].capitalize
+    super || email[Constants::EMAIL_TO_LOGIN].capitalize
   end
 
   def image
-    super || Constants::NO_IMAGE_PATH
+    object.image || Constants::NO_IMAGE_PATH
   end
 end

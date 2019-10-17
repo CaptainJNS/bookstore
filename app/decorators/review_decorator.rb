@@ -1,12 +1,14 @@
 class ReviewDecorator < ApplicationDecorator
   delegate_all
 
+  decorates_association :user
+
   def to_string
     I18n.t('book.review') + " \##{id}"
   end
 
   def author
-    user.decorate.name
+    user.name
   end
 
   def date
@@ -14,6 +16,6 @@ class ReviewDecorator < ApplicationDecorator
   end
 
   def image
-    user.decorate.image
+    user.image
   end
 end

@@ -4,9 +4,9 @@ ActiveAdmin.register Review do
   decorate_with ReviewDecorator
 
   scope :all
-  scope(I18n.t('review.unprocessed'), default: true) { |scope| scope.where(status: :unprocessed) }
-  scope(I18n.t('review.approved')) { |scope| scope.where(status: :approved) }
-  scope(I18n.t('review.rejected')) { |scope| scope.where(status: :rejected) }
+  scope(I18n.t('review.unprocessed'), default: true, &:unprocessed)
+  scope(I18n.t('review.approved'), &:approved)
+  scope(I18n.t('review.rejected'), &:rejected)
 
   action_item :reject, only: :show do
     link_to I18n.t('admin.reject'), reject_admin_review_path(review), method: :put
