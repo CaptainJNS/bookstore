@@ -1,7 +1,8 @@
 .col-md-5.mb-40
   .visible-xs.visible-sm
     %h3.general-subtitle.mt-0= t("settings.#{address}")
-  = form_for(resource, method: :put) do |f|
+
+  = form_for(resource.object, method: :put) do |f|
     .form-group
       = f.label :first_name, t('settings.first_name'), class: 'control-label input-label'
       = f.text_field(:first_name,

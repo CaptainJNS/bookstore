@@ -16,8 +16,8 @@
             .col-md-5.col-md-offset-1
               %h3.general-subtitle.mt-0= t('settings.shipping')
       .row
-        = render partial: 'settings/address', locals: { address: :billing, resource: Billing.where(user: current_user).first_or_create }
-        = render partial: 'settings/address', locals: { address: :shipping, resource: Shipping.where(user: current_user).first_or_create }
+        = render partial: 'settings/address', locals: { address: :billing, resource: GetUsersAddress.call(user: current_user, address: :billing) }
+        = render partial: 'settings/address', locals: { address: :shipping, resource: GetUsersAddress.call(user: current_user, address: :shipping) }
 
     #privacy.tab-pane.fade{role: "tabpanel"}
       .row.mb-60
