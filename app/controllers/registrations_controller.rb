@@ -6,7 +6,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def after_update_path_for(_resource)
-    settings_path
+    edit_user_path
   end
 
   def user_params

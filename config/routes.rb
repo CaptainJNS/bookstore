@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :books
-  resources :users, only: :update
-  get '/settings', to: 'users#edit', as: 'settings'
+  resource :user, only: %i[update edit]
+  resolve('User') { [:user] }
 end
