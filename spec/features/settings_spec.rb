@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Settings page', type: :feature, js: true do
   context 'when user unauthorized' do
     it 'wont let user to get access' do
-      visit(edit_user_registration_path)
+      visit(settings_path)
       expect(page).to have_current_path(new_user_session_path)
     end
   end
@@ -16,7 +16,7 @@ RSpec.describe 'Settings page', type: :feature, js: true do
 
     before do
       login_as(user)
-      visit(edit_user_path(user))
+      visit(settings_path)
     end
 
     context 'when billing address' do

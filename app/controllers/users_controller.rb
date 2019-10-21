@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+
   def edit
     @billing = Billing.where(user: current_user).first_or_initialize
     @shipping = Shipping.where(user: current_user).first_or_initialize
@@ -24,6 +26,6 @@ class UsersController < ApplicationController
   end
 
   def redirect_after_update
-    redirect_to edit_user_path(current_user), notice: I18n.t('settings.address_updated')
+    redirect_to settings_path, notice: I18n.t('settings.address_updated')
   end
 end
