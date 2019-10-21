@@ -88,3 +88,4 @@ en:
     phone_example: 'Example: +88005553535'
     billing_updated: 'Billing was updated.'
     shipping_updated: 'Shipping was updated.'
+    address_updated: 'Address was updated'

@@ -13,11 +13,19 @@
           .row
             .col-md-5
               %h3.general-subtitle.mt-0= t('settings.billing')
-            .col-md-5.col-md-offset-1
+            .col-md-5
               %h3.general-subtitle.mt-0= t('settings.shipping')
+
       .row
-        = render partial: 'settings/address', locals: { resource: @billing }
-        = render partial: 'settings/address', locals: { resource: @shipping }
+        .col-md-5.mb-40
+          .visible-xs.visible-sm
+            %h3.general-subtitle.mt-0= t("settings.billing")
+          = render partial: 'settings/address', locals: { address: @billing }
+
+        .col-md-5.mb-40
+          .visible-xs.visible-sm
+            %h3.general-subtitle.mt-0= t("settings.shipping")
+          = render partial: 'settings/address', locals: { address: @shipping }
 
     #privacy.tab-pane.fade{role: "tabpanel"}
       .row.mb-60

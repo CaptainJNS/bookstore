@@ -16,26 +16,26 @@ RSpec.describe 'Settings page', type: :feature, js: true do
 
     before do
       login_as(user)
-      visit(edit_user_registration_path)
+      visit(edit_user_path(user))
     end
 
     context 'when billing address' do
       it 'updates users billing data' do
         attributes_for(:billing).each do |key, value|
-          fill_in "billing[#{key}]", with: value
+          fill_in "user[billing][#{key}]", with: value
         end
-        find('#save-billing').click
-        expect(page).to have_content(I18n.t('settings.billing_updated'))
+        find('#save-Billing').click
+        expect(page).to have_content(I18n.t('settings.address_updated'))
       end
     end
 
     context 'when shipping address' do
       it 'updates users shipping data' do
         attributes_for(:shipping).each do |key, value|
-          fill_in "shipping[#{key}]", with: value
+          fill_in "user[shipping][#{key}]", with: value
         end
-        find('#save-shipping').click
-        expect(page).to have_content(I18n.t('settings.shipping_updated'))
+        find('#save-Shipping').click
+        expect(page).to have_content(I18n.t('settings.address_updated'))
       end
     end
 

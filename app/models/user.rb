@@ -2,6 +2,9 @@ class User < ApplicationRecord
   has_one :billing, dependent: :destroy
   has_one :shipping, dependent: :destroy
 
+  accepts_nested_attributes_for :billing
+  accepts_nested_attributes_for :shipping
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :omniauthable, omniauth_providers: [:facebook]

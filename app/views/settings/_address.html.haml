@@ -1,8 +1,5 @@
-.col-md-5.mb-40
-  .visible-xs.visible-sm
-    %h3.general-subtitle.mt-0= t("settings.#{address}")
-
-  = form_for(resource.object, method: :put) do |f|
+= form_for(current_user, method: :put) do |field|
+  = field.simple_fields_for address do |f|
     .form-group
       = f.label :first_name, t('settings.first_name'), class: 'control-label input-label'
       = f.text_field(:first_name,
@@ -69,4 +66,4 @@
                       placeholder: t('settings.phone'))
 
     .text-center.general-text-align
-      = f.submit t('settings.save'), class: 'btn', id: "save-#{address}"
+      = f.submit t('settings.save'), class: 'btn', id: "save-#{address.class}"

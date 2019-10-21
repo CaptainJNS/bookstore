@@ -5,6 +5,5 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :books
-  resources :billings, only: :update
-  resources :shippings, only: :update
+  resources :users, only: %i[edit update]
 end
