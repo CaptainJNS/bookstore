@@ -5,12 +5,12 @@ class UpdateUser
     @params = context.permitted_params
     @user = context.current_user
 
-    update_address
-    @user.update_without_password(@params) if @params[:email]
-    if @params[:current_password]
-      context.fail! unless @user.update_with_password(@params)
-    end
-  rescue
+    return if update_address
+
+    return if @params[:email] && @user.update_without_password(@params)
+
+    return if @params[:current_password] && @user.update_with_password(@params)
+
     context.fail!
   end
 

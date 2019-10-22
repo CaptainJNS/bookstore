@@ -6,5 +6,4 @@ Rails.application.routes.draw do
 
   resources :books
   resource :user, only: %i[update edit destroy]
-  resolve('User') { [:user] }
 end

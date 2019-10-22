@@ -17,7 +17,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(current_user.id).destroy
+    current_user.destroy
+    redirect_to root_path, notice: I18n.t('devise.registrations.destroyed')
   end
 
   private
