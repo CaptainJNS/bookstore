@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :books
-  resource :user, only: %i[update edit]
+  resource :user, only: %i[update edit destroy]
   resolve('User') { [:user] }
 end

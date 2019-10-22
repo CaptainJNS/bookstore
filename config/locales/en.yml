@@ -89,3 +89,5 @@ en:
     billing_updated: 'Billing was updated.'
     shipping_updated: 'Shipping was updated.'
     address_updated: 'Address was updated'
+    account_updated: 'Account was updated'
+    errors: "You've entered invalid data"

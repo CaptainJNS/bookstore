@@ -25,7 +25,7 @@ RSpec.describe 'Settings page', type: :feature, js: true do
           fill_in "user[billing][#{key}]", with: value
         end
         find('#save-Billing').click
-        expect(page).to have_content(I18n.t('settings.address_updated'))
+        expect(page).to have_content(I18n.t('settings.account_updated'))
       end
     end
 
@@ -35,7 +35,7 @@ RSpec.describe 'Settings page', type: :feature, js: true do
           fill_in "user[shipping][#{key}]", with: value
         end
         find('#save-Shipping').click
-        expect(page).to have_content(I18n.t('settings.address_updated'))
+        expect(page).to have_content(I18n.t('settings.account_updated'))
       end
     end
 
@@ -44,7 +44,7 @@ RSpec.describe 'Settings page', type: :feature, js: true do
         click_link(I18n.t('settings.privacy'))
         fill_in 'email', with: FFaker::Internet.email
         find('#saveEmail').click
-        expect(page).to have_content(I18n.t('devise.registrations.update_needs_confirmation'))
+        expect(page).to have_content(I18n.t('settings.account_updated'))
       end
     end
 
@@ -55,7 +55,7 @@ RSpec.describe 'Settings page', type: :feature, js: true do
         fill_in 'password', with: 'newpassword'
         fill_in 'password_confirmation', with: 'newpassword'
         find('#savePassword').click
-        expect(page).to have_content(I18n.t('devise.registrations.updated'))
+        expect(page).to have_content(I18n.t('devise.failure.unauthenticated'))
       end
     end
   end

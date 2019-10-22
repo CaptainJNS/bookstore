@@ -13,7 +13,7 @@ describe UpdateUser do
     end
 
     context "when given valid credentials with billing" do
-      let(:permitted_params) { { billing: Billing.create(attributes_for(:billing)) } }
+      let(:permitted_params) { { billing: attributes_for(:billing) } }
 
       it "succeeds" do
         expect(context).to be_a_success
@@ -21,7 +21,7 @@ describe UpdateUser do
     end
 
     context "when given valid credentials with shipping" do
-      let(:permitted_params) { { shipping: Shipping.create(attributes_for(:shipping)) } }
+      let(:permitted_params) { { shipping: attributes_for(:shipping) } }
 
       it "succeeds" do
         expect(context).to be_a_success
