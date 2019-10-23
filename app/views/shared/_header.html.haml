@@ -7,13 +7,11 @@
         %span.icon-bar
         %span.icon-bar
       %a.navbar-brand= t('default.bookstore')
-      - if user_signed_in?
-        %a.shop-link.pull-right.visible-xs{href: "#"}
-          %span.shop-icon
-            %span.shop-quantity 4
-        %a.shop-link.pull-right.hidden-xs{href: "#"}
-          %span.shop-icon
-            %span.shop-quantity 0
+
+      %a.shop-link.pull-right{href: order_order_items_path(session[:order_id])}
+        %span.shop-icon
+          %span.shop-quantity= session[:order_items_count]
+
     #navbar.navbar-collapse.collapse.pl-30{'aria-expanded': "false"}
       .visible-xs
         = render partial: 'shared/mobile_menu'

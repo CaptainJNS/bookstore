@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_10_17_075735) do
+=======
+ActiveRecord::Schema.define(version: 2019_10_23_104525) do
+
+>>>>>>> Added Order and OrderItem models and controllers
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -120,6 +125,27 @@ ActiveRecord::Schema.define(version: 2019_10_17_075735) do
     t.datetime 'updated_at', null: false
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.integer "quantity", default: 1
+    t.bigint "order_id"
+    t.bigint "book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_order_items_on_book_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.decimal "total_price", precision: 10, scale: 2
+    t.datetime "completed_at"
+    t.integer "status", default: 0
+    t.bigint "user_id"
+    t.integer "shipping_method", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.text "body"
     t.integer "status", default: 0
@@ -169,15 +195,18 @@ ActiveRecord::Schema.define(version: 2019_10_17_075735) do
     t.index ['reviews_id'], name: 'index_users_on_reviews_id'
   end
 
-  add_foreign_key 'active_storage_attachments', 'active_storage_blobs', column: 'blob_id'
-  add_foreign_key 'authors_books', 'authors'
-  add_foreign_key 'authors_books', 'books'
-  add_foreign_key 'billings', 'users'
-  add_foreign_key 'books', 'reviews', column: 'reviews_id'
-  add_foreign_key 'books_categories', 'books'
-  add_foreign_key 'books_categories', 'categories'
-  add_foreign_key 'reviews', 'books'
-  add_foreign_key 'reviews', 'users'
-  add_foreign_key 'shippings', 'users'
-  add_foreign_key 'users', 'reviews', column: 'reviews_id'
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "authors_books", "authors"
+  add_foreign_key "authors_books", "books"
+  add_foreign_key "billings", "users"
+  add_foreign_key "books", "reviews", column: "reviews_id"
+  add_foreign_key "books_categories", "books"
+  add_foreign_key "books_categories", "categories"
+  add_foreign_key "order_items", "books"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "orders", "users"
+  add_foreign_key "reviews", "books"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "shippings", "users"
+  add_foreign_key "users", "reviews", column: "reviews_id"
 end

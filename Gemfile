@@ -72,7 +72,6 @@ end
 
 group :test do
   gem 'capybara-webkit', '~> 1.14.0'
-
   gem 'database_cleaner'
   gem 'factory_bot_rails', '~> 5.0'
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.4'

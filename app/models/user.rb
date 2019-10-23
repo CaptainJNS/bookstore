@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_one :billing, dependent: :destroy
   has_one :shipping, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   accepts_nested_attributes_for :billing
   accepts_nested_attributes_for :shipping
