@@ -7,11 +7,6 @@ describe UpdateUser do
   let(:current_user) { create(:user, :addresses) }
 
   describe ".call" do
-    before do
-      # current_user.billing = Billing.create
-      # current_user.shipping = Shipping.create
-    end
-
     context "when given valid credentials with billing" do
       let(:permitted_params) { { billing: attributes_for(:billing) } }
 
