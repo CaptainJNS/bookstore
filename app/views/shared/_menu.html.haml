@@ -17,7 +17,7 @@
         %li
           %a{href: "#"} Orders
         %li
-          %a{href: edit_user_path} Settings
+          %a{href: edit_user_path(current_user)} Settings
         %li.divider{role: "separator"}
         %li
           = link_to t('default.logout'), destroy_user_session_path, method: :delete

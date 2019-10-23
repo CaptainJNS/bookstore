@@ -1,22 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe 'Settings page', type: :feature, js: true do
+  let(:password) { 'password' }
+  let(:user) { create(:user, password: password) }
+
   context 'when user unauthorized' do
     it 'wont let user to get access' do
-      visit(edit_user_path)
+      visit(edit_user_path(user))
       expect(page).to have_current_path(new_user_session_path)
     end
   end
 
   context 'when user authorized' do
-    let(:password) { 'password' }
-    let(:user) { create(:user, password: password) }
     let(:billing) { [] }
     let(:shipping) { [] }
 
     before do
       login_as(user)
-      visit(edit_user_path)
+      visit(edit_user_path(user))
     end
 
     context 'when billing address' do
