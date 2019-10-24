@@ -8,7 +8,7 @@ describe UpdateUser do
 
   describe ".call" do
     context "when given valid credentials with billing" do
-      let(:permitted_params) { { billing: attributes_for(:billing) } }
+      let(:permitted_params) { { billing_attributes: attributes_for(:billing) } }
 
       it "changes user billing" do
         expect{ context }.to change{ current_user.billing.updated_at }
@@ -16,7 +16,7 @@ describe UpdateUser do
     end
 
     context "when given valid credentials with shipping" do
-      let(:permitted_params) { { shipping: attributes_for(:shipping) } }
+      let(:permitted_params) { { shipping_attributes: attributes_for(:shipping) } }
 
       it "changes user shipping" do
         expect{ context }.to change{ current_user.shipping.updated_at }
@@ -24,18 +24,18 @@ describe UpdateUser do
     end
 
     context "when given invalid credentials with billing" do
-      let(:permitted_params) { { billing: attributes_for(:billing, phone: 'NaN') } }
+      let(:permitted_params) { { billing_attributes: attributes_for(:billing, phone: 'NaN') } }
 
       it "dont changes user billing" do
-        expect{ context }.not_to change{ current_user.billing.updated_at }
+        expect(context).to be_a_failure
       end
     end
 
     context "when given invalid credentials with shipping" do
-      let(:permitted_params) { { shipping: attributes_for(:shipping, phone: 'NaN') } }
+      let(:permitted_params) { { shipping_attributes: attributes_for(:shipping, phone: 'NaN') } }
 
       it "dont changes user shipping" do
-        expect{ context }.not_to change{ current_user.shipping.updated_at }
+        expect(context).to be_a_failure
       end
     end
   end

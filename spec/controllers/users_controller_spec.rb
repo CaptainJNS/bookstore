@@ -28,7 +28,7 @@ RSpec.describe UsersController, type: :controller do
 
     context 'with valid params' do
       it 'updates user and shows a notice' do
-        post :update, { params: { id: user.id, user: { billing: attributes_for(:billing) } } }
+        post :update, { params: { id: user.id, user: { billing_attributes: attributes_for(:billing) } } }
         expect(response).to redirect_to(edit_user_path)
         expect(flash[:notice]).to eq(I18n.t('settings.account_updated'))
       end
@@ -36,7 +36,7 @@ RSpec.describe UsersController, type: :controller do
 
     context 'with invalid params' do
       it 'dont updates user and shows an alert' do
-        post :update, { params: { id: user.id, user: { billing: attributes_for(:billing, phone: 'NaN') } } }
+        post :update, { params: { id: user.id, user: { billing_attributes: attributes_for(:billing, phone: 'NaN') } } }
         expect(response).to redirect_to(edit_user_path)
         expect(flash[:alert]).to eq(I18n.t('settings.errors'))
       end

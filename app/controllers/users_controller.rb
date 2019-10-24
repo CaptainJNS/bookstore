@@ -29,8 +29,8 @@ class UsersController < ApplicationController
       :current_password,
       :password_confirmation,
       :email,
-      billing: %i[first_name last_name address city zip country phone],
-      shipping: %i[first_name last_name address city zip country phone]
+      billing_attributes: %i[first_name last_name address city zip country phone],
+      shipping_attributes: %i[first_name last_name address city zip country phone]
     )
   end
 end
