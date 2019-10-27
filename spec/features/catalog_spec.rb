@@ -47,4 +47,15 @@ RSpec.describe 'Catalog', type: :feature, js: true do
       expect(page).to have_current_path(link)
     end
   end
+
+  context 'with add to cart icon' do
+    let!(:book) { create(:book) }
+
+    it 'adds book to cart' do
+      visit(books_path)
+      find('.add-to-cart', match: :first).click
+      find('#cart').click
+      expect(page).to have_content(book.title)
+    end
+  end
 end

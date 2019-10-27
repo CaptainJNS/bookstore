@@ -11,7 +11,7 @@
             %a.thumb-hover-link{href: book_path(book)}
               %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
 
-            = link_to order_order_items_path(current_order, book_id: book), method: :post, remote: true, class: 'thumb-hover-link', onclick: "addToCart()" do
+            = link_to order_order_items_path(current_order, book_id: book), method: :post, remote: true, class: 'thumb-hover-link add-to-cart', onclick: "addToCart()" do
               %i.fa.fa-shopping-cart.thumb-icon
 
     .general-thumb-info
