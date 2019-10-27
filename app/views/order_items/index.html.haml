@@ -40,7 +40,7 @@
                 %i.fa.fa-plus.line-heaght-40
 
           %td
-            %span.font-16.in-gold-500{ id: 'subPrice' + order_item.book.id.to_s }= number_to_currency(order_item.book.price * order_item.quantity)
+            %span.font-16.in-gold-500{ id: 'subPrice' + order_item.book.id.to_s }= number_to_currency(order_item.price)
 
           %td
             = button_to order_order_item_path(current_order, order_item), method: :delete, class: 'close general-cart-close' do

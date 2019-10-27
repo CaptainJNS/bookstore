@@ -11,6 +11,7 @@ let decrementItemQuantity = (price, id) => {
   if (input.value > 1) {
     input.value--;
     calculateItemPrice(price, input.value, id);
+    calculateSubTotal(-price);
   }
 
 }
@@ -21,6 +22,7 @@ let incrementItemQuantity = (price, quantity, id) => {
   if (input.value < quantity) {
     input.value++;
     calculateItemPrice(price, input.value, id);
+    calculateSubTotal(price);
   }
 }
 
@@ -28,7 +30,15 @@ let calculateItemPrice = (price, input, id) => {
   let price_element = document.getElementById("subPrice"+id);
   let currency = price_element.textContent.substring(0, 1);
 
-  price_element.textContent = currency + price * input;
+  price_element.textContent = currency + (price * input).toFixed(2);
+}
+
+let calculateSubTotal = (price) => {
+  let price_element = document.getElementById("subTotal");
+  let currency = price_element.textContent.substring(0, 1);
+  let old_price = parseFloat(price_element.textContent.substring(1));
+
+  price_element.textContent = currency + (old_price + price).toFixed(2);
 }
 
 let deleteItem = (id) => {

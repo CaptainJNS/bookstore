@@ -12,7 +12,7 @@
             .general-thumb-link-wrap
               %a.thumb-hover-link{href: book_path(book)}
                 %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
-              %a.thumb-hover-link{href: "#"}
+              = link_to order_order_items_path(current_order, book_id: book), method: :post, remote: true, class: 'thumb-hover-link', onclick: "addToCart()" do
                 %i.fa.fa-shopping-cart.thumb-icon
       .mb-35
         .clearfix

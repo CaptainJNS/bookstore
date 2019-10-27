@@ -14,7 +14,7 @@
             %td
               %p.font-16 Subtotal:
             %td
-              %p.font-16 €117.69
+              %p.font-16#subTotal= number_to_currency(current_order.sub_price)
           %tr
             %td
               %p.font-16 Coupon:

@@ -1,6 +1,6 @@
 class OrderItemsController < ApplicationController
   def index
-    @order = Order.find(session[:order_id])
+    @order = Order.find(session[:order_id]).decorate
   end
 
   def create

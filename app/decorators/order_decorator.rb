@@ -1,13 +1,13 @@
 class OrderDecorator < ApplicationDecorator
   delegate_all
 
-  # Define presentation-specific methods here. Helpers are accessed through
-  # `helpers` (aka `h`). You can override attributes, for example:
-  #
-  #   def created_at
-  #     helpers.content_tag :span, class: 'time' do
-  #       object.created_at.strftime("%a %m/%d/%y")
-  #     end
-  #   end
+  decorates_association :order_items
 
+  def sub_price
+    sum = 0
+    order_items.each do |order_item|
+      sum += order_item.price
+    end
+    sum
+  end
 end

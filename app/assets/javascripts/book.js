@@ -23,7 +23,7 @@ let calculatePrice = (price, input) => {
   let price_element = document.getElementById("price");
   let currency = price_element.textContent.substring(0, 1);
 
-  price_element.textContent = currency + price * input;
+  price_element.textContent = currency + (price * input).toFixed(2);
 }
 
 let stars = (score) => {
