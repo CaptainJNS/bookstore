@@ -40,8 +40,3 @@ let stars = (score) => {
 
   document.getElementById("reviewRating").value = score;
 }
-
-let addToCart = (book_id) => {
-  let cart = document.getElementById("cart");
-  cart.textContent++;
-}

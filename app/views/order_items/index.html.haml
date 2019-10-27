@@ -16,7 +16,7 @@
           %span.in-grey-600 SubTotal
         %th.col-close
       - @order.order_items.each do |order_item|
-        %tr
+        %tr{ id: "order-item-#{order_item.id}"}
           %td
             .general-img-wrap-table
               - if order_item.book.images.any?
@@ -43,7 +43,7 @@
             %span.font-16.in-gold-500{ id: 'subPrice' + order_item.book.id.to_s }= number_to_currency(order_item.book.price * order_item.quantity)
 
           %td
-            %button.close.general-cart-close{type: "button", 'aria-label': "Close"}
-              %span{'aria-hidden': "true"} &times;
+            = button_to order_order_item_path(current_order, order_item), method: :delete, class: 'close general-cart-close' do
+              %span{'aria-hidden': "true" } &times;
 
   = render partial: 'summarize'
