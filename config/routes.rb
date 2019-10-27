@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :orders, only: :show do
-    resources :order_items, only: :index
+  resources :orders do
+    resources :order_items
   end
 end
