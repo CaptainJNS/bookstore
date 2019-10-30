@@ -101,3 +101,21 @@ en:
   admin:
     approve: 'Approve'
     reject: 'Reject'
+
+  coupons:
+    enter_coupon: 'Enter Your Coupon Code'
+    apply: 'Apply Coupon'
+    attached: 'Coupon attached!'
+    invalid: "You've entered invalid coupon code"
+
+  order:
+    summary: 'Order Summary'
+    subtotal: 'Subtotal:'
+    coupon: 'Coupon:'
+    total: 'Order Total:'
+    checkout: 'Checkout'
+    cart: 'Cart'
+    product: 'Product'
+    price: 'Price'
+    quantity: 'Quantity'
+

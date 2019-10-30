@@ -4,7 +4,7 @@ RSpec.describe ReviewDecorator do
   subject(:decorator) { described_class.new(review) }
 
   let(:user) { create(:user, name: 'John') }
-  let(:review) { create(:review, user: user) }
+  let(:review) { create(:review, user: user, created_at: '2019-10-18 00:00:00') }
 
   it '#to_string' do
     review.id = 1
@@ -16,7 +16,6 @@ RSpec.describe ReviewDecorator do
   end
 
   it '#date' do
-    review.created_at = '2019-10-18 00:00:00'
     expect(decorator.date).to eq('18.10.2019')
   end
 

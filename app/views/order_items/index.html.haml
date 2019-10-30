@@ -1,19 +1,20 @@
+= content_for(:title, t('order.cart') + ' | ')
 %main.container.general-main-wrap
-  %h1.general-title-margin Cart
+  %h1.general-title-margin= t('order.cart')
   = render partial: 'index_mobile'
 
   .hidden-xs
     %table.table.table-hover
       %tr.no-hover
         %th.col-pic.pl-0
-          %span.in-grey-600 Product
+          %span.in-grey-600= t('order.product')
         %th.col-title
         %th.col-price
-          %span.in-grey-600 Price
+          %span.in-grey-600= t('order.price')
         %th.col-quantity
-          %span.in-grey-600 Quantity
+          %span.in-grey-600= t('order.quantity')
         %th.col-total
-          %span.in-grey-600 SubTotal
+          %span.in-grey-600= t('order.subtotal')
         %th.col-close
       - @order.order_items.each do |order_item|
         %tr{ id: "order-item-#{order_item.id}"}

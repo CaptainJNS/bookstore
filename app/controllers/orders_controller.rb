@@ -2,11 +2,11 @@ class OrdersController < ApplicationController
   def update
     if coupon_valid?
       current_order.update(coupon: Coupon.find_by(code: params[:coupon][:code]))
-      flash[:notice] = 'Coupon attached!'
+      flash[:notice] = I18n.t('coupons.attached')
     else
-      flash[:alert] = 'You\'ve entered invalid coupon code'
+      flash[:alert] = I18n.t('coupons.invalid')
     end
-    redirect_to order_order_items_path(current_order)
+    redirect_to order_order_items_path
   end
 
   private

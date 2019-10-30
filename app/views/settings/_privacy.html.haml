@@ -52,9 +52,9 @@
     .general-settings-btn
       = f.submit t('settings.please_remove'), class: 'btn mb-20', id: 'delete', disabled: true
 
-    .form-group.checkbox.general-settings-checkbox
-      %label.checkbox-label#agree{ onclick: "account_destroy();" }
-        %input.checkbox-input{type: "checkbox", hidden: "true"}
+    .form-group.checkbox.general-settings-checkbox{ onclick: "account_destroy();" }
+      %label.checkbox-label
+        %input.checkbox-input{type: "checkbox", hidden: "true", id: 'agree'}
         %span.checkbox-icon
           %i.fa.fa-check
         %span.checkbox-text= t('settings.understand')

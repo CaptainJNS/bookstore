@@ -8,7 +8,7 @@
         %span.icon-bar
       %a.navbar-brand= t('default.bookstore')
 
-      %a.shop-link.pull-right{href: order_order_items_path(session[:order_id])}
+      %a.shop-link.pull-right{href: order_order_items_path}
         %span.shop-icon
           %span.shop-quantity#cart= session[:order_items_count]
 

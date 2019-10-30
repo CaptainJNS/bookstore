@@ -22,7 +22,7 @@ class OrderItemsController < ApplicationController
     new_total = current_order.total_price - order_item.book.price * order_item.quantity
     order_item.destroy
     current_order.update(total_price: new_total)
-    redirect_to order_order_items_path(current_order)
+    redirect_to order_order_items_path
   end
 
   private
