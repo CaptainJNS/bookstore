@@ -93,6 +93,7 @@ en:
     errors: "You've entered invalid data"
 
   review:
+    created: 'Thanks. Review has been sent to moderator. Wait for approvement'
     approved: 'Approved'
     rejected: 'Rejected'
     unprocessed: 'Unprocessed'

@@ -4,5 +4,5 @@ class Review < ApplicationRecord
 
   enum status: %i[unprocessed approved rejected]
 
-  validates :rating, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 5 }
+  validates :rating, inclusion: { in: 1..5 }
 end
