@@ -1,6 +1,11 @@
 class OrdersController < ApplicationController
   def update
-    current_order.update(total_price: discount) if coupon_valid?
+    if coupon_valid?
+      current_order.update(coupon: Coupon.find_by(code: params[:coupon][:code]))
+      flash[:notice] = 'Coupon attached!'
+    else
+      flash[:alert] = 'You\'ve entered invalid coupon code'
+    end
     redirect_to order_order_items_path(current_order)
   end
 
@@ -10,9 +15,5 @@ class OrdersController < ApplicationController
     Coupon.find_by(code: params[:coupon][:code]).active
   rescue
     false
-  end
-
-  def discount
-    current_order.total_price * Coupon.find_by(code: params[:coupon][:code]).discount / 100
   end
 end

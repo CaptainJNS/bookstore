@@ -1,5 +1,12 @@
 class OrderItemsController < ApplicationController
   def index
+    if current_order.coupon
+      @discount = discount
+      current_order.update(total_price: current_order.sub_price - @discount)
+    else
+      @discount = 0
+      current_order.update(total_price: current_order.sub_price)
+    end
     @order = Order.find(session[:order_id]).decorate
   end
 
@@ -22,5 +29,9 @@ class OrderItemsController < ApplicationController
 
   def order_item_params
     params.permit(%i[book_id quantity order_id])
+  end
+
+  def discount
+    current_order.sub_price * current_order.coupon.discount / 100
   end
 end
