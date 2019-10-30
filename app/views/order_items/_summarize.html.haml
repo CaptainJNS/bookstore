@@ -6,7 +6,7 @@
         = form_for :coupon, url: order_path(current_order), method: :put do |f|
           = f.text_field :code, placeholder: "Enter Your Coupon Code ", class: 'form-control mb-30'
           %div
-            = f.submit 'Apply Coupon', class: 'btn btn-primary mr-5 mb-15'
+            = f.submit 'Apply Coupon', class: 'btn btn-primary mr-5 mb-15', id: 'apply-coupon'
 
     .col-sm-8
       .res-mr-200.text-center.general-text-right
