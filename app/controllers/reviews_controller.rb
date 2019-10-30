@@ -2,10 +2,9 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    review = Review.new(review_params)
-    review.save
+    review = Review.create(review_params)
 
-    redirect_to book_path(Book.find(params[:book_id]))
+    redirect_to book_path(review.book), notice: I18n.t('review.created')
   end
 
   private

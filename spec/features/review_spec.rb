@@ -9,7 +9,8 @@ RSpec.describe 'Book page', type: :feature, js: true do
       visit(book_path(book))
 
       fill_in 'review[body]', with: FFaker::Lorem.paragraph
-      expect { find('#postReview').click; sleep(1) }.to change(Review, :count).by(1)
+      find('#postReview').click
+      expect(page).to have_content(I18n.t('review.created'))
     end
   end
 

@@ -3,18 +3,21 @@ require 'rails_helper'
 RSpec.describe ReviewDecorator do
   subject(:decorator) { described_class.new(review) }
 
-  let(:review) { create(:review, user: create(:user)) }
+  let(:user) { create(:user, name: 'John') }
+  let(:review) { create(:review, user: user) }
 
   it '#to_string' do
-    expect(decorator.to_string).to eq(I18n.t('book.review') + " \##{review.id}")
+    review.id = 1
+    expect(decorator.to_string).to eq('Review #1')
   end
 
   it '#author' do
-    expect(decorator.author).to eq(review.user.decorate.name)
+    expect(decorator.author).to eq('John')
   end
 
   it '#date' do
-    expect(decorator.date).to eq(review.created_at.strftime('%d.%m.%Y'))
+    review.created_at = '2019-10-18 00:00:00'
+    expect(decorator.date).to eq('18.10.2019')
   end
 
   it '#image' do
