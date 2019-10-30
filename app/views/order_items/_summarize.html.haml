@@ -3,9 +3,11 @@
     .col-sm-4
       .input-group.general-input-group
         %label.input-label Enter Your Coupon Code
-        %input.form-control.mb-30{type: "text", placeholder: "Enter Your Coupon Code "}
-        %div
-          %button.btn.btn-primary.mr-5.mb-15 Apply Coupon
+        = form_for :coupon, url: order_path(current_order), method: :put do |f|
+          = f.text_field :code, placeholder: "Enter Your Coupon Code ", class: 'form-control mb-30'
+          %div
+            = f.submit 'Apply Coupon', class: 'btn btn-primary mr-5 mb-15'
+
     .col-sm-8
       .res-mr-200.text-center.general-text-right
         %p.in-gold-500.font-18 Order Summary
@@ -24,6 +26,6 @@
             %td
               %strong.font-18 Order Total:
             %td
-              %strong.font-18 €117.69
+              %strong.font-18= number_to_currency(current_order.total_price)
         %button.btn.btn-default.mb-20.visible-xs-inline-block Checkout
 %button.btn.btn-default.mb-20.hidden-xs.center-block Checkout

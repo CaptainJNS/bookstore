@@ -33,10 +33,10 @@
 
           %td
             .input-group
-              %a.input-link{ onclick: "decrementItemQuantity(#{order_item.book.price}, #{order_item.book.id});" }
+              %a.input-link
                 %i.fa.fa-minus.line-heaght-40
               %input.form-control.quantity-input{value: order_item.quantity, type: "text", id: 'quantity_input' + order_item.book.id.to_s}
-              %a.input-link{ onclick: "incrementItemQuantity(#{order_item.book.price}, #{order_item.book.quantity}, #{order_item.book.id});" }
+              %a.input-link
                 %i.fa.fa-plus.line-heaght-40
 
           %td

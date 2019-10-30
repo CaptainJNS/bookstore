@@ -14,5 +14,6 @@ module Constants
   STARS_COUNT = 5
   NO_IMAGE_PATH = 'https://book-store-dmitriev.s3.eu-west-2.amazonaws.com/no_avatar.png'
   PHONE_PATTERN = /\A(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}\z/.freeze
-  EMAIL_TO_LOGIN = /[^@]+/.freeze 
+  EMAIL_TO_LOGIN = /[^@]+/.freeze
+  COUPONS_COUNT = 50
 end

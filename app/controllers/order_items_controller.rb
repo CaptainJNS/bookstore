@@ -4,11 +4,17 @@ class OrderItemsController < ApplicationController
   end
 
   def create
-    OrderItem.create(order_item_params)
+    order_item = OrderItem.create(order_item_params)
+
+    new_total = current_order.total_price + order_item.book.price * order_item.quantity
+    current_order.update(total_price: new_total)
   end
 
   def destroy
-    OrderItem.find(params[:id]).destroy
+    order_item = OrderItem.find(params[:id])
+    new_total = current_order.total_price - order_item.book.price * order_item.quantity
+    order_item.destroy
+    current_order.update(total_price: new_total)
     redirect_to order_order_items_path(current_order)
   end
 
