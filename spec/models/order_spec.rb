@@ -15,7 +15,7 @@ RSpec.describe Order, type: :model do
 
   context 'with validations' do
     it 'has default status' do
-      expect(order.status).not_to be nil
+      expect(order.status).to eq('created')
     end
   end
 end

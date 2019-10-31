@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :set_cart
+  before_action :set_order
 
   helper_method :current_order
 
@@ -7,11 +7,8 @@ class ApplicationController < ActionController::Base
     super&.decorate
   end
 
-  def set_cart
-    Order.find(session[:order_id])
-  rescue ActiveRecord::RecordNotFound
-    session[:order_id] = Order.create.id
-  ensure
+  def set_order
+    session[:order_id] = Order.find_or_create_by(id: session[:order_id]).id
     session[:order_items_count] = Order.find(session[:order_id]).order_items.count
   end
 

@@ -12,12 +12,6 @@ Rails.application.routes.draw do
     resources :reviews, only: :create
   end
 
-  resources :users, only: [] do
-    resources :orders, only: %i[index show] do
-      resources :order_items, only: :index
-    end
-  end
-
   resource :order do
     resources :order_items
   end

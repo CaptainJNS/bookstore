@@ -4,10 +4,6 @@ class OrderDecorator < ApplicationDecorator
   decorates_association :order_items
 
   def sub_price
-    sum = 0
-    order_items.each do |order_item|
-      sum += order_item.price
-    end
-    sum
+    order_items.sum(&:price)
   end
 end

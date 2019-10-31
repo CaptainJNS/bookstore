@@ -12,8 +12,6 @@ class OrdersController < ApplicationController
   private
 
   def coupon_valid?
-    Coupon.find_by(code: params[:coupon][:code]).active
-  rescue
-    false
+    Coupon.exists?(code: params.dig(:coupon, :code), active: true)
   end
 end
