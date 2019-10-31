@@ -15,6 +15,4 @@ Rails.application.routes.draw do
   resource :order do
     resources :order_items
   end
-
-  resources :orders
 end
