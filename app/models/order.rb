@@ -4,5 +4,4 @@ class Order < ApplicationRecord
   has_one :coupon, dependent: :nullify
 
   enum status: %i[created in_progress in_delivery delivered canceled]
-  enum shipping_method: %i[billing shipping]
 end
