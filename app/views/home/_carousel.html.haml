@@ -23,7 +23,7 @@
 
               .general-align
                 - if book.quantity.positive?
-                  = link_to t('home.buy_now'), order_order_items_path(current_order, book_id: book), remote: true, method: :post, class: 'btn btn-primary', onclick: "addToCart()"
+                  = link_to t('home.buy_now'), order_order_items_path(order_id: current_order, book_id: book), remote: true, method: :post, class: 'btn btn-primary', onclick: "addToCart()"
                 - else
                   %button.disabled.btn= t('book.out_of_stock')
 

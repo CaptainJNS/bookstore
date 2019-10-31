@@ -1,37 +1,32 @@
 class OrderItemsController < ApplicationController
   def index
-    if current_order.coupon
-      @discount = discount
-      current_order.update(total_price: current_order.sub_price - @discount)
-    else
-      @discount = 0
-      current_order.update(total_price: current_order.sub_price)
-    end
-    @order = Order.find(session[:order_id]).decorate
+    result = CalculateDiscount.call(current_order: current_order)
+    @discount = result.discount
   end
 
   def create
-    order_item = OrderItem.create(order_item_params)
+    result = CreateOrderItem.call(params: order_item_params, current_order: current_order)
 
-    new_total = current_order.total_price + order_item.book.price * order_item.quantity
-    current_order.update(total_price: new_total)
+    if result.success?
+      redirect_to order_order_items_path, notice: I18n.t('order.added')
+    else
+      redirect_to order_order_items_path, alert: I18n.t('order.wrong')
+    end
   end
 
   def destroy
-    order_item = OrderItem.find(params[:id])
-    new_total = current_order.total_price - order_item.book.price * order_item.quantity
-    order_item.destroy
-    current_order.update(total_price: new_total)
-    redirect_to order_order_items_path
+    result = DestroyOrderItem.call(order_item_id: params[:id], current_order: current_order)
+
+    if result.success?
+      redirect_to order_order_items_path, notice: I18n.t('order.deleted')
+    else
+      redirect_to order_order_items_path, alert: I18n.t('order.wrong')
+    end
   end
 
   private
 
   def order_item_params
     params.permit(%i[book_id quantity order_id])
-  end
-
-  def discount
-    current_order.sub_price * current_order.coupon.discount / 100
   end
 end

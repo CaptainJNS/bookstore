@@ -109,6 +109,9 @@ en:
     invalid: "You've entered invalid coupon code"
 
   order:
+    added: 'Book added to cart'
+    wrong: 'Oops! Something went wrong'
+    deleted: 'Book deleted from cart'
     summary: 'Order Summary'
     subtotal: 'Subtotal:'
     coupon: 'Coupon:'
