@@ -2,18 +2,19 @@ class CalculateDiscount
   include Interactor
 
   def call
-    if context.current_order.coupon
-      context.discount = discount
-      context.current_order.update(total_price: context.current_order.sub_price - context.discount)
-    else
-      context.discount = 0
-      context.current_order.update(total_price: context.current_order.sub_price)
-    end
+    context.discount = discount(context.current_order.coupon)
+    context.current_order.update(total_price: total_price)
   end
 
   private
 
-  def discount
-    context.current_order.sub_price * context.current_order.coupon.discount / 100
+  def discount(coupon)
+    return context.current_order.sub_price * coupon.discount / 100 if coupon
+
+    0
+  end
+
+  def total_price
+    context.current_order.sub_price - context.discount
   end
 end

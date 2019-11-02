@@ -3,8 +3,6 @@ module Application
 
   included do
     helper_method :current_order
-
-    before_action :set_order
   end
 
   def current_user
@@ -17,6 +15,7 @@ module Application
   end
 
   def current_order
+    set_order
     Order.find(session[:order_id]).decorate
   end
 end

@@ -2,11 +2,9 @@ class AddCoupon
   include Interactor
 
   def call
-    if coupon_valid?
-      context.current_order.update(coupon: Coupon.find_by(code: context.code))
-    else
-      context.fail!
-    end
+    return context.current_order.update(coupon: Coupon.find_by(code: context.code)) if coupon_valid?
+
+    context.fail!
   end
 
   private
