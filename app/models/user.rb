@@ -3,9 +3,11 @@ class User < ApplicationRecord
   has_one :shipping, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :orders, dependent: :destroy
+  has_one :credit_card, dependent: :destroy
 
   accepts_nested_attributes_for :billing
   accepts_nested_attributes_for :shipping
+  accepts_nested_attributes_for :credit_card
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,

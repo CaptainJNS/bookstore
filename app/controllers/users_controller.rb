@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: %i[fast_new fast_create fast_login]
 
   def edit
     @billing = Billing.where(user: current_user).first_or_create
@@ -19,6 +19,25 @@ class UsersController < ApplicationController
   def destroy
     current_user.destroy
     redirect_to root_path, notice: I18n.t('devise.registrations.destroyed')
+  end
+
+  def fast_new
+  end
+
+  def fast_create
+    user = User.new(
+      email: params[:user][:email],
+      password: Devise.friendly_token.first(Devise.password_length.first)
+    )
+    user.skip_confirmation!
+
+    if user.save
+      sign_in(:user, user)
+      user.send_reset_password_instructions
+      redirect_to checkout_path(:address)
+    else
+      redirect_to users_fast_new_path, alert: I18n.t('order.wrong')
+    end
   end
 
   private

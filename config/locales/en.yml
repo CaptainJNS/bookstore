@@ -121,4 +121,5 @@ en:
     product: 'Product'
     price: 'Price'
     quantity: 'Quantity'
+    no_items: 'You have no items in your cart'
 

@@ -1,0 +1,66 @@
+%main.container.mb-res-50
+  %h1.general-title-margin Checkout
+  %ul.steps.list-inline
+    %li.step.done
+      %span.step-number
+        %i.fa.fa-check.step-icon
+      %span.step-text.hidden-xs Address
+    %li.step-divider
+    %li.step.done
+      %span.step-number
+        %i.fa.fa-check.step-icon
+      %span.step-text.hidden-xs Delivery
+    %li.step-divider
+    %li.step.active
+      %span.step-number 3
+      %span.step-text.hidden-xs Payment
+    %li.step-divider
+    %li.step
+      %span.step-number 4
+      %span.step-text.hidden-xs Confirm
+    %li.step-divider
+    %li.step
+      %span.step-number 5
+      %span.step-text.hidden-xs Complete
+
+  %h3.general-subtitle Credit Card
+  = simple_form_for current_user, url: wizard_path, method: :put do |form|
+    = form.simple_fields_for :credit_card do |f|
+      .max-600.mb-80 
+        .form-group
+          = f.input :number, placeholder: 'Card Number', class: 'form-control'
+          -# %label.control-label.input-label{for: "cardNumber"} Card Number
+        .row
+          .col-sm-6
+            .form-group
+              -# %label.control-label.input-label{for: "cardName"} Name on Card
+              = f.input :card_name, placeholder: "Name on Card", class: 'form-control'
+          .col-sm-3
+            .form-group
+              -# %label.control-label.input-label{for: "firstName"} MM / YY
+              = f.input :expiration_date, placeholder: "MM / YY", class: 'form-control'
+          .col-sm-3
+            .form-group.relative
+              -# %label.control-label.input-label{for: "firstName"} CVV
+              = f.input :cvv, placeholder: "CVV", class: 'form-control'
+
+    .general-text-align
+      %p.in-gold-500.font-18 Order Summary
+      %table.general-summary-table
+        %tr
+          %td
+            %p.font-16 Subtotal:
+          %td
+            %p.font-16 €117.69
+        %tr
+          %td
+            %p.font-16 Coupon:
+          %td
+            %p.font-16 €0.00
+        %tr
+          %td
+            %strong.font-18 Order Total:
+          %td
+            %strong.font-18 €117.69
+    .text-center
+      = form.submit "Save and Continue", class: 'btn btn-default mb-20'

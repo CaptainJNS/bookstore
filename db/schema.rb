@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_31_115202) do
+ActiveRecord::Schema.define(version: 2019_11_05_130027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,6 +131,25 @@ ActiveRecord::Schema.define(version: 2019_10_31_115202) do
     t.index ["order_id"], name: "index_coupons_on_order_id"
   end
 
+  create_table "credit_cards", force: :cascade do |t|
+    t.string "card_name"
+    t.string "number"
+    t.string "cvv"
+    t.string "expiration_date"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_credit_cards_on_user_id"
+  end
+
+  create_table "deliveries", force: :cascade do |t|
+    t.decimal "price", precision: 10, scale: 2, default: "0.0"
+    t.string "method"
+    t.string "days"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "order_items", force: :cascade do |t|
     t.integer "quantity", default: 1
     t.bigint "order_id"
@@ -148,6 +167,8 @@ ActiveRecord::Schema.define(version: 2019_10_31_115202) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "delivery_id"
+    t.index ["delivery_id"], name: "index_orders_on_delivery_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -208,8 +229,10 @@ ActiveRecord::Schema.define(version: 2019_10_31_115202) do
   add_foreign_key "books_categories", "books"
   add_foreign_key "books_categories", "categories"
   add_foreign_key "coupons", "orders"
+  add_foreign_key "credit_cards", "users"
   add_foreign_key "order_items", "books"
   add_foreign_key "order_items", "orders"
+  add_foreign_key "orders", "deliveries"
   add_foreign_key "orders", "users"
   add_foreign_key "reviews", "books"
   add_foreign_key "reviews", "users"

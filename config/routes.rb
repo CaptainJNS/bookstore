@@ -15,4 +15,11 @@ Rails.application.routes.draw do
   resource :order do
     resources :order_items
   end
+
+  devise_scope :user do
+    get  'users/fast_new',    to: 'users#fast_new'
+    post 'users/fast_create', to: 'users#fast_create'
+  end
+
+  resources :checkouts, only: %i[show update]
 end
