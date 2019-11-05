@@ -3,10 +3,17 @@ class DestroyOrderItem
 
   def call
     order_item = OrderItem.find(context.order_item_id)
-    new_total = context.current_order.total_price - order_item.book.price * order_item.quantity
+    UpdateTotalPrice.new.call(context.current_order, order_item.book.price, order_item.quantity, discount(order_item.book.price), :remove)
     order_item.destroy
-    context.current_order.update(total_price: new_total)
   rescue ActiveRecord::RecordNotFound
     context.fail!
+  end
+
+  private
+
+  def discount(price)
+    return price * context.current_order.coupon.discount / Constants::DOZEN if context.current_order.coupon
+
+    Constants::ZERO
   end
 end

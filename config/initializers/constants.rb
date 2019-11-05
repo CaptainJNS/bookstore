@@ -16,4 +16,6 @@ module Constants
   PHONE_PATTERN = /\A(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}\z/.freeze
   EMAIL_TO_LOGIN = /[^@]+/.freeze
   COUPONS_COUNT = 50
+  ZERO = 0
+  DOZEN = 100
 end
