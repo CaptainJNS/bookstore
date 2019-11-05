@@ -4,26 +4,26 @@
   %ul.steps.list-inline
     %li.step.active
       %span.step-number 1
-      %span.step-text.hidden-xs Address
+      %span.step-text.hidden-xs= t('checkout.address')
     %li.step-divider
     %li.step
       %span.step-number 2
-      %span.step-text.hidden-xs Delivery
+      %span.step-text.hidden-xs= t('checkout.delivery.delivery')
     %li.step-divider
     %li.step
       %span.step-number 3
-      %span.step-text.hidden-xs Payment
+      %span.step-text.hidden-xs= t('checkout.payment.payment')
     %li.step-divider
     %li.step
       %span.step-number 4
-      %span.step-text.hidden-xs Confirm
+      %span.step-text.hidden-xs= t('checkout.confirm')
     %li.step-divider
     %li.step
       %span.step-number 5
-      %span.step-text.hidden-xs Complete
+      %span.step-text.hidden-xs= t('checkout.complete')
   .res-mb-100
     = form_for(current_user, url: wizard_path, method: :put) do |field|
-      = field.fields_for current_user.billing do |f|
+      = field.fields_for :billing, @billing_builder do |f|
         .form-group
           = f.label :first_name, t('settings.first_name'), class: 'control-label input-label'
           = f.text_field(:first_name,
@@ -86,8 +86,8 @@
                           autocomplete: 'phone',
                           class: 'form-control',
                           required: true,
-                          pattern: '^[+]?[\d]{10,13}$',
+                          pattern: Constants::PHONE_PATTERN,
                           placeholder: t('settings.phone'))
 
         .text-center.general-text-align
-          = field.submit 'Save and Continue', class: 'btn btn-default mb-20', id: "continue"
+          = field.submit t('checkout.save'), class: 'btn btn-default mb-20', id: "continue"

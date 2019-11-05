@@ -1,32 +1,33 @@
+= content_for(:title, t('order.checkout') + ' | ')
 %main.container.general-main-wrap
-  %h1.general-title-margin Checkout
+  %h1.general-title-margin= t('order.checkout')
   %ul.steps.list-inline
     %li.step.done
       %span.step-number
         %i.fa.fa-check.step-icon
-      %span.step-text.hidden-xs Address
+      %span.step-text.hidden-xs= t('checkout.address')
     %li.step-divider
     %li.step.done
       %span.step-number
         %i.fa.fa-check.step-icon
-      %span.step-text.hidden-xs Delivery
+      %span.step-text.hidden-xs= t('checkout.delivery.delivery')
     %li.step-divider
     %li.step.done
       %span.step-number
         %i.fa.fa-check.step-icon
-      %span.step-text.hidden-xs Payment
+      %span.step-text.hidden-xs= t('checkout.payment.payment')
     %li.step-divider
     %li.step.active
       %span.step-number 4
-      %span.step-text.hidden-xs Confirm
+      %span.step-text.hidden-xs= t('checkout.confirm')
     %li.step-divider
     %li.step
       %span.step-number 5
-      %span.step-text.hidden-xs Complete
+      %span.step-text.hidden-xs= t('checkout.complete')
 
   .row.mb-20
     .col-sm-3
-      %h3.general-subtitle Shipping Address
+      %h3.general-subtitle= t('checkout.address')
       %p.general-address
         = "#{current_user.billing.first_name} #{current_user.billing.last_name}"
         %br
@@ -39,13 +40,14 @@
         = current_user.billing.phone
 
     .col-sm-3
-      %h3.general-subtitle Shipments
+      %h3.general-subtitle= t('checkout.delivery.delivery')
       %p.general-address
         = current_order.delivery.method
         %br
         = current_order.delivery.days
+
     .col-sm-3
-      %h3.general-subtitle Payment Information
+      %h3.general-subtitle= t('checkout.payment.payment')
       %p.general-address
         = current_user.credit_card.number
         %br
@@ -102,4 +104,4 @@
         %td
           %strong.font-18= number_to_currency(current_order.total_price)
   .text-center
-    = button_to 'Place Order', wizard_path, method: :put, class: 'btn btn-default mb-20 center-block'
+    = button_to t('checkout.place'), wizard_path, method: :put, class: 'btn btn-default mb-20 center-block'

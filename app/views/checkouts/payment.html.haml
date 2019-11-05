@@ -1,48 +1,49 @@
+= content_for(:title, t('order.checkout') + ' | ')
 %main.container.mb-res-50
-  %h1.general-title-margin Checkout
+  %h1.general-title-margin= t('order.checkout')
   %ul.steps.list-inline
     %li.step.done
       %span.step-number
         %i.fa.fa-check.step-icon
-      %span.step-text.hidden-xs Address
+      %span.step-text.hidden-xs= t('checkout.address')
     %li.step-divider
     %li.step.done
       %span.step-number
         %i.fa.fa-check.step-icon
-      %span.step-text.hidden-xs Delivery
+      %span.step-text.hidden-xs= t('checkout.delivery.delivery')
     %li.step-divider
     %li.step.active
       %span.step-number 3
-      %span.step-text.hidden-xs Payment
+      %span.step-text.hidden-xs= t('checkout.payment.payment')
     %li.step-divider
     %li.step
       %span.step-number 4
-      %span.step-text.hidden-xs Confirm
+      %span.step-text.hidden-xs= t('checkout.confirm')
     %li.step-divider
     %li.step
       %span.step-number 5
-      %span.step-text.hidden-xs Complete
+      %span.step-text.hidden-xs= t('checkout.complete')
 
-  %h3.general-subtitle Credit Card
+  %h3.general-subtitle= t('checkout.payment.card')
   = simple_form_for current_user, url: wizard_path, method: :put do |form|
     = form.simple_fields_for :credit_card do |f|
       .max-600.mb-80 
         .form-group
-          = f.input :number, placeholder: 'Card Number', class: 'form-control'
+          = f.input :number, placeholder: t('checkout.payment.number'), class: 'form-control'
           -# %label.control-label.input-label{for: "cardNumber"} Card Number
         .row
           .col-sm-6
             .form-group
               -# %label.control-label.input-label{for: "cardName"} Name on Card
-              = f.input :card_name, placeholder: "Name on Card", class: 'form-control'
+              = f.input :card_name, placeholder: t('checkout.payment.card_name'), class: 'form-control'
           .col-sm-3
             .form-group
               -# %label.control-label.input-label{for: "firstName"} MM / YY
-              = f.input :expiration_date, placeholder: "MM / YY", class: 'form-control'
+              = f.input :expiration_date, placeholder: t('checkout.payment.date'), class: 'form-control'
           .col-sm-3
             .form-group.relative
               -# %label.control-label.input-label{for: "firstName"} CVV
-              = f.input :cvv, placeholder: "CVV", class: 'form-control'
+              = f.input :cvv, placeholder: t('checkout.payment.cvv'), class: 'form-control'
 
     .general-text-align
       %p.in-gold-500.font-18 Order Summary
@@ -63,4 +64,4 @@
           %td
             %strong.font-18 €117.69
     .text-center
-      = form.submit "Save and Continue", class: 'btn btn-default mb-20'
+      = form.submit t('checkout.save'), class: 'btn btn-default mb-20'

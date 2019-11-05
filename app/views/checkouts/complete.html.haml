@@ -1,35 +1,36 @@
+= content_for(:title, t('order.checkout') + ' | ')
 %main.container.general-main-wrap
-  %h1.general-title-margin Checkout
+  %h1.general-title-margin= t('order.checkout')
   %ul.steps.list-inline
     %li.step.done
       %span.step-number
         %i.fa.fa-check.step-icon
-      %span.step-text.hidden-xs Address
+      %span.step-text.hidden-xs= t('checkout.address')
     %li.step-divider
     %li.step.done
       %span.step-number
         %i.fa.fa-check.step-icon
-      %span.step-text.hidden-xs Delivery
+      %span.step-text.hidden-xs= t('checkout.delivery.delivery')
     %li.step-divider
     %li.step.done
       %span.step-number
         %i.fa.fa-check.step-icon
-      %span.step-text.hidden-xs Payment
+      %span.step-text.hidden-xs= t('checkout.payment.payment')
     %li.step-divider
     %li.step.done
       %span.step-number
         %i.fa.fa-check.step-icon
-      %span.step-text.hidden-xs Confirm
+      %span.step-text.hidden-xs= t('checkout.confirm')
     %li.step-divider
     %li.step.active
       %span.step-number 5
-      %span.step-text.hidden-xs Complete
+      %span.step-text.hidden-xs= t('checkout.complete')
   .text-center.mb-40
-    %h3.general-subtitle Thank You for your Order!
-    %p.fw-300= "An order confirmation has been has been sent to #{current_user.email}"
+    %h3.general-subtitle= t('checkout.thanks')
+    %p.fw-300= t('checkout.confirmation', email: current_user.email)
   .row.mb-20
     .col-sm-3
-      %h3.general-subtitle Shipping Address
+      %h3.general-subtitle= t('checkout.address')
       %p.general-address
         = "#{current_user.billing.first_name} #{current_user.billing.last_name}"
         %br
@@ -96,4 +97,4 @@
         %td
           %strong.font-18= number_to_currency(current_order.total_price)
   .text-center
-    %button.btn.btn-default.mb-20 Back to Store
+    %button.btn.btn-default.mb-20= t('checkout.back_to_store')

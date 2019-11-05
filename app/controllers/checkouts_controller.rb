@@ -36,10 +36,13 @@ class CheckoutsController < ApplicationController
 
   def address
     current_order.update(status: :in_progress)
+    
+    @billing_builder = current_user.billing.nil? ? Billing.new : nil
     render_wizard
   end
 
   def update_address
+    current_user.update(address_params)
     render_wizard current_order
   end
 
@@ -58,7 +61,7 @@ class CheckoutsController < ApplicationController
   end
 
   def update_payment
-    render_wizard current_order if current_user.update(params.require(:user).permit(credit_card_attributes: %i[number card_name cvv expiration_date]))
+    render_wizard current_order if current_user.update(card_params)
   end
 
   def confirm
@@ -74,5 +77,13 @@ class CheckoutsController < ApplicationController
     current_order.update(status: :in_delivery)
     @discount = current_order.sub_price - current_order.total_price
     render_wizard
+  end
+
+  def card_params
+    params.require(:user).permit(credit_card_attributes: %i[number card_name cvv expiration_date])
+  end
+
+  def address_params
+    params.require(:user).permit(billing_attributes: %i[first_name last_name address city zip country phone])
   end
 end

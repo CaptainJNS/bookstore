@@ -5,23 +5,23 @@
     %li.step.done
       %span.step-number
         %i.fa.fa-check.step-icon
-      %span.step-text.hidden-xs Address
+      %span.step-text.hidden-xs= t('checkout.address')
     %li.step-divider
     %li.step.active
       %span.step-number 2
-      %span.step-text.hidden-xs Delivery
+      %span.step-text.hidden-xs= t('checkout.delivery.delivery')
     %li.step-divider
     %li.step
       %span.step-number 3
-      %span.step-text.hidden-xs Payment
+      %span.step-text.hidden-xs= t('checkout.payment.payment')
     %li.step-divider
     %li.step
       %span.step-number 4
-      %span.step-text.hidden-xs Confirm
+      %span.step-text.hidden-xs= t('checkout.confirm')
     %li.step-divider
     %li.step
       %span.step-number 5
-      %span.step-text.hidden-xs Complete
+      %span.step-text.hidden-xs= t('checkout.complete')
 
   = simple_form_for current_order, url: wizard_path, method: :put do |f|
     .hidden-xs.mb-res-50
@@ -29,11 +29,11 @@
         %thead
           %tr
             %th.col-method
-              %span.in-grey-600.ml-40 Method
+              %span.in-grey-600.ml-40= t('checkout.delivery.method')
             %th
-              %span.in-grey-600 Days
+              %span.in-grey-600= t('checkout.delivery.days')
             %th
-              %span.in-grey-600 Price
+              %span.in-grey-600= t('checkout.delivery.price')
         %tbody
           - @deliveries.each do |delivery|
             %tr
@@ -68,4 +68,4 @@
             %td
               %strong.font-18 €117.69
     .text-center
-      = f.submit 'Save and Continue', class: 'btn btn-default mb-20', id: "continue"
+      = f.submit t('checkout.save'), class: 'btn btn-default mb-20', id: "continue"

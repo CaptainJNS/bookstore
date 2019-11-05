@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, except: %i[fast_new fast_create fast_login]
 
   def edit
-    @billing = Billing.where(user: current_user).first_or_create
-    @shipping = Shipping.where(user: current_user).first_or_create
+    @billing_builder = current_user.billing.nil? ? Billing.new : nil
+    @shipping_builder = current_user.shipping.nil? ? Shipping.new : nil
   end
 
   def update

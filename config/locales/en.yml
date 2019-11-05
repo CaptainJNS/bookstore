@@ -123,3 +123,26 @@ en:
     quantity: 'Quantity'
     no_items: 'You have no items in your cart'
 
+  checkout:
+    address: 'Address'
+    delivery:
+      delivery: 'Delivery'
+      method: 'Method'
+      days: 'Days'
+      price: 'Price'
+    payment:
+      payment: 'Payment'
+      card: 'Credit Card'
+      number: 'Card Number'
+      card_name: 'Name on Card'
+      date: 'MM/YY'
+      cvv: 'CVV'
+    confirm: 'Confirm'
+    complete: 'Complete'
+    save: 'Save and Continue'
+    place: 'Place Order'
+    thanks: 'Thank You for your Order!'
+    confirmation: "An order confirmation has been has been sent to %{email}"
+    back_to_store: 'Back to Store'
+
+

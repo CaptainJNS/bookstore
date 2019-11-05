@@ -20,12 +20,12 @@
         .col-md-5.mb-40
           .visible-xs.visible-sm
             %h3.general-subtitle.mt-0= t("settings.billing")
-          = render partial: 'settings/address', locals: { address: @billing }
+          = render 'settings/address', address: :billing, builder: @billing_builder
 
         .col-md-5.mb-40
           .visible-xs.visible-sm
             %h3.general-subtitle.mt-0= t("settings.shipping")
-          = render partial: 'settings/address', locals: { address: @shipping }
+          = render 'settings/address', address: :shipping, builder: @shipping_builder
 
     #privacy.tab-pane.fade{role: "tabpanel"}
       .row.mb-60
