@@ -3,7 +3,7 @@ class Order < ApplicationRecord
   has_many :books, through: :order_items
   has_one :coupon, dependent: :nullify
   belongs_to :delivery, optional: true
-  belongs_to :user
+  belongs_to :user, optional: true
 
   enum status: %i[created in_progress in_delivery delivered canceled]
 end
