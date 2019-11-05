@@ -3,7 +3,7 @@
     .col-sm-4
       .input-group.general-input-group
         %label.input-label= t('coupons.enter_coupon')
-        = form_for :coupon, url: order_path, method: :put do |f|
+        = form_for :coupon, url: order_path(current_order), method: :put do |f|
           = f.text_field :code, placeholder: t('coupons.enter_coupon'), class: 'form-control mb-30'
           %div
             = f.submit t('coupons.apply'), class: 'btn btn-primary mr-5 mb-15', id: 'apply-coupon'

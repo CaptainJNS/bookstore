@@ -8,9 +8,9 @@ class OrderItemsController < ApplicationController
     result = CreateOrderItem.call(params: order_item_params, current_order: current_order)
 
     if result.success?
-      redirect_to order_order_items_path, notice: I18n.t('order.added')
+      redirect_to order_order_items_path(order_id: current_order.id), notice: I18n.t('order.added')
     else
-      redirect_to order_order_items_path, alert: I18n.t('order.wrong')
+      redirect_to order_order_items_path(order_id: current_order.id), alert: I18n.t('order.wrong')
     end
   end
 
@@ -18,9 +18,9 @@ class OrderItemsController < ApplicationController
     result = DestroyOrderItem.call(order_item_id: params[:id], current_order: current_order)
 
     if result.success?
-      redirect_to order_order_items_path, notice: I18n.t('order.deleted')
+      redirect_to order_order_items_path(order_id: current_order.id), notice: I18n.t('order.deleted')
     else
-      redirect_to order_order_items_path, alert: I18n.t('order.wrong')
+      redirect_to order_order_items_path(order_id: current_order.id), alert: I18n.t('order.wrong')
     end
   end
 

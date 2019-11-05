@@ -4,7 +4,7 @@ RSpec.describe 'Cart page', type: :feature, js: true do
   let(:current_order) { create(:order) }
 
   before do
-    visit(order_order_items_path)
+    visit(order_order_items_path(order_id: current_order.id))
   end
 
   context 'with valid coupon' do

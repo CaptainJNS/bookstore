@@ -8,6 +8,6 @@ class OrdersController < ApplicationController
       flash[:alert] = I18n.t('coupons.invalid')
     end
 
-    redirect_to order_order_items_path
+    redirect_to order_order_items_path(order_id: current_order.id)
   end
 end

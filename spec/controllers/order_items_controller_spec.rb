@@ -5,7 +5,7 @@ RSpec.describe OrderItemsController, type: :controller do
 
   describe 'GET index' do
     it 'renders :index template' do
-      get :index
+      get :index, params: { order_id: order.id }
       expect(response).to render_template :index
     end
   end
@@ -14,7 +14,7 @@ RSpec.describe OrderItemsController, type: :controller do
     let(:book) { create(:book) }
 
     it 'creates an OrderItem object' do
-      expect { post(:create, params: { book_id: book.id }) }.to change(OrderItem, :count).by(1)
+      expect { post(:create, params: { order_id: order.id, book_id: book.id }) }.to change(OrderItem, :count).by(1)
     end
   end
 
@@ -22,7 +22,7 @@ RSpec.describe OrderItemsController, type: :controller do
     let!(:order_item) { create(:order_item, order: order) }
 
     it 'destroys an OrderItem object' do
-      expect { delete(:destroy, params: { id: order_item.id }) }.to change(OrderItem, :count).by(-1)
+      expect { delete(:destroy, params: { order_id: order.id, id: order_item.id }) }.to change(OrderItem, :count).by(-1)
     end
   end
 end
