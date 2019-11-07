@@ -18,5 +18,5 @@ module Constants
   COUPONS_COUNT = 50
   DELIVERY_COUNT = 3
   ZERO = 0
-  DOZEN = 100
+  HUNDRED = 100
 end
