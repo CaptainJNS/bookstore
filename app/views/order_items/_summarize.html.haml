@@ -21,7 +21,7 @@
             %td
               %p.font-16= t('order.coupon')
             %td
-              %p.font-16= number_to_currency(@discount)
+              %p.font-16= number_to_currency(current_order.discount)
           %tr
             %td
               %strong.font-18= t('order.total')

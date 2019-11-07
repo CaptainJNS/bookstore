@@ -10,7 +10,9 @@ module Application
   end
 
   def current_order
-    session[:order_id] = Order.create.id unless session[:order_id]
-    Order.find_or_create_by(id: session[:order_id]).decorate
+    order = Order.find_or_create_by(id: session[:order_id])
+    session[:order_id] = order.id
+
+    order.decorate
   end
 end

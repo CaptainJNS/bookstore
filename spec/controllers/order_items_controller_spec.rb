@@ -24,5 +24,10 @@ RSpec.describe OrderItemsController, type: :controller do
     it 'destroys an OrderItem object' do
       expect { delete(:destroy, params: { order_id: order.id, id: order_item.id }) }.to change(OrderItem, :count).by(-1)
     end
+
+    it 'redirects with alert' do
+      delete(:destroy, params: { order_id: order.id, id: 0 })
+      expect(flash[:alert]).to eq(I18n.t('order.wrong'))
+    end
   end
 end

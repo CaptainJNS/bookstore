@@ -6,4 +6,11 @@ class OrderDecorator < ApplicationDecorator
   def sub_price
     order_items.sum(&:price)
   end
+
+  def discount(price = nil)
+    return Constants::ZERO unless coupon
+
+    price ||= sub_price
+    price * coupon.discount / Constants::HUNDRED
+  end
 end

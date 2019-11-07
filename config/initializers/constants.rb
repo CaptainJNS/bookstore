@@ -17,5 +17,5 @@ module Constants
   EMAIL_TO_LOGIN = /[^@]+/.freeze
   COUPONS_COUNT = 50
   ZERO = 0
-  DOZEN = 100
+  HUNDRED = 100
 end
