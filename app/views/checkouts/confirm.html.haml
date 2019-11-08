@@ -58,14 +58,14 @@
       %thead
         %tr
           %th
-            %span.in-grey-600 Book
+            %span.in-grey-600= t('order.product')
           %th.col-method
           %th
-            %span.in-grey-600 Price
+            %span.in-grey-600= t('order.price')
           %th
-            %span.in-grey-600 Quantity
+            %span.in-grey-600= t('order.quantity')
           %th
-            %span.in-grey-600 Total
+            %span.in-grey-600= t('order.subtotal')
       %tbody
         - current_order.order_items.each do |order_item|
           %tr
@@ -86,21 +86,21 @@
               %span.font-16.in-gold-500= number_to_currency(order_item.price)
 
   .text-center.general-text-right
-    %p.in-gold-500.font-18 Order Summary
+    %p.in-gold-500.font-18= t('order.summary')
     %table.general-summary-table.general-summary-table-right.general-text-right
       %tr
         %td
-          %p.font-16 Subtotal:
+          %p.font-16= t('order.subtotal')
         %td
           %p.font-16= number_to_currency(current_order.sub_price)
       %tr
         %td
-          %p.font-16 Coupon:
+          %p.font-16= t('order.coupon')
         %td
-          %p.font-16= number_to_currency(@discount)
+          %p.font-16= number_to_currency(current_order.discount)
       %tr
         %td
-          %strong.font-18 Order Total:
+          %strong.font-18= t('order.total')
         %td
           %strong.font-18= number_to_currency(current_order.total_price)
   .text-center

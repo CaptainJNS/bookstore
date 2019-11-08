@@ -26,24 +26,14 @@ class CheckoutsController < ApplicationController
 
   private
 
-  def service_params
-    {
-      current_order: current_order,
-      current_user: current_user,
-      step: @step
-    }
-  end
-
   def address
     current_order.update(status: :in_progress)
-    
     @billing_builder = current_user.billing.nil? ? Billing.new : nil
     render_wizard
   end
 
   def update_address
-    current_user.update(address_params)
-    render_wizard current_order
+    render_wizard current_order if current_user.update(address_params)
   end
 
   def delivery
@@ -52,7 +42,8 @@ class CheckoutsController < ApplicationController
   end
 
   def update_delivery
-    render_wizard current_order if current_order.update(params.require(:order).permit(:delivery_id))
+    result = AddDelivery.call(current_order: current_order, delivery_id: params[:order][:delivery_id])
+    render_wizard current_order if result.success?
   end
 
   def payment
@@ -65,18 +56,18 @@ class CheckoutsController < ApplicationController
   end
 
   def confirm
-    @discount = current_order.sub_price - current_order.total_price
     render_wizard
   end
 
   def finalize_order
+    current_order.update(status: :in_delivery)
     render_wizard current_order
   end
 
   def complete
-    current_order.update(status: :in_delivery)
-    @discount = current_order.sub_price - current_order.total_price
     render_wizard
+    current_order.coupon.update(active: false) if current_order.coupon.present?
+    session[:order_id] = nil
   end
 
   def card_params

@@ -11,7 +11,7 @@ class CheckoutValidator
     when :delivery  then delivery?
     when :payment   then payment?
     when :confirm   then confirm?
-    when :complete  then true
+    when :complete  then complete?
     end
   end
 
@@ -25,5 +25,9 @@ class CheckoutValidator
 
   def confirm?
     @current_user.credit_card.present?
+  end
+
+  def complete?
+    @current_order.status == 'in_delivery'
   end
 end

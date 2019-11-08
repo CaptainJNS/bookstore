@@ -30,38 +30,34 @@
       .max-600.mb-80 
         .form-group
           = f.input :number, placeholder: t('checkout.payment.number'), class: 'form-control'
-          -# %label.control-label.input-label{for: "cardNumber"} Card Number
         .row
           .col-sm-6
             .form-group
-              -# %label.control-label.input-label{for: "cardName"} Name on Card
               = f.input :card_name, placeholder: t('checkout.payment.card_name'), class: 'form-control'
           .col-sm-3
             .form-group
-              -# %label.control-label.input-label{for: "firstName"} MM / YY
               = f.input :expiration_date, placeholder: t('checkout.payment.date'), class: 'form-control'
           .col-sm-3
             .form-group.relative
-              -# %label.control-label.input-label{for: "firstName"} CVV
               = f.input :cvv, placeholder: t('checkout.payment.cvv'), class: 'form-control'
 
     .general-text-align
-      %p.in-gold-500.font-18 Order Summary
+      %p.in-gold-500.font-18= t('order.summary')
       %table.general-summary-table
         %tr
           %td
-            %p.font-16 Subtotal:
+            %p.font-16= t('order.subtotal')
           %td
-            %p.font-16 €117.69
+            %p.font-16= number_to_currency(current_order.sub_price)
         %tr
           %td
-            %p.font-16 Coupon:
+            %p.font-16= t('order.coupon')
           %td
-            %p.font-16 €0.00
+            %p.font-16= number_to_currency(current_order.discount)
         %tr
           %td
-            %strong.font-18 Order Total:
+            %strong.font-18= t('order.total')
           %td
-            %strong.font-18 €117.69
+            %strong.font-18= number_to_currency(current_order.total_price)
     .text-center
       = form.submit t('checkout.save'), class: 'btn btn-default mb-20'
