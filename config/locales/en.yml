@@ -145,4 +145,8 @@ en:
     confirmation: "An order confirmation has been has been sent to %{email}"
     back_to_store: 'Back to Store'
 
+  mail:
+    hi: "Hi %{user_name}!"
+    completed: 'Your order successfully completed.'
+    thanks: 'Thanks for choosing us!'
 

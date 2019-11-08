@@ -67,6 +67,7 @@ class CheckoutsController < ApplicationController
   def complete
     render_wizard
     current_order.coupon.update(active: false) if current_order.coupon.present?
+    OrderConfirmationMailer.with(user: current_user).order_confirmation.deliver_now
     session[:order_id] = nil
   end
 
