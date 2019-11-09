@@ -42,4 +42,21 @@ RSpec.describe UsersController, type: :controller do
       end
     end
   end
+
+  describe 'POST fast_create' do
+    context 'with valid params' do
+      it 'creates user and redirects to checkout' do
+        post :fast_create, params: { user: { email: FFaker::Internet.email } }
+        expect(response).to redirect_to(checkout_path(:address))
+      end
+    end
+
+    context 'with invalid params' do
+      it 'dont updates user and shows an alert' do
+        post :fast_create, params: { user: { email: nil } }
+        expect(response).to redirect_to(users_fast_new_path)
+        expect(flash[:alert]).to eq(I18n.t('order.wrong'))
+      end
+    end
+  end
 end

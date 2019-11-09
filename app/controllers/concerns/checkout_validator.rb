@@ -16,7 +16,7 @@ class CheckoutValidator
   end
 
   def delivery?
-    @current_user.billing || @current_order.shipping
+    @current_user.billing.present?
   end
 
   def payment?
