@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe CheckoutsController, type: :controller do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, :addresses, :credit_card) }
   let(:order_item) { create(:order_item) }
-  let(:order) { create(:order, order_items: [order_item]) }
+  let(:order) { create(:order, :delivery, :coupon, order_items: [order_item], status: 'in_delivery') }
   let(:delivery) { create(:delivery) }
 
   before do
@@ -22,8 +22,6 @@ RSpec.describe CheckoutsController, type: :controller do
 
     context 'with :delivery step' do
       it 'renders next step' do
-        create(:billing, user: user)
-
         get :show, params: { id: :delivery }
         expect(response).to render_template 'checkouts/delivery'
       end
@@ -31,9 +29,6 @@ RSpec.describe CheckoutsController, type: :controller do
 
     context 'with :payment step' do
       it 'renders next step' do
-        create(:billing, user: user)
-        order.update(delivery: delivery)
-
         get :show, params: { id: :payment }
         expect(response).to render_template 'checkouts/payment'
       end
@@ -41,10 +36,6 @@ RSpec.describe CheckoutsController, type: :controller do
 
     context 'with :confirm step' do
       it 'renders next step' do
-        create(:billing, user: user)
-        order.update(delivery: delivery)
-        create(:credit_card, user: user)
-
         get :show, params: { id: :confirm }
         expect(response).to render_template 'checkouts/confirm'
       end
@@ -52,12 +43,6 @@ RSpec.describe CheckoutsController, type: :controller do
 
     context 'with :complete step' do
       it 'sets order coupon to inactive and nullify order_id in session' do
-        create(:billing, user: user)
-        order.update(delivery: delivery)
-        order.update(coupon: create(:coupon))
-        create(:credit_card, user: user)
-        order.update(status: 'in_delivery')
-
         get :show, params: { id: :complete }
         expect(order.coupon.active).to be false
         expect(session[:order_id]).to be nil
@@ -75,8 +60,6 @@ RSpec.describe CheckoutsController, type: :controller do
 
     context 'with :delivery step' do
       it 'attached delivery to order' do
-        create(:billing, user: user)
-
         put :update, params: { id: :delivery, order: { delivery_id: delivery.id } }
         expect(order.delivery.present?).to be true
       end
@@ -84,9 +67,6 @@ RSpec.describe CheckoutsController, type: :controller do
 
     context 'with :payment step' do
       it 'attached credit card to user' do
-        create(:billing, user: user)
-        order.update(delivery: delivery)
-
         put :update, params: { id: :payment, user: { credit_card_attributes: attributes_for(:credit_card) } }
         expect(user.credit_card.present?).to be true
       end
@@ -94,10 +74,6 @@ RSpec.describe CheckoutsController, type: :controller do
 
     context 'with :confirm step' do
       it 'sets in_delivery status to order' do
-        create(:billing, user: user)
-        order.update(delivery: delivery)
-        create(:credit_card, user: user)
-
         put :update, params: { id: :confirm }
         expect(order.status).to eq('in_delivery')
       end

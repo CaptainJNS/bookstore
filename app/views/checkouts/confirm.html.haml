@@ -1,43 +1,11 @@
-= content_for(:title, t('order.checkout') + ' | ')
+= content_for(:title, t('order.checkout'))
 %main.container.general-main-wrap
   %h1.general-title-margin= t('order.checkout')
-  %ul.steps.list-inline
-    %li.step.done
-      %span.step-number
-        %i.fa.fa-check.step-icon
-      %span.step-text.hidden-xs= t('checkout.address')
-    %li.step-divider
-    %li.step.done
-      %span.step-number
-        %i.fa.fa-check.step-icon
-      %span.step-text.hidden-xs= t('checkout.delivery.delivery')
-    %li.step-divider
-    %li.step.done
-      %span.step-number
-        %i.fa.fa-check.step-icon
-      %span.step-text.hidden-xs= t('checkout.payment.payment')
-    %li.step-divider
-    %li.step.active
-      %span.step-number 4
-      %span.step-text.hidden-xs= t('checkout.confirm')
-    %li.step-divider
-    %li.step
-      %span.step-number 5
-      %span.step-text.hidden-xs= t('checkout.complete')
+  = render 'progress_bar'
 
   .row.mb-20
-    .col-sm-3
-      %h3.general-subtitle= t('checkout.address')
-      %p.general-address
-        = "#{current_user.billing.first_name} #{current_user.billing.last_name}"
-        %br
-        = current_user.billing.address
-        %br
-        = current_user.billing.city
-        %br
-        = current_user.billing.country
-        %br
-        = current_user.billing.phone
+
+    = render 'billing'
 
     .col-sm-3
       %h3.general-subtitle= t('checkout.delivery.delivery')
@@ -53,55 +21,10 @@
         %br
         = current_user.credit_card.expiration_date
 
-  .hidden-xs.divider-lg.pt-20
-    %table.table.table-hover
-      %thead
-        %tr
-          %th
-            %span.in-grey-600= t('order.product')
-          %th.col-method
-          %th
-            %span.in-grey-600= t('order.price')
-          %th
-            %span.in-grey-600= t('order.quantity')
-          %th
-            %span.in-grey-600= t('order.subtotal')
-      %tbody
-        - current_order.order_items.each do |order_item|
-          %tr
-            %td
-              .general-img-wrap-table
-                - if order_item.book.images.any?
-                  = image_tag(order_item.book.decorate.cover, class: 'cart-img-shadow pull-left')
-                - else
-                  = image_tag('no_cover.jpg', class: 'img-shadow general-thumbnail-img')
-            %td
-              %p.title= order_item.book.title
-              %p.in-grey-600.fw-300= order_item.book.description
-            %td
-              %span.font-16.in-gold-500= number_to_currency(order_item.book.price)
-            %td
-              %span.ml-30= order_item.quantity
-            %td
-              %span.font-16.in-gold-500= number_to_currency(order_item.price)
+  = render 'order_items'
 
   .text-center.general-text-right
-    %p.in-gold-500.font-18= t('order.summary')
-    %table.general-summary-table.general-summary-table-right.general-text-right
-      %tr
-        %td
-          %p.font-16= t('order.subtotal')
-        %td
-          %p.font-16= number_to_currency(current_order.sub_price)
-      %tr
-        %td
-          %p.font-16= t('order.coupon')
-        %td
-          %p.font-16= number_to_currency(current_order.discount)
-      %tr
-        %td
-          %strong.font-18= t('order.total')
-        %td
-          %strong.font-18= number_to_currency(current_order.total_price)
+    = render 'order_summary'
+
   .text-center
     = button_to t('checkout.place'), wizard_path, method: :put, class: 'btn btn-default mb-20 center-block'

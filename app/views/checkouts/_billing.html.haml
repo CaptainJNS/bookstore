@@ -1,0 +1,12 @@
+.col-sm-3
+  %h3.general-subtitle= t('checkout.address')
+  %p.general-address
+    = current_user.billing.decorate.full_name
+    %br
+    = current_user.billing.address
+    %br
+    = current_user.billing.city
+    %br
+    = current_user.billing.country
+    %br
+    = current_user.billing.phone

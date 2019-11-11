@@ -1,28 +1,7 @@
-= content_for(:title, t('order.checkout') + ' | ')
+= content_for(:title, t('order.checkout'))
 %main.container.mb-res-50
   %h1.general-title-margin= t('order.checkout')
-  %ul.steps.list-inline
-    %li.step.done
-      %span.step-number
-        %i.fa.fa-check.step-icon
-      %span.step-text.hidden-xs= t('checkout.address')
-    %li.step-divider
-    %li.step.done
-      %span.step-number
-        %i.fa.fa-check.step-icon
-      %span.step-text.hidden-xs= t('checkout.delivery.delivery')
-    %li.step-divider
-    %li.step.active
-      %span.step-number 3
-      %span.step-text.hidden-xs= t('checkout.payment.payment')
-    %li.step-divider
-    %li.step
-      %span.step-number 4
-      %span.step-text.hidden-xs= t('checkout.confirm')
-    %li.step-divider
-    %li.step
-      %span.step-number 5
-      %span.step-text.hidden-xs= t('checkout.complete')
+  = render 'progress_bar'
 
   %h3.general-subtitle= t('checkout.payment.card')
   = simple_form_for current_user, url: wizard_path, method: :put do |form|
@@ -42,22 +21,7 @@
               = f.input :cvv, placeholder: t('checkout.payment.cvv'), class: 'form-control'
 
     .general-text-align
-      %p.in-gold-500.font-18= t('order.summary')
-      %table.general-summary-table
-        %tr
-          %td
-            %p.font-16= t('order.subtotal')
-          %td
-            %p.font-16= number_to_currency(current_order.sub_price)
-        %tr
-          %td
-            %p.font-16= t('order.coupon')
-          %td
-            %p.font-16= number_to_currency(current_order.discount)
-        %tr
-          %td
-            %strong.font-18= t('order.total')
-          %td
-            %strong.font-18= number_to_currency(current_order.total_price)
+      = render 'order_summary'
+
     .text-center
       = form.submit t('checkout.save'), class: 'btn btn-default mb-20'

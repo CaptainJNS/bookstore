@@ -124,6 +124,12 @@ en:
     no_items: 'You have no items in your cart'
 
   checkout:
+    titles:
+      address: 'Address'
+      delivery: 'Delivery'
+      payment: 'Payment'
+      confirm: 'Confirm'
+      complete: 'Complete'
     address: 'Address'
     delivery:
       delivery: 'Delivery'

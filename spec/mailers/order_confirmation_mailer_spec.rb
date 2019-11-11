@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe OrderConfirmationMailer, type: :mailer do
-  let!(:order) { create(:order, user: create(:user)) }
+  let!(:order) { create(:order) }
 
   describe 'complete  ' do
     let(:mail) { described_class.with(user: order.user).order_confirmation }
