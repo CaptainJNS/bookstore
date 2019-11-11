@@ -7,6 +7,6 @@ class AddDelivery
     return context.fail! unless delivery
 
     context.current_order.update(delivery_id: delivery.id)
-    context.current_order.increment!(:total_price, delivery.price)
+    UpdateTotalPrice.call(context.current_order, delivery: delivery)
   end
 end

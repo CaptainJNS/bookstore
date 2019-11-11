@@ -2,17 +2,19 @@ class AddCoupon
   include Interactor
 
   def call
-    return context.fail! if coupon_attached?
-
-    return context.fail! unless coupon_valid?
+    return context.fail! unless coupon_can_be_attached?
 
     coupon = Coupon.find_by(code: context.code)
 
     context.current_order.update(coupon: coupon)
-    context.current_order.decrement!(:total_price, context.current_order.discount)
+    UpdateTotalPrice.call(context.current_order, coupon: coupon)
   end
 
   private
+
+  def coupon_can_be_attached?
+    !coupon_attached? && coupon_valid?
+  end
 
   def coupon_valid?
     Coupon.exists?(code: context.code, active: true)
