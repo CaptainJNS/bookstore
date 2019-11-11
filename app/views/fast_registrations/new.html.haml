@@ -38,7 +38,7 @@
           %i.fa.fa-facebook-official
         %p.general-login-text or
 
-      = form_with scope: :user, url: users_fast_create_path(:user) do |f|  
+      = form_with scope: :user, url: fast_registration_path, method: :post do |f|  
         .general-form
           .mb-40
             %p.mb-5 Quik Register

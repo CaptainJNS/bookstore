@@ -15,4 +15,9 @@ RSpec.describe OrderDecorator do
   it '#sub_price' do
     expect(decorator.sub_price).to eq(60)
   end
+
+  it '#number' do
+    allow(decorator).to receive(:id).and_return(1)
+    expect(decorator.number).to eq('Order #1')
+  end
 end

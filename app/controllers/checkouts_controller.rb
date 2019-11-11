@@ -1,8 +1,8 @@
 class CheckoutsController < ApplicationController
   include Wicked::Wizard
-  include Checkout
+  include CheckoutHelper
 
-  before_action :fast_authenticate_user!, :initialize_checkout_user, :check_order_items, :check_step
+  before_action :checkout_validation
   steps :address, :delivery, :payment, :confirm, :complete
 
   def show
@@ -26,56 +26,26 @@ class CheckoutsController < ApplicationController
 
   private
 
-  def address
-    current_order.update(status: :in_progress)
-    @billing_builder = current_user.billing.nil? ? Billing.new : nil
-    render_wizard
+  def fast_authenticate_user!
+    redirect_to new_fast_registration_path unless current_user
   end
 
-  def update_address
-    render_wizard current_order if current_user.update(address_params)
+  def initialize_checkout_user
+    current_order.update(user: current_user)
   end
 
-  def delivery
-    @deliveries = Delivery.all
-    render_wizard
+  def check_order_items
+    redirect_to(root_path, alert: I18n.t('order.no_items')) unless current_order.order_items.any?
   end
 
-  def update_delivery
-    result = AddDelivery.call(current_order: current_order, delivery_id: params[:order][:delivery_id])
-    render_wizard current_order if result.success?
+  def check_step
+    redirect_to checkout_path(@previous_step) unless CheckoutValidator.new(current_order, current_user, step).step_allowed?
   end
 
-  def payment
-    @credit_card = CreditCard.where(user: current_user).first_or_create
-    render_wizard
-  end
-
-  def update_payment
-    render_wizard current_order if current_user.update(card_params)
-  end
-
-  def confirm
-    render_wizard
-  end
-
-  def finalize_order
-    current_order.update(status: :in_delivery)
-    render_wizard current_order
-  end
-
-  def complete
-    render_wizard
-    current_order.coupon.update(active: false) if current_order.coupon.present?
-    OrderConfirmationMailer.with(user: current_user).order_confirmation.deliver_now
-    session[:order_id] = nil
-  end
-
-  def card_params
-    params.require(:user).permit(credit_card_attributes: %i[number card_name cvv expiration_date])
-  end
-
-  def address_params
-    params.require(:user).permit(billing_attributes: %i[first_name last_name address city zip country phone])
+  def checkout_validation
+    fast_authenticate_user!
+    initialize_checkout_user
+    check_order_items
+    check_step
   end
 end
