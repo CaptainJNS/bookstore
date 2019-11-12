@@ -29,5 +29,13 @@ module CheckoutUpdate
 
       :confirm
     end
+
+    def card_params
+      params.require(:user).permit(credit_card_attributes: %i[number card_name cvv expiration_date])
+    end
+
+    def address_params
+      params.require(:user).permit(billing_attributes: %i[first_name last_name address city zip country phone])
+    end
   end
 end
