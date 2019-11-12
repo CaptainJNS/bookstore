@@ -2,6 +2,8 @@
   %h3.general-subtitle= t('checkout.address')
   %p.general-address
     = current_user.billing.decorate.full_name
+    - if step == :confirm
+      = link_to t('checkout.edit'), checkout_path(:address), class: 'general-edit'
     %br
     = current_user.billing.address
     %br

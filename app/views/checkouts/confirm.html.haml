@@ -11,6 +11,7 @@
       %h3.general-subtitle= t('checkout.delivery.delivery')
       %p.general-address
         = current_order.delivery.method
+        = link_to t('checkout.edit'), checkout_path(:delivery), class: 'general-edit'
         %br
         = current_order.delivery.days
 
@@ -18,6 +19,7 @@
       %h3.general-subtitle= t('checkout.payment.payment')
       %p.general-address
         = current_user.credit_card.number
+        = link_to t('checkout.edit'), checkout_path(:payment), class: 'general-edit'
         %br
         = current_user.credit_card.expiration_date
 
