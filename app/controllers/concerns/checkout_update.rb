@@ -5,7 +5,7 @@ module CheckoutUpdate
     private
 
     def update_address
-      current_order.update(status: :in_progress, user: current_user)
+      CheckoutService.call(step, order: current_order, user: current_user)
       redirect_to checkout_path(undone_step) if current_user.update(address_params)
     end
 
@@ -19,8 +19,6 @@ module CheckoutUpdate
     end
 
     def finalize_order
-      current_order.update(status: :in_delivery)
-      current_order.coupon.update(active: false) if current_order.coupon.present?
       render_wizard current_order
     end
 

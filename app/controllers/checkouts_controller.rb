@@ -50,7 +50,7 @@ class CheckoutsController < ApplicationController
     when :delivery  then current_user.billing.present?
     when :payment   then current_order.delivery.present?
     when :confirm   then current_user.credit_card.present?
-    when :complete  then current_order.status == 'in_delivery'
+    when :complete  then @previous_step == :confirm
     end
   end
 end

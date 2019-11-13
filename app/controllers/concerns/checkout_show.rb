@@ -25,7 +25,7 @@ module CheckoutShow
 
     def show_complete
       render_wizard
-      OrderConfirmationMailer.with(user: current_user).order_confirmation.deliver_now
+      CheckoutService.call(step, order: current_order, user: current_user)
       session[:order_id] = nil
     end
   end

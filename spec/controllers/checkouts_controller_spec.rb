@@ -42,9 +42,14 @@ RSpec.describe CheckoutsController, type: :controller do
     end
 
     context 'with :complete step' do
+      before { get :show, params: { id: :complete } }
+
       it 'nullify order_id in session' do
-        get :show, params: { id: :complete }
         expect(session[:order_id]).to be nil
+      end
+
+      it 'sets order coupon to inactive and nullify order_id in session' do
+        expect(order.coupon.active).to be false
       end
     end
   end
@@ -81,10 +86,6 @@ RSpec.describe CheckoutsController, type: :controller do
 
       it 'sets in_delivery status to order' do
         expect(order.status).to eq('in_delivery')
-      end
-
-      it 'sets order coupon to inactive and nullify order_id in session' do
-        expect(order.coupon.active).to be false
       end
     end
   end
