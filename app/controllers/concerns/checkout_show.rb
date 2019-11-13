@@ -5,8 +5,7 @@ module CheckoutShow
     private
 
     def show_address
-      current_order.update(status: :in_progress, user: current_user)
-      @billing_builder = Billing.first_or_initialize(user: current_user)
+      @billing_builder = Billing.find_or_initialize_by(user: current_user)
       render_wizard
     end
 
@@ -16,7 +15,7 @@ module CheckoutShow
     end
 
     def show_payment
-      @credit_card = CreditCard.where(user: current_user).first_or_create
+      @credit_card = CreditCard.find_or_create_by(user: current_user)
       render_wizard
     end
 
@@ -26,7 +25,6 @@ module CheckoutShow
 
     def show_complete
       render_wizard
-      current_order.coupon.update(active: false) if current_order.coupon.present?
       OrderConfirmationMailer.with(user: current_user).order_confirmation.deliver_now
       session[:order_id] = nil
     end

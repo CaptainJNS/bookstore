@@ -14,37 +14,36 @@ RSpec.describe CheckoutsController, type: :controller do
 
   describe '#show' do
     context 'with :address step' do
-      it 'updates order status to in_progress' do
+      it 'renders first step - address' do
         get :show, params: { id: :address }
-        expect(order.status).to eq('in_progress')
+        expect(response).to render_template 'checkouts/address'
       end
     end
 
     context 'with :delivery step' do
-      it 'renders next step' do
+      it 'renders next step - delivery' do
         get :show, params: { id: :delivery }
         expect(response).to render_template 'checkouts/delivery'
       end
     end
 
     context 'with :payment step' do
-      it 'renders next step' do
+      it 'renders next step - payment' do
         get :show, params: { id: :payment }
         expect(response).to render_template 'checkouts/payment'
       end
     end
 
     context 'with :confirm step' do
-      it 'renders next step' do
+      it 'renders next step - confirm' do
         get :show, params: { id: :confirm }
         expect(response).to render_template 'checkouts/confirm'
       end
     end
 
     context 'with :complete step' do
-      it 'sets order coupon to inactive and nullify order_id in session' do
+      it 'nullify order_id in session' do
         get :show, params: { id: :complete }
-        expect(order.coupon.active).to be false
         expect(session[:order_id]).to be nil
       end
     end
@@ -52,9 +51,14 @@ RSpec.describe CheckoutsController, type: :controller do
 
   describe '#update' do
     context 'with :address step' do
+      before { put :update, params: { id: :address, user: { billing_attributes: attributes_for(:billing) } } }
+
       it 'attached billing to user' do
-        put :update, params: { id: :address, user: { billing_attributes: attributes_for(:billing) } }
         expect(user.billing.present?).to be true
+      end
+
+      it 'updates order status to in_progress' do
+        expect(order.status).to eq('in_progress')
       end
     end
 
@@ -73,9 +77,14 @@ RSpec.describe CheckoutsController, type: :controller do
     end
 
     context 'with :confirm step' do
+      before { put :update, params: { id: :confirm } }
+
       it 'sets in_delivery status to order' do
-        put :update, params: { id: :confirm }
         expect(order.status).to eq('in_delivery')
+      end
+
+      it 'sets order coupon to inactive and nullify order_id in session' do
+        expect(order.coupon.active).to be false
       end
     end
   end

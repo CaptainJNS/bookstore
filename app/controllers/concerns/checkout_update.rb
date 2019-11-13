@@ -5,11 +5,12 @@ module CheckoutUpdate
     private
 
     def update_address
+      current_order.update(status: :in_progress, user: current_user)
       redirect_to checkout_path(undone_step) if current_user.update(address_params)
     end
 
     def update_delivery
-      result = AddDelivery.call(current_order: current_order, delivery_id: params[:order][:delivery_id])
+      result = AddDelivery.call(current_order: current_order, delivery_id: params.dig(:order, :delivery_id))
       redirect_to checkout_path(undone_step) if result.success?
     end
 
@@ -19,6 +20,7 @@ module CheckoutUpdate
 
     def finalize_order
       current_order.update(status: :in_delivery)
+      current_order.coupon.update(active: false) if current_order.coupon.present?
       render_wizard current_order
     end
 

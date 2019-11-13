@@ -14,21 +14,24 @@ class UpdateTotalPrice
   end
 
   def call
-    if delivery
-      order.increment!(:total_price, @delivery.price)
-    end
+    return order.increment!(:total_price, difference) if add_price?
 
-    if coupon
-      order.decrement!(:total_price, @order.discount)
-    end
+    order.decrement!(:total_price, difference) if minus_price?
+  end
 
-    if order_item && action
-      difference = order_item.price * order_item.quantity - order.discount(order_item.price)
+  def difference
+    return delivery.price if delivery
 
-      case action
-      when :remove then order.decrement!(:total_price, difference)
-      when :add then order.increment!(:total_price, difference)
-      end
-    end
+    return order.discount if coupon
+
+    order_item.price * order_item.quantity - order.discount(order_item.price)
+  end
+
+  def add_price?
+    action == :add || delivery
+  end
+
+  def minus_price?
+    action == :remove || coupon
   end
 end
