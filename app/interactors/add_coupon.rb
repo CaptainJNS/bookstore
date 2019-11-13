@@ -7,7 +7,7 @@ class AddCoupon
     coupon = Coupon.find_by(code: context.code)
 
     context.current_order.update(coupon: coupon)
-    UpdateTotalPrice.call(context.current_order, coupon: coupon)
+    UpdateTotalPrice.call(context.current_order, coupon: coupon, action: :minus)
   end
 
   private
