@@ -14,9 +14,9 @@ class UpdateTotalPrice
   end
 
   def call
-    return order.increment!(:total_price, difference) if plus_price?
+    return order.increment!(:total_price, difference) if action == :plus
 
-    order.decrement!(:total_price, difference) if minus_price?
+    order.decrement!(:total_price, difference) if action == :minus
   end
 
   def difference
@@ -25,13 +25,5 @@ class UpdateTotalPrice
     return order.discount if coupon
 
     order_item.price * order_item.quantity - order.discount(order_item.price)
-  end
-
-  def plus_price?
-    action == :plus
-  end
-
-  def minus_price?
-    action == :minus
   end
 end
