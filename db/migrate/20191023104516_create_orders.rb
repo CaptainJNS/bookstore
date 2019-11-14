@@ -5,7 +5,6 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.datetime :completed_at
       t.integer :status, default: 0
       t.references :user, foreign_key: true
-      t.integer :shipping_method, default: 0
 
       t.timestamps
     end

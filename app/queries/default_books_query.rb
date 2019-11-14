@@ -20,7 +20,19 @@ class DefaultBooksQuery
   def best_sellers(relation)
     return relation unless @params.include?(:best_sellers)
 
-    relation.limit(4)
+    books_ids = []
+
+    Category.all.each do |category|
+      temp_hash = OrderItem.joins(:book)
+        .where(book: Book.joins(:books_categories)
+        .where(books_categories: { category: category }))
+        .joins(:order).where(orders: { status: [2,3] })
+        .group(:book_id).sum(:quantity)
+
+      books_ids << temp_hash.key(temp_hash.values.max)
+    end
+
+    relation.where(id: books_ids)
   end
 
   def latest_books(relation)

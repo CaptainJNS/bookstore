@@ -51,7 +51,7 @@ gem 'wicked', '~> 1.3', '>= 1.3.4'
 
 group :development, :test do
   gem 'capybara', '~> 2.13.0'
-
+  gem 'factory_bot_rails', '~> 5.0'
   gem 'rspec', '~> 3.8'
   gem 'rspec-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -75,7 +75,6 @@ end
 group :test do
   gem 'capybara-webkit', '~> 1.14.0'
   gem 'database_cleaner'
-  gem 'factory_bot_rails', '~> 5.0'
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.4'
   gem 'shoulda-matchers'
   gem 'simplecov', '~> 0.16.1'
