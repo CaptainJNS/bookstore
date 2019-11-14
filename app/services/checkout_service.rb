@@ -21,7 +21,7 @@ class CheckoutService
   private
 
   def complete
-    order.update(status: :in_delivery)
+    order.update(status: :in_delivery, completed_at: Time.now)
     order.coupon.update(active: false) if order.coupon.present?
     OrderConfirmationMailer.with(user: user).order_confirmation.deliver_now
   end

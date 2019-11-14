@@ -17,4 +17,8 @@ class OrderDecorator < ApplicationDecorator
   def number
     "Order \##{id}"
   end
+
+  def status_to_s
+    I18n.t("order.statuses.#{status}")
+  end
 end
