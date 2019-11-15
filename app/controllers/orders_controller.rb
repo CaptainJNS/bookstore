@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  skip_before_action :authenticate_user!, only: :update
 
   def update
     result = AddCoupon.call(code: params.dig(:coupon, :code), current_order: current_order)

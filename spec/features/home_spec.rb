@@ -28,22 +28,6 @@ RSpec.describe 'Home', type: :feature, js: true do
     end
   end
 
-  context 'with best sellers' do
-    it 'shows the best sellers' do
-      within('#bestsellers') do
-        DefaultBooksQuery.call(best_sellers: nil).each do |book|
-          expect(page).to have_content(book.title)
-        end
-      end
-    end
-
-    it 'adds book to cart' do
-      find('.add-to-cart', match: :first).click
-      find('#cart').click
-      expect(page).to have_content(DefaultBooksQuery.call(best_sellers: nil).first.title)
-    end
-  end
-
   context 'with main' do
     it 'opens books catalog', skip_before: true do
       visit(root_path)
