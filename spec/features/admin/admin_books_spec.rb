@@ -15,8 +15,6 @@ RSpec.describe 'Admin Books' do
   it 'Admin can create a Book' do
     click_link('New Book')
 
-    expect(page).to have_current_path(new_admin_book_path)
-
     fill_in 'book[title]', with: book_attributes[:title]
     fill_in 'book[description]', with: book_attributes[:description]
     fill_in 'book[year]', with: book_attributes[:year]
@@ -24,8 +22,9 @@ RSpec.describe 'Admin Books' do
     fill_in 'book[materials]', with: book_attributes[:materials]
     fill_in 'book[dimensions]', with: book_attributes[:dimensions]
     fill_in 'book[quantity]', with: book_attributes[:quantity]
+    click_button('Create Book')
 
-    expect { click_button('Create Book'); sleep(1) }.to change { Book.count }.by(1)
+    expect(page).to have_content(book_attributes[:title])
   end
 
   it 'Admin can view the Book' do

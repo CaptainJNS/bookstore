@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_14_122149) do
+ActiveRecord::Schema.define(version: 2019_10_17_075735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,8 @@ ActiveRecord::Schema.define(version: 2019_10_14_122149) do
     t.string "materials"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "reviews_id"
+    t.index ["reviews_id"], name: "index_books_on_reviews_id"
   end
 
   create_table "books_categories", force: :cascade do |t|
@@ -117,6 +119,18 @@ ActiveRecord::Schema.define(version: 2019_10_14_122149) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "body"
+    t.integer "status", default: 0
+    t.bigint "user_id"
+    t.bigint "book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "rating"
+    t.index ["book_id"], name: "index_reviews_on_book_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "shippings", force: :cascade do |t|
@@ -149,16 +163,22 @@ ActiveRecord::Schema.define(version: 2019_10_14_122149) do
     t.string "uid"
     t.string "name"
     t.text "image"
+    t.bigint "reviews_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["reviews_id"], name: "index_users_on_reviews_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "authors_books", "authors"
   add_foreign_key "authors_books", "books"
   add_foreign_key "billings", "users"
+  add_foreign_key "books", "reviews", column: "reviews_id"
   add_foreign_key "books_categories", "books"
   add_foreign_key "books_categories", "categories"
+  add_foreign_key "reviews", "books"
+  add_foreign_key "reviews", "users"
   add_foreign_key "shippings", "users"
+  add_foreign_key "users", "reviews", column: "reviews_id"
 end

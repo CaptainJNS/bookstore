@@ -25,3 +25,18 @@ let calculatePrice = (price, input) => {
 
   price_element.textContent = currency + price * input;
 }
+
+let stars = (score) => {
+  for (var i = 0; i < 5; i++) {
+    jQuery("#star_id_" + i).addClass("rate-empty");
+ }
+
+  score++;
+
+  for (var i = 0; i < score; i++) {
+    jQuery("#star_id_" + i).removeClass("rate-empty");
+    jQuery("#star_id_" + i).addClass("rate-star");
+ }
+
+  document.getElementById("reviewRating").value = score;
+}

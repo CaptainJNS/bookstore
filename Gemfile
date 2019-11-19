@@ -5,6 +5,7 @@ ruby '2.6.3'
 
 gem 'aasm', '~> 5.0', '>= 5.0.5'
 gem 'activeadmin', '~> 2.1'
+gem 'aws-sdk', '~> 3.0', '>= 3.0.1'
 gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 gem 'cancancan', '~> 3.0', '>= 3.0.1'
 gem 'carrierwave', '~> 1.3', '>= 1.3.1'
@@ -18,12 +19,11 @@ gem 'kaminari', '~> 1.1', '>= 1.1.1'
 gem 'mini_magick'
 gem 'omniauth', '~> 1.9'
 gem 'omniauth-facebook', '~> 5.0'
+gem 'open_uri_redirections', '~> 0.2.1'
+gem 'paperclip', '~> 6.1'
 gem 'sass', '~> 3.7', '>= 3.7.4'
 gem 'seedbank', '~> 0.5.0'
 gem 'simple_form', '~> 5.0', '>= 5.0.1'
-gem 'open_uri_redirections', '~> 0.2.1'
-gem 'paperclip', '~> 6.1'
-gem 'aws-sdk', '~> 3.0', '>= 3.0.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use postgresql as the database for Active Record
@@ -54,10 +54,10 @@ group :development, :test do
   gem 'rspec-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'letter_opener', '~> 1.7'
   gem 'pry', '~> 0.12.2'
   gem 'rubocop', '~> 0.74.0'
   gem 'rubocop-rspec', '~> 1.35'
-  gem 'letter_opener', '~> 1.7'
 end
 
 group :development do

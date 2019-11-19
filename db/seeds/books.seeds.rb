@@ -5,7 +5,7 @@ after :authors, :categories do
 
   Book.destroy_all
 
-  Constants::BOOKS_COUNT.times do |_index|
+  Constants::BOOKS_COUNT.times do
     Book.create! do |book|
       book.title        = FFaker::Book.unique.title
       book.description  = FFaker::Book.description

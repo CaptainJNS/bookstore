@@ -14,13 +14,12 @@ RSpec.describe 'Admin Authors' do
 
   it 'Admin can create an Author' do
     click_link('New Author')
-
-    expect(page).to have_current_path(new_admin_author_path)
-
     fill_in 'author[first_name]', with: author_attributes[:first_name]
     fill_in 'author[last_name]', with: author_attributes[:last_name]
+    click_button('Create Author')
 
-    expect { click_button('Create Author'); sleep(1) }.to change { Author.count }.by(1)
+    expect(page).to have_content(author_attributes[:first_name])
+    expect(page).to have_content(author_attributes[:last_name])
   end
 
   it 'Admin can view the Author' do

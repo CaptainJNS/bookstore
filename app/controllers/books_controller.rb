@@ -10,5 +10,6 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id]).decorate
+    @reviews = ReviewDecorator.decorate_collection(Review.approved.where(book: @book.object))
   end
 end

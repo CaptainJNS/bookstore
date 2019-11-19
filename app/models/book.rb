@@ -2,6 +2,8 @@ class Book < ApplicationRecord
   has_many :authors_books, dependent: :destroy
   has_many :authors, through: :authors_books
 
+  has_many :reviews, dependent: :destroy
+
   has_many :books_categories, dependent: :destroy
   has_many :categories, through: :books_categories
 

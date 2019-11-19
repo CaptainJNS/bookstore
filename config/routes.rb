@@ -8,4 +8,8 @@ Rails.application.routes.draw do
 
   resources :books
   resources :users, only: %i[update edit destroy]
+
+  resources :books, only: :show do
+    resources :reviews, only: :create
+  end
 end

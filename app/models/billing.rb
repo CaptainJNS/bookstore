@@ -12,6 +12,6 @@ class Billing < ApplicationRecord
     presence: false
   )
 
-  validates_format_of :phone, with: /\A[+]?[\d]{10,13}\z/, allow_blank: true
+  validates_format_of :phone, with: Constants::PHONE_PATTERN, allow_blank: true
   validates :zip, numericality: { only_integer: true }, allow_blank: true
 end

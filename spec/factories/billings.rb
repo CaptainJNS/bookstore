@@ -6,6 +6,6 @@ FactoryBot.define do
     city { FFaker::Address.city }
     zip { FFaker::AddressUS.zip_code.to_i }
     country { FFaker::Address.country }
-    phone { rand(10000000000..99999999999).to_s }
+    phone { FFaker::PhoneNumberUA.mobile_phone_number.to_s }
   end
 end

@@ -15,11 +15,10 @@ RSpec.describe 'Admin Categories' do
   it 'Admin can create a Category' do
     click_link('New Category')
 
-    expect(page).to have_current_path(new_admin_category_path)
-
     fill_in 'category[name]', with: category_attributes[:name]
+    click_button('Create Category')
 
-    expect { click_button('Create Category'); sleep(1) }.to change { Category.count }.by(1)
+    expect(page).to have_content(category_attributes[:name])
   end
 
   it 'Admin can view the Category' do
@@ -36,11 +35,9 @@ RSpec.describe 'Admin Categories' do
     new_name = FFaker::Book.genre
     click_link('Edit', match: :first)
 
-    expect(page).to have_current_path(edit_admin_category_path(Category.last))
-
     fill_in 'category[name]', with: new_name
     click_button('Update Category')
-    sleep(1)
-    expect(Category.last.name).to eq(new_name)
+
+    expect(page).to have_content(new_name)
   end
 end
