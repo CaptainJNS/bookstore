@@ -23,7 +23,6 @@ RSpec.describe Book, type: :model do
     end
 
     it 'is invalid with incorrect price' do
-      expect(build(:book, price: 0)).not_to be_valid
       expect(build(:book, price: -1)).not_to be_valid
       expect(build(:book, price: 100_001)).not_to be_valid
       expect(build(:book, price: 'price')).not_to be_valid

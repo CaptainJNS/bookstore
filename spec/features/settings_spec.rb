@@ -16,7 +16,7 @@ RSpec.describe 'Settings page', type: :feature, js: true do
     let(:shipping) { [] }
 
     before do
-      login_as(user)
+      login_as(user, scope: :user)
       visit(edit_user_path(user))
     end
 
