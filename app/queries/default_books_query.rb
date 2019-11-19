@@ -23,10 +23,9 @@ class DefaultBooksQuery
     books_ids = []
 
     Category.all.each do |category|
-      temp_hash = OrderItem.joins(:book)
-        .where(book: Book.joins(:books_categories)
-        .where(books_categories: { category: category }))
-        .joins(:order).where(orders: { status: [2,3] })
+      temp_hash = OrderItem.joins(book: :books_categories)
+        .where(books: { books_categories: { category: category } })
+        .joins(:order).where(orders: { status: [2, 3] })
         .group(:book_id).sum(:quantity)
 
       books_ids << temp_hash.key(temp_hash.values.max)
