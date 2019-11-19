@@ -17,4 +17,12 @@ RSpec.describe 'Book page', type: :feature, js: true do
       expect(page).to have_content(book.description)
     end
   end
+
+  context 'with add_to_cart button' do
+    it 'adds book to cart' do
+      find('.add-to-cart', match: :first).click
+      find('#cart').click
+      expect(page).to have_content(book.title)
+    end
+  end
 end

@@ -9,11 +9,22 @@ RSpec.describe 'Home', type: :feature, js: true do
   end
 
   context 'with carousel' do
-    it 'shows the latest books' do
+    let(:book) { DefaultBooksQuery.call(latest_books: nil).first.title }
+
+    before do
       stub_const('Constants::LATEST_BOOK_COUNT', 1)
+    end
+
+    it 'shows the latest books' do
       within('.carousel') do
-        expect(page).to have_content(DefaultBooksQuery.call(latest_books: nil).first.title)
+        expect(page).to have_content(book)
       end
+    end
+
+    it 'adds book to cart' do
+      click_link(I18n.t('home.buy_now'))
+      find('#cart').click
+      expect(page).to have_content(book)
     end
   end
 
@@ -24,6 +35,12 @@ RSpec.describe 'Home', type: :feature, js: true do
           expect(page).to have_content(book.title)
         end
       end
+    end
+
+    it 'adds book to cart' do
+      find('.add-to-cart', match: :first).click
+      find('#cart').click
+      expect(page).to have_content(DefaultBooksQuery.call(best_sellers: nil).first.title)
     end
   end
 

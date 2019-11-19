@@ -20,11 +20,13 @@
               %h1= book.title
               %p.lead= book.description
               %p.lead.small= book.authors_names
+
               .general-align
                 - if book.quantity.positive?
-                  = link_to t('home.buy_now'), book_path(book), class: 'btn btn-primary'
+                  = link_to t('home.buy_now'), order_order_items_path(order_id: current_order, book_id: book), remote: true, method: :post, class: 'btn btn-primary', onclick: "addToCart()"
                 - else
-                  %button.disabled.btn= t('home.buy_now')
+                  %button.disabled.btn= t('book.out_of_stock')
+
   %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
     %span.icon-prev{'aria-hidden': "true"}
     %span.sr-only= t('home.previous')

@@ -10,8 +10,10 @@
           .general-thumb-link-wrap
             %a.thumb-hover-link{href: book_path(book)}
               %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
-            %a.thumb-hover-link{href: "#"}
+
+            = link_to order_order_items_path(order_id: current_order, book_id: book), method: :post, class: 'thumb-hover-link add-to-cart', onclick: "addToCart()" do
               %i.fa.fa-shopping-cart.thumb-icon
+
     .general-thumb-info
       %p.title= link_to book.title, book_path(book)
       %p.font-16.in-gold-500= number_to_currency(book.price)
