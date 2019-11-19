@@ -2,7 +2,7 @@
   %h1.mt-0.mb-25= t('order.my_orders')
   .dropdowns.dropdown.general-order-dropdown
     %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-      = t("order.statuses.#{@filter}")
+      = @status_filter
       %i.fa.fa-angle-down.dropdown-icon.pull-right
     %ul.dropdown-menu
       - t('order.statuses').each do |key, value|
@@ -29,6 +29,6 @@
             %td
               %span.in-grey-900.font-16.fw-300= order.completed_at
             %td
-              %span.font-16.in-grey-900.fw-300= order.status_to_s
+              %span.font-16.in-grey-900.fw-300= order.show_status
             %td
               %strong.font-16= number_to_currency(order.total_price)

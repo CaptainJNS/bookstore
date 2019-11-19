@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe OrdersController, type: :controller do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, :addresses) }
 
   before { sign_in(user) }
 
@@ -27,29 +27,38 @@ RSpec.describe OrdersController, type: :controller do
 
   describe 'GET index' do
     let(:params) { {} }
+    let!(:order1) { create(:order, status: 2, user: user) }
+    let!(:order2) { create(:order, status: 3, user: user) }
+    let!(:order3) { create(:order, status: 4, user: user) }
 
     before { get :index, params: params }
 
     context 'without params' do
-      it { expect(response).to render_template :index }
+      it { expect(assigns(:orders)).to match_array([order1, order2, order3]) }
     end
 
-    context 'with status parameter 2' do
-      let(:params) { { status: 2 } }
+    context 'with status parameter in_delivery' do
+      let(:params) { { status: 'in_delivery' } }
 
-      it { expect(response).to render_template :index }
+      it { expect(assigns(:orders)).to match_array([order1]) }
     end
 
-    context 'with status parameter 3' do
-      let(:params) { { status: 3 } }
+    context 'with status parameter delivered' do
+      let(:params) { { status: 'delivered' } }
 
-      it { expect(response).to render_template :index }
+      it { expect(assigns(:orders)).to match_array([order2]) }
     end
 
-    context 'with status parameter 4' do
-      let(:params) { { status: 4 } }
+    context 'with status parameter canceled' do
+      let(:params) { { status: 'canceled' } }
 
-      it { expect(response).to render_template :index }
+      it { expect(assigns(:orders)).to match_array([order3]) }
+    end
+
+    context 'with invalid status parameter' do
+      let(:params) { { status: 'blah-blah-blah' } }
+
+      it { expect(assigns(:orders)).to match_array([order1, order2, order3]) }
     end
   end
 
@@ -58,6 +67,7 @@ RSpec.describe OrdersController, type: :controller do
 
     before { get :show, params: { id: order } }
 
-    it { expect(response).to render_template :show }
+    it { expect(assigns(:order)).to eq(order) }
+    it { expect(assigns(:order)).to render_template :show }
   end
 end

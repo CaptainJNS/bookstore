@@ -4,15 +4,15 @@
     .col-sm-3
       %h3.general-subtitle.mt-0= t('checkout.titles.address')
       %p.general-address
-        = current_user.billing.decorate.full_name
+        = @billing.full_name
         %br
-        = current_user.billing.decorate.address
+        = @billing.address
         %br
-        = current_user.billing.decorate.city
+        = @billing.city
         %br
-        = current_user.billing.decorate.country
+        = @billing.country
         %br
-        = current_user.billing.decorate.phone
+        = @billing.phone
 
     .col-sm-3
       %h3.general-subtitle.mt-0= t('checkout.titles.delivery')

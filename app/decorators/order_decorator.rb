@@ -18,7 +18,11 @@ class OrderDecorator < ApplicationDecorator
     "Order \##{id}"
   end
 
-  def status_to_s
-    I18n.t("order.statuses.#{status}")
+  def show_status
+    case status
+    when 'in_delivery' then I18n.t('order.statuses.in_delivery')
+    when 'delivered' then I18n.t('order.statuses.delivered')
+    when 'canceled' then I18n.t('order.statuses.canceled')
+    end
   end
 end

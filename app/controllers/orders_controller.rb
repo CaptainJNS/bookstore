@@ -15,13 +15,21 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @filter = params[:status] || Constants::DEFAULT_ORDERS_STATUS_FILTER
+    @filter = status
+    @status_filter = I18n.t("order.statuses.#{@filter}")
 
-    result = OrdersQuery.call(user: current_user, status: params[:status])
+    result = OrdersQuery.call(user: current_user, status: @filter)
     @orders = OrderDecorator.decorate_collection(result)
   end
 
   def show
     @order = Order.find_by(id: params[:id], user: current_user).decorate
+    @billing = current_user.billing.decorate
+  end
+
+  private
+
+  def status
+    Constants::STATUSES_TO_SHOW.include?(params[:status]) ? params[:status] : Constants::DEFAULT_ORDERS_STATUS_FILTER
   end
 end

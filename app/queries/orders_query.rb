@@ -1,6 +1,9 @@
 class OrdersQuery
+  attr_reader :status, :user
+
   def initialize(**params)
-    @params = params
+    @status = params[:status]
+    @user = params[:user]
   end
 
   def self.call(**params)
@@ -15,10 +18,10 @@ class OrdersQuery
   private
 
   def filter(relation)
-    relation.where(user: @params[:user], status: status_params)
+    relation.where(user: user, status: status_parameter)
   end
 
-  def status_params
-    Constants::STATUSES_TO_SHOW.include?(@params[:status]) ? @params[:status] : Constants::STATUSES_TO_SHOW
+  def status_parameter
+    status == Constants::DEFAULT_ORDERS_STATUS_FILTER ? Constants::STATUSES_TO_SHOW : status
   end
 end

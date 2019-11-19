@@ -22,23 +22,23 @@ RSpec.describe OrderDecorator do
     expect(decorator.number).to eq('Order #1')
   end
 
-  describe '#status_to_s' do
+  describe '#show_status' do
     it 'returns string In delivery' do
       order.update(status: 2)
 
-      expect(decorator.status_to_s).to eq(I18n.t('order.statuses.in_delivery'))
+      expect(decorator.show_status).to eq('In delivery')
     end
 
     it 'returns string Delivered' do
       order.update(status: 3)
 
-      expect(decorator.status_to_s).to eq(I18n.t('order.statuses.delivered'))
+      expect(decorator.show_status).to eq('Delivered')
     end
 
     it 'returns string Canceled' do
       order.update(status: 4)
 
-      expect(decorator.status_to_s).to eq(I18n.t('order.statuses.canceled'))
+      expect(decorator.show_status).to eq('Canceled')
     end
   end
 end
