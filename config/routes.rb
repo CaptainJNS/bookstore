@@ -15,4 +15,8 @@ Rails.application.routes.draw do
   resources :orders do
     resources :order_items
   end
+
+  resource :fast_registration, only: %i[new create]
+
+  resources :checkouts, only: %i[show update]
 end

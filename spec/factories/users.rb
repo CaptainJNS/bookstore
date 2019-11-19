@@ -9,5 +9,9 @@ FactoryBot.define do
       billing { Billing.create }
       shipping { Shipping.create }
     end
+
+    trait :credit_card do
+      credit_card { CreditCard.create }
+    end
   end
 end

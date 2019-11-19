@@ -23,9 +23,9 @@ RSpec.describe 'Settings page', type: :feature, js: true do
     context 'when billing address' do
       it 'updates users billing data' do
         attributes_for(:billing).each do |key, value|
-          fill_in "user[billing][#{key}]", with: value
+          fill_in "user[billing_attributes][#{key}]", with: value
         end
-        find('#save-Billing').click
+        find('#save-billing').click
         expect(page).to have_content(I18n.t('settings.account_updated'))
       end
     end
@@ -33,9 +33,9 @@ RSpec.describe 'Settings page', type: :feature, js: true do
     context 'when shipping address' do
       it 'updates users shipping data' do
         attributes_for(:shipping).each do |key, value|
-          fill_in "user[shipping][#{key}]", with: value
+          fill_in "user[shipping_attributes][#{key}]", with: value
         end
-        find('#save-Shipping').click
+        find('#save-shipping').click
         expect(page).to have_content(I18n.t('settings.account_updated'))
       end
     end

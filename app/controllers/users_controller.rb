@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def edit
-    @billing = Billing.where(user: current_user).first_or_create
-    @shipping = Shipping.where(user: current_user).first_or_create
+    @billing_builder = Billing.find_or_initialize_by(user: current_user)
+    @shipping_builder = Shipping.find_or_initialize_by(user: current_user)
   end
 
   def update

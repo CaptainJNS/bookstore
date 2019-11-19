@@ -13,4 +13,8 @@ class OrderDecorator < ApplicationDecorator
     price ||= sub_price
     price * coupon.discount / Constants::HUNDRED
   end
+
+  def number
+    "Order \##{id}"
+  end
 end

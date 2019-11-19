@@ -47,6 +47,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'interactor', '~> 3.1', '>= 3.1.1'
 
+gem 'wicked', '~> 1.3', '>= 1.3.4'
+
 group :development, :test do
   gem 'capybara', '~> 2.13.0'
 

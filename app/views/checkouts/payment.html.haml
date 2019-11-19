@@ -1,0 +1,27 @@
+= content_for(:title, t('order.checkout'))
+%main.container.mb-res-50
+  %h1.general-title-margin= t('order.checkout')
+  = render 'progress_bar'
+
+  %h3.general-subtitle= t('checkout.payment.card')
+  = simple_form_for current_user, url: wizard_path, method: :put do |form|
+    = form.simple_fields_for :credit_card do |f|
+      .max-600.mb-80 
+        .form-group
+          = f.input :number, placeholder: t('checkout.payment.number'), class: 'form-control'
+        .row
+          .col-sm-6
+            .form-group
+              = f.input :card_name, placeholder: t('checkout.payment.card_name'), class: 'form-control'
+          .col-sm-3
+            .form-group
+              = f.input :expiration_date, placeholder: t('checkout.payment.date'), class: 'form-control'
+          .col-sm-3
+            .form-group.relative
+              = f.input :cvv, placeholder: t('checkout.payment.cvv'), class: 'form-control'
+
+    .general-text-align
+      = render 'order_summary'
+
+    .text-center
+      = form.submit t('checkout.save'), class: 'btn btn-default mb-20'
