@@ -18,6 +18,27 @@ RSpec.describe OrderDecorator do
 
   it '#number' do
     allow(decorator).to receive(:id).and_return(1)
+
     expect(decorator.number).to eq('Order #1')
+  end
+
+  describe '#show_status' do
+    it 'returns string In delivery' do
+      order.update(status: 2)
+
+      expect(decorator.show_status).to eq('In delivery')
+    end
+
+    it 'returns string Delivered' do
+      order.update(status: 3)
+
+      expect(decorator.show_status).to eq('Delivered')
+    end
+
+    it 'returns string Canceled' do
+      order.update(status: 4)
+
+      expect(decorator.show_status).to eq('Canceled')
+    end
   end
 end

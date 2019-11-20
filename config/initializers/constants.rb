@@ -19,4 +19,8 @@ module Constants
   DELIVERY_COUNT = 3
   ZERO = 0
   HUNDRED = 100
+  ORDERS_COUNT = 50
+  ORDER_ITEMS_COUNT = 100
+  DEFAULT_ORDERS_STATUS_FILTER = 'all'
+  STATUSES_TO_SHOW = %w[in_delivery delivered canceled].freeze
 end
