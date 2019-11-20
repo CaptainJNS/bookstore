@@ -15,9 +15,10 @@ class OrdersController < ApplicationController
   end
 
   def index
-    status = ValidateStatusFilter.call(status: params[:status])
-    @show_status = status.show_status
-    result = OrdersQuery.call(user: current_user, status: status.valid_status)
+    result = ValidateStatusFilter.call(status: params[:status])
+    @show_status = result.status
+
+    result = OrdersQuery.call(user: current_user, status: result.valid_status)
     @orders = OrderDecorator.decorate_collection(result)
   end
 

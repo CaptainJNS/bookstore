@@ -4,7 +4,7 @@ class ValidateStatusFilter
   def call
     @status = context.status
     context.valid_status = valid_status
-    context.show_status = show_status
+    context.status = show_status
   end
 
   private
