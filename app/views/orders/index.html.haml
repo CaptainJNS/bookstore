@@ -2,7 +2,7 @@
   %h1.mt-0.mb-25= t('order.my_orders')
   .dropdowns.dropdown.general-order-dropdown
     %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-      = @status_filter
+      = @show_status
       %i.fa.fa-angle-down.dropdown-icon.pull-right
     %ul.dropdown-menu
       - t('order.statuses').each do |key, value|
