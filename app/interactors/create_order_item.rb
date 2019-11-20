@@ -6,6 +6,6 @@ class CreateOrderItem
 
     return context.fail! unless order_item
 
-    UpdateTotalPrice.call(context.current_order, order_item: order_item.decorate, action: :add)
+    UpdateTotalPrice.call(context.current_order, order_item: order_item.decorate, action: :plus)
   end
 end
