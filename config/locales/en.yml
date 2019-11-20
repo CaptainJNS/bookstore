@@ -122,6 +122,15 @@ en:
     price: 'Price'
     quantity: 'Quantity'
     no_items: 'You have no items in your cart'
+    statuses:
+      all: 'All'
+      in_delivery: 'In delivery'
+      delivered: 'Delivered'
+      canceled: 'Canceled'
+    number: 'Number'
+    completed_at: 'Completed at'
+    status: 'Status'
+    my_orders: 'My Orders'
 
   checkout:
     titles:
