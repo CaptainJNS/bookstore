@@ -26,10 +26,4 @@ class OrdersController < ApplicationController
     @order = Order.find_by(id: params[:id], user: current_user).decorate
     @billing = current_user.billing.decorate
   end
-
-  private
-
-  def status
-    Constants::STATUSES_TO_SHOW.include?() ? params[:status] : Constants::DEFAULT_ORDERS_STATUS_FILTER
-  end
 end
