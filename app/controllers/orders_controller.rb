@@ -15,10 +15,9 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @filter = status
-    @status_filter = I18n.t("order.statuses.#{@filter}")
-
-    result = OrdersQuery.call(user: current_user, status: @filter)
+    status = ValidateStatusFilter.call(status: params[:status])
+    @show_status = status.show_status
+    result = OrdersQuery.call(user: current_user, status: status.valid_status)
     @orders = OrderDecorator.decorate_collection(result)
   end
 
@@ -30,6 +29,6 @@ class OrdersController < ApplicationController
   private
 
   def status
-    Constants::STATUSES_TO_SHOW.include?(params[:status]) ? params[:status] : Constants::DEFAULT_ORDERS_STATUS_FILTER
+    Constants::STATUSES_TO_SHOW.include?() ? params[:status] : Constants::DEFAULT_ORDERS_STATUS_FILTER
   end
 end
