@@ -7,23 +7,24 @@
             %a.nav-link{href: root_path}= t('default.homepage')
           %li
             %a.nav-link{href: books_path}= t('default.shop')
-          %li
-            %a.nav-link{href: "#"}= t('default.orders')
-          %li
-            %a.nav-link{href: "#"}= t('default.settings')
+          - if user_signed_in?
+            %li
+              %a.nav-link{href: orders_path}= t('default.orders')
+            %li
+              %a.nav-link{href: edit_user_path(current_user)}= t('default.settings')
       .col-sm-3
-        %p.general-nav-mail support@bookstore.com
-        %p.general-nav-number (555)-555-5555
+        %p.general-nav-mail= t('default.contact_us_email')
+        %p.general-nav-number= t('default.contact_us_phone')
         %ul.list-inline.general-align
           %li
-            %a.nav-link{href: "#"}
+            %a.nav-link{href: t('default.facebook_link')}
               %i.fa.fa-facebook{'aria-hidden': "true"}
           %li
-            %a.nav-link{href: "#"}
+            %a.nav-link{href: t('default.twitter_link')}
               %i.fa.fa-twitter{'aria-hidden': "true"}
           %li
-            %a.nav-link{href: "#"}
+            %a.nav-link{href: t('default.google_link')}
               %i.fa.fa-google-plus{'aria-hidden': "true"}
           %li
-            %a.nav-link{href: "#"}
+            %a.nav-link{href: t('default.instagram_link')}
               %i.fa.fa-instagram{'aria-hidden': "true"}

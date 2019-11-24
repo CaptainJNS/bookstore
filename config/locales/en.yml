@@ -13,8 +13,14 @@ en:
     settings: "Settings"
     bookstore: "Bookstore"
     logout: "Log Out"
-    login: "Log In"
-    register: "Register"
+    login: "Sign In"
+    register: "Sign Up"
+    contact_us_email: "bookstore@shop.com"
+    contact_us_phone: "8 (800) 555-35-35"
+    facebook_link: 'https://www.facebook.com/groups/railsrocks/'
+    twitter_link: 'https://twitter.com/elonmusk'
+    google_link: 'https://www.google.com/'
+    instagram_link: 'https://www.instagram.com/instagram/'
   
   home:
     best_sellers: "Best Sellers"

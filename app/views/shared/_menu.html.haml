@@ -1,20 +1,23 @@
 %ul.nav.navbar-nav
   %li
     %a{href: root_path}= t('default.home')
-  %li
-    %a{href: books_path}= t('default.shop')
+  %li.dropdown
+    %a.dropdown-toggle{href: "", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
+      = t('default.shop')
+    %ul.dropdown-menu
+      - Category.all.each do |category|
+        %li
+          %a{href: books_path(category: category.id)}= category.name
 
   - if user_signed_in?
-    %li
-      %a{href: "", method: :delete}= current_user.name
     %li.dropdown
       %a.dropdown-toggle{href: "", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-        = image_tag(current_user.image, class: 'img-responsive img-circle img-thumbnail logo-size pull-right')
+        = current_user.name
       %ul.dropdown-menu
         %li
-          %a{href: orders_path} Orders
+          %a{href: orders_path}= t('default.orders')
         %li
-          %a{href: edit_user_path(current_user)} Settings
+          %a{href: edit_user_path(current_user)}= t('default.settings')
         %li.divider{role: "separator"}
         %li
           = link_to t('default.logout'), destroy_user_session_path, method: :delete
