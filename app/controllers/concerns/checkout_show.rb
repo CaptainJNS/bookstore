@@ -6,6 +6,7 @@ module CheckoutShow
 
     def show_address
       @billing_builder = Billing.find_or_initialize_by(user: current_user)
+      @shipping_builder = Shipping.find_or_initialize_by(user: current_user)
       render_wizard
     end
 

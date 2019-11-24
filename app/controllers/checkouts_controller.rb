@@ -27,8 +27,8 @@ class CheckoutsController < ApplicationController
   private
 
   def checkout_validation
-    fast_authenticate_user!
     check_order_items
+    fast_authenticate_user!
     check_step
   end
 

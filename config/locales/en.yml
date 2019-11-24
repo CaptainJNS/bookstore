@@ -139,7 +139,9 @@ en:
       payment: 'Payment'
       confirm: 'Confirm'
       complete: 'Complete'
-    address: 'Address'
+    address:
+      all_fields_required: 'all fields are required'
+      use_billing: 'Use Billing Adress'
     delivery:
       delivery: 'Delivery'
       method: 'Method'
