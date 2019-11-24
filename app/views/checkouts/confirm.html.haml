@@ -5,7 +5,10 @@
 
   .row.mb-20
 
-    = render 'billing'
+    .col-sm-3
+      = render 'address_info', address: current_user.billing, address_title: t('settings.billing')
+    .col-sm-3
+      = render 'address_info', address: current_user.shipping, address_title: t('settings.shipping')
 
     .col-sm-3
       %h3.general-subtitle= t('checkout.delivery.delivery')
@@ -14,6 +17,8 @@
         = link_to t('checkout.edit'), checkout_path(:delivery), class: 'general-edit'
         %br
         = current_order.delivery.days
+        %br
+        = number_to_currency(current_order.delivery.price)
 
     .col-sm-3
       %h3.general-subtitle= t('checkout.payment.payment')

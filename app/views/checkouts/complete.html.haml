@@ -9,7 +9,10 @@
   
   .row.mb-20
 
-    = render 'billing'
+    .col-sm-3
+      = render 'address_info', address: current_user.billing, address_title: t('settings.billing')
+    .col-sm-3
+      = render 'address_info', address: current_user.shipping, address_title: t('settings.shipping')
 
     .col-sm-6.hidden-xs.text-right
       %p.general-order-number.mb-0= current_order.number

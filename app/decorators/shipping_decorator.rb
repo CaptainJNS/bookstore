@@ -1,0 +1,2 @@
+class ShippingDecorator < AuthorDecorator
+end
