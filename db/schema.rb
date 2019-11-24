@@ -214,7 +214,6 @@ ActiveRecord::Schema.define(version: 2019_11_24_125245) do
     t.string "provider"
     t.string "uid"
     t.string "name"
-    t.text "image"
     t.bigint "reviews_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

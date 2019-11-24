@@ -6,6 +6,6 @@ class UserDecorator < ApplicationDecorator
   end
 
   def image
-    object.image || Constants::NO_IMAGE_PATH
+    Constants::NO_IMAGE_PATH
   end
 end
