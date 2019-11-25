@@ -85,6 +85,7 @@ en:
     zip: 'Zip'
     country: 'Country'
     phone: 'Phone'
+    phone_placeholder: '123 456-7890'
     save: 'Save'
     email: 'Email'
     old_password: 'Old Password'

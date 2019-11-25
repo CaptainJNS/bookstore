@@ -15,4 +15,7 @@
 //= require bootstrap
 //= require turbolinks
 //= require activestorage
+//= require jquery-mask-plugin
 //= require_tree .
+
+$.jMaskGlobals.watchDataMask = true;
