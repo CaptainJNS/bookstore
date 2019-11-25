@@ -8,7 +8,7 @@
     = field.fields_for :credit_card do |f|
       .max-600.mb-80
         = f.label :number, t('checkout.payment.number'), class: 'control-label input-label'
-        = f.text_field :number, placeholder: t('checkout.payment.number'), class: 'form-control'
+        = f.text_field :number, placeholder: t('checkout.payment.number'), class: 'form-control', 'data-mask': Constants::CARD_NUMBER_MASK
         .row
           .col-sm-6
             .form-group
@@ -17,11 +17,11 @@
           .col-sm-3
             .form-group
               = f.label :number, t('checkout.payment.date'), class: 'control-label input-label'
-              = f.text_field :expiration_date, placeholder: t('checkout.payment.date'), class: 'form-control'
+              = f.text_field :expiration_date, placeholder: t('checkout.payment.date'), class: 'form-control', 'data-mask': Constants::CARD_DATE_MASK
           .col-sm-3
             .form-group.relative
               = f.label :number, t('checkout.payment.cvv'), class: 'control-label input-label'
-              = f.text_field :cvv, placeholder: t('checkout.payment.cvv'), class: 'form-control'
+              = f.text_field :cvv, placeholder: t('checkout.payment.cvv'), class: 'form-control', 'data-mask': Constants::CARD_CVV_MASK
 
     .general-text-align
       = render 'order_summary'

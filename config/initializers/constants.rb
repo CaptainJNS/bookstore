@@ -24,4 +24,10 @@ module Constants
   ORDER_ITEMS_COUNT = 100
   DEFAULT_ORDERS_STATUS_FILTER = 'all'
   STATUSES_TO_SHOW = %w[in_delivery delivered canceled].freeze
+  CARD_DATE_PATTERN = /\A([0][1-9])|([1][0-2]\/([\d]{2}))\z/.freeze
+  CARD_NUMBER_LENGTH = 16
+  CARD_CVV_LENGTH = 3
+  CARD_DATE_MASK = '00/00'
+  CARD_NUMBER_MASK = '0000000000000000'
+  CARD_CVV_MASK = '000'
 end

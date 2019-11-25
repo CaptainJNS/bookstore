@@ -11,7 +11,7 @@ FactoryBot.define do
     end
 
     trait :credit_card do
-      credit_card { CreditCard.create }
+      credit_card { build(:credit_card) }
     end
   end
 end
