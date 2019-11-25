@@ -23,6 +23,8 @@ RSpec.describe 'Settings page', type: :feature, js: true do
     context 'when billing address' do
       it 'updates users billing data' do
         attributes_for(:billing).each do |key, value|
+          next if key == :country
+
           fill_in "user[billing_attributes][#{key}]", with: value
         end
         find('#save-billing').click
@@ -33,6 +35,8 @@ RSpec.describe 'Settings page', type: :feature, js: true do
     context 'when shipping address' do
       it 'updates users shipping data' do
         attributes_for(:shipping).each do |key, value|
+          next if key == :country
+
           fill_in "user[shipping_attributes][#{key}]", with: value
         end
         find('#save-shipping').click

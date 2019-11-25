@@ -7,7 +7,11 @@ module CheckoutUpdate
     def update_address
       CheckoutService.call(step, order: current_order, user: current_user)
       current_order.update(use_billing: params.dig(:user, :orders, :use_billing))
-      redirect_to checkout_path(undone_step) if update_user_addresses
+      if update_user_addresses
+        redirect_to checkout_path(undone_step)
+      else
+        render_wizard current_user
+      end
     end
 
     def update_delivery

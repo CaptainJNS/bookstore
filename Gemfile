@@ -24,6 +24,7 @@ gem 'paperclip', '~> 6.1'
 gem 'sass', '~> 3.7', '>= 3.7.4'
 gem 'seedbank', '~> 0.5.0'
 gem 'simple_form', '~> 5.0', '>= 5.0.1'
+gem 'country_select', '~> 4.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use postgresql as the database for Active Record

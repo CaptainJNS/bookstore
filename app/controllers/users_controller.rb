@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if result.success?
       redirect_to edit_user_path, notice: I18n.t('settings.account_updated')
     else
-      redirect_to edit_user_path, alert: I18n.t('settings.errors')
+      render :edit
     end
   end
 

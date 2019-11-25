@@ -37,8 +37,7 @@ RSpec.describe UsersController, type: :controller do
     context 'with invalid params' do
       it 'dont updates user and shows an alert' do
         post :update, { params: { id: user.id, user: { billing_attributes: attributes_for(:billing, phone: 'NaN') } } }
-        expect(response).to redirect_to(edit_user_path)
-        expect(flash[:alert]).to eq(I18n.t('settings.errors'))
+        expect(response).to render_template(:edit)
       end
     end
   end

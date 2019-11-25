@@ -161,6 +161,7 @@ en:
       card_name: 'Name on Card'
       date: 'MM/YY'
       cvv: 'CVV'
+      hint: ' 3-digit security code, usually found on the back of your card.'
     confirm: 'Confirm'
     complete: 'Complete'
     save: 'Save and Continue'

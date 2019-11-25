@@ -12,17 +12,17 @@
         .col-md-5.col-md-offset-1
           %h3.general-subtitle= t('settings.shipping')
 
-    = form_for(current_user, url: wizard_path, method: :put) do |field|
+    = simple_form_for(current_user, url: wizard_path, method: :put) do |form|
       .row
         .col-md-5.mb-40
-          = render 'address_form', address: :billing, builder: @billing_builder, field: field
+          = render 'address_form', address: :billing, builder: @billing_builder, form: form
         .col-md-5.col-md-offset-1.mb-60
           #shipping
-            = render 'address_form', address: :shipping, builder: @shipping_builder, field: field
+            = render 'address_form', address: :shipping, builder: @shipping_builder, form: form
 
           .form-group.checkbox#use_billing
             %label.checkbox-label
-              = field.fields_for :orders, current_order do |order_field|
+              = form.simple_fields_for :orders, current_order do |order_field|
                 = order_field.check_box :use_billing, { class: 'checkbox-input', hidden: true }, 'true', 'false'
               %span.checkbox-icon
                 %i.fa.fa-check
@@ -31,4 +31,4 @@
       = render 'order_summary'
 
       .text-center
-        = field.submit t('checkout.save'), class: 'btn btn-default mb-20', id: "continue"
+        = form.submit t('checkout.save'), class: 'btn btn-default mb-20', id: "continue"

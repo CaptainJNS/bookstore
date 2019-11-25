@@ -334,3 +334,21 @@ img {
     margin-bottom: 85px;
   }
 }
+
+.cvv-hint .cvv-text{
+  visibility: hidden;
+  width: 300px;
+  background-color: #c59c71;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 70%;
+  margin-right: -60px;
+}
+.cvv-hint:hover .cvv-text {
+  visibility: visible;
+}

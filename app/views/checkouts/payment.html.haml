@@ -17,6 +17,8 @@
         .col-sm-3
           .form-group.relative
             = f.input :cvv, placeholder: t('checkout.payment.cvv'), label: t('checkout.payment.cvv'), input_html: { 'data-mask': Constants::CARD_CVV_MASK }, as: :password
+            %i.fa.fa-question-circle.general-form-help.cvv-hint
+              %span.cvv-text= t('checkout.payment.hint')
 
       .general-text-align
         = render 'order_summary'

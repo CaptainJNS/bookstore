@@ -76,7 +76,7 @@ RSpec.describe CheckoutsController, type: :controller do
 
     context 'with :payment step' do
       it 'attached credit card to user' do
-        put :update, params: { id: :payment, user: { credit_card_attributes: attributes_for(:credit_card) } }
+        put :update, params: { id: :payment, credit_card: attributes_for(:credit_card) }
         expect(user.credit_card.present?).to be true
       end
     end
