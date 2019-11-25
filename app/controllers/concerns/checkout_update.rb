@@ -16,7 +16,14 @@ module CheckoutUpdate
     end
 
     def update_payment
-      redirect_to checkout_path(undone_step) if current_user.update(card_params)
+      @credit_card = CreditCard.find_or_initialize_by(user: current_user)
+      @credit_card.update(card_params)
+
+      if @credit_card.errors.empty?
+        redirect_to checkout_path(undone_step)
+      else
+        render_wizard @credit_card
+      end
     end
 
     def finalize_order
@@ -32,7 +39,7 @@ module CheckoutUpdate
     end
 
     def card_params
-      params.require(:user).permit(credit_card_attributes: %i[number card_name cvv expiration_date])
+      params.require(:credit_card).permit(%i[number card_name cvv expiration_date])
     end
 
     def address_params

@@ -16,7 +16,7 @@ module CheckoutShow
     end
 
     def show_payment
-      @credit_card = CreditCard.find_or_create_by(user: current_user)
+      @credit_card = CreditCard.find_or_initialize_by(user: current_user)
       render_wizard
     end
 

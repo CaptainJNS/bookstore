@@ -1,6 +1,6 @@
 window.setTimeout(function() {
   hide_flashes();
-}, 6500);
+}, 2500);
 
 $(document).on('turbolinks:load', function() {
   $("#privacy_tab").click(function() {
