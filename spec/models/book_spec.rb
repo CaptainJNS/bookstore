@@ -18,10 +18,6 @@ RSpec.describe Book, type: :model do
       expect(build(:book, year: nil)).not_to be_valid
     end
 
-    it 'is invalid without quantity' do
-      expect(build(:book, quantity: nil)).not_to be_valid
-    end
-
     it 'is invalid with incorrect price' do
       expect(build(:book, price: -1)).not_to be_valid
       expect(build(:book, price: 100_001)).not_to be_valid
@@ -30,17 +26,6 @@ RSpec.describe Book, type: :model do
 
     it 'is valid with correct price' do
       expect(build(:book, price: 23)).to be_valid
-    end
-
-    it 'is invalid with incorrect quantity' do
-      expect(build(:book, quantity: 1.5)).not_to be_valid
-      expect(build(:book, quantity: -1)).not_to be_valid
-      expect(build(:book, quantity: 'quantity')).not_to be_valid
-    end
-
-    it 'is valid with correct quantity' do
-      expect(build(:book, quantity: 0)).to be_valid
-      expect(build(:book, quantity: 23)).to be_valid
     end
   end
 

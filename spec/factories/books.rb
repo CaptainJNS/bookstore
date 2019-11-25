@@ -3,7 +3,6 @@ FactoryBot.define do
     title { FFaker::Book.unique.title }
     description { FFaker::Book.description }
     price { rand(5.0..500.00) }
-    quantity { rand(1..100) }
     dimensions { "#{rand(Constants::DIMENSION).round(1)}\"x#{rand(Constants::DIMENSION).round(1)}\"x#{rand(Constants::DIMENSION).round(1)}\"" }
     year { rand(1666..2019) }
     materials { Constants::MATERIALS.sample(rand(1..3)).join(', ') }

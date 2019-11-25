@@ -13,10 +13,8 @@ let decrementQuantity = (price) => {
 let incrementQuantity = (price, quantity) => {
   let input = document.getElementById("quantity_input");
 
-  if (input.value < quantity) {
-    input.value++;
-    calculatePrice(price, input.value);
-  }
+  input.value++;
+  calculatePrice(price, input.value);
 }
 
 let calculatePrice = (price, input) => {

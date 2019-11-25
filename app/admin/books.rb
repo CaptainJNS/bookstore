@@ -1,6 +1,6 @@
 ActiveAdmin.register Book do
   permit_params :title, :description, :dimensions, :materials,
-                :quantity, :materials, :price, :year, category_ids: [], author_ids: [], images: []
+                :materials, :price, :year, category_ids: [], author_ids: [], images: []
 
   decorate_with BookDecorator
 
@@ -62,7 +62,6 @@ ActiveAdmin.register Book do
       f.input :price
       f.input :materials
       f.input :dimensions
-      f.input :quantity
     end
 
     f.inputs do

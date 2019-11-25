@@ -22,10 +22,7 @@
         .col-xs-12.col-md-4
           %p.h1.in-gold-500.mt-10#price= number_to_currency(@book.price)
 
-        - if @book.quantity.positive?
-          = render partial: 'books/show/in_stock'
-        - else
-          = render partial: 'books/show/out_stock'
+        = render partial: 'books/show/add_to_cart_form'
 
       = render partial: 'books/show/book_info'
 

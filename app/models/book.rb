@@ -10,8 +10,7 @@ class Book < ApplicationRecord
 
   has_many_attached :images
 
-  validates :title, :description, :price, :year, :quantity, presence: true
+  validates :title, :description, :price, :year, presence: true
 
   validates :price, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100_000 }
-  validates :quantity, numericality: { greater_than_or_equal_to: 0, only_integer: true }
 end

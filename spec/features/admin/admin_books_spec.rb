@@ -21,7 +21,6 @@ RSpec.describe 'Admin Books' do
     fill_in 'book[price]', with: book_attributes[:price]
     fill_in 'book[materials]', with: book_attributes[:materials]
     fill_in 'book[dimensions]', with: book_attributes[:dimensions]
-    fill_in 'book[quantity]', with: book_attributes[:quantity]
     click_button('Create Book')
 
     expect(page).to have_content(book_attributes[:title])
