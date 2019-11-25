@@ -2,6 +2,7 @@
   "name": "bookstore",
   "private": true,
   "dependencies": {
+    "font-awesome": "^4.7.0",
     "jquery": "^3.4.1"
   },
   "version": "1",
@@ -9,5 +10,8 @@
   "repository": "https://github.com/CaptainJNS/bookstore.git",
   "author": "Jason <sereda9623@gmail.com>",
   "license": "MIT",
-  "description": "rg"
+  "description": "rg",
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2"
+  }
 }

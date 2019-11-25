@@ -5,6 +5,9 @@
     %a.dropdown-toggle{href: "", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
       = t('default.shop')
     %ul.dropdown-menu
+      %li
+        %a{href: books_path}= t('shop.all')
+      %li.divider{role: "separator"}
       - Category.all.each do |category|
         %li
           %a{href: books_path(category: category.id)}= category.name
