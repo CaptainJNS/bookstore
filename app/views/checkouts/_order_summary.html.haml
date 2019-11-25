@@ -14,4 +14,4 @@
     %td
       %strong.font-18= t('order.total')
     %td
-      %strong.font-18= number_to_currency(current_order.total_price)
+      %strong.font-18#order_total= number_to_currency(current_order.total_price)

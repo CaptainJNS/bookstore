@@ -14,13 +14,13 @@
               %span.in-grey-600= t('checkout.delivery.days')
             %th
               %span.in-grey-600= t('checkout.delivery.price')
-        %tbody
+        %tbody.deliveries
           - @deliveries.each do |delivery|
-            %tr
+            %tr{ onclick: "changeTotal(#{current_order.total_price}, #{delivery.price}, #{current_order.delivery&.price});" }
               %td
                 .form-group.radio.mt-0.mb-0
                   %label.radio-label
-                    = f.radio_button :delivery_id, delivery.id, class: 'radio-input', hidden: true, checked: true
+                    = f.radio_button :delivery_id, delivery.id, class: 'radio-input', hidden: true
                     %span.radio-icon
                     %span.radio-text= delivery.method
               %td
