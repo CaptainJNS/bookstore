@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  before_action :save_my_previous_url
+
   def index
     @book_count = Book.count
     @categories = Category.select(:id, :name)
@@ -11,5 +13,6 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id]).decorate
     @reviews = ReviewDecorator.decorate_collection(Review.approved.where(book: @book.object))
+    @back = session[:my_previous_url]
   end
 end
