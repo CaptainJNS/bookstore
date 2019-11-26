@@ -10,11 +10,6 @@
     = f.hidden_field :book_id, value: @book.id
     = f.hidden_field :rating, value: 1, id: 'reviewRating'
 
-    .form-group
-      = f.label :body, t('book.review'), class: 'control-label input-label in-grey-600'
-      = f.text_area(:body,
-                  id: 'review',
-                  class: 'form-control',
-                  required: true)
+    = f.input :body, label: t('book.review')
 
     = f.submit t('book.post'), class: 'text-right btn mb-20', id: 'postReview'

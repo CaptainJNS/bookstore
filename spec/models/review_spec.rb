@@ -12,4 +12,9 @@ RSpec.describe Review, type: :model do
       expect(review).to respond_to :book
     end
   end
+
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:body) }
+    it { is_expected.to validate_presence_of(:rating) }
+  end
 end
