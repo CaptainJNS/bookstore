@@ -1,9 +1,10 @@
 class UpdateTotalPrice
-  attr_reader :order, :order_item, :quantity, :action, :delivery, :coupon
+  attr_reader :order, :price, :quantity, :action, :delivery, :coupon
 
-  def initialize(order, order_item: nil, action: nil, delivery: nil, coupon: nil)
+  def initialize(order, price: nil, quantity: 1, action: nil, delivery: nil, coupon: nil)
     @order = order
-    @order_item = order_item
+    @price = price
+    @quantity = quantity
     @action = action
     @delivery = delivery
     @coupon = coupon
@@ -24,6 +25,6 @@ class UpdateTotalPrice
 
     return order.discount if coupon
 
-    order_item.price * order_item.quantity - order.discount(order_item.price)
+    price * quantity - order.discount(price)
   end
 end

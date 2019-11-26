@@ -9,7 +9,7 @@ RSpec.describe UpdateTotalPrice do
   let(:coupon) { create(:coupon, discount: 50) }
 
   context 'with add order_item' do
-    let(:params) { { order_item: order_item, action: :plus } }
+    let(:params) { { price: order_item.book.price, action: :plus } }
 
     it 'plus to total_price' do
       expect { service }.to change(order, :total_price).by(10)
@@ -17,7 +17,7 @@ RSpec.describe UpdateTotalPrice do
   end
 
   context 'with remove order_item' do
-    let(:params) { { order_item: order_item, action: :minus } }
+    let(:params) { { price: order_item.book.price, action: :minus } }
 
     it 'minus from total_price' do
       expect { service }.to change(order, :total_price).by(-10)
