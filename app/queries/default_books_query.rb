@@ -47,8 +47,13 @@ class DefaultBooksQuery
   end
 
   def sort(relation)
-    sort_param = @params[:sort_param] || Constants::DEFAULT_BOOKS_ORDER
+    sort_param = I18n.t(:sorting).keys.include?(@params[:sort_param]&.to_sym) ? @params[:sort_param] : Constants::DEFAULT_BOOKS_ORDER
+    return popular_first(relation) if sort_param == 'popular'
 
     relation.order(sort_param)
+  end
+
+  def popular_first(relation)
+    relation.joins(:order_items).group(:id).order('count(order_items.id) desc')
   end
 end

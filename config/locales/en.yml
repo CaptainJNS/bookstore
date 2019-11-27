@@ -1,10 +1,11 @@
 en:
   sorting:
     "created_at DESC": 'Newest first'
-    "title ASC": 'Title: A-Z ↑'
-    "title DESC": 'Title: Z-A ↓'
-    "price ASC": 'Price: to UP ↑'
-    "price DESC": 'Price: to DOWN ↓'
+    "price ASC": 'Price: low to high'
+    "price DESC": 'Price: high to low'
+    "title ASC": 'Title: A-Z'
+    "title DESC": 'Title: Z-A'
+    "popular": 'Popular first'
 
   default:
     homepage: "Home"
