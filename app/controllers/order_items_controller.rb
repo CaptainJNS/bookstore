@@ -1,5 +1,6 @@
 class OrderItemsController < ApplicationController
   def index
+    @order_items = current_order.order_items.order('created_at DESC')
   end
 
   def create
@@ -20,6 +21,10 @@ class OrderItemsController < ApplicationController
     else
       redirect_to order_order_items_path(current_order), alert: I18n.t('order.wrong')
     end
+  end
+
+  def update
+    UpdateOrderItem.call(order: current_order, order_item_id: params[:id], action: params[:quantity_action])
   end
 
   private
