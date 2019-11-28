@@ -41,7 +41,8 @@ en:
 
   book:
     back_to: "Back to results"
-    more: "Read More"  
+    more: "Read More"
+    less: 'Read Less'
     description: "Description"    
     reviews: "Reviews (%{count})"    
     write_review: "Write a Review"
