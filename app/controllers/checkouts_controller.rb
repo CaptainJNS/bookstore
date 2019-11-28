@@ -27,7 +27,8 @@ class CheckoutsController < ApplicationController
   private
 
   def checkout_validation
-    check_order_items
+    return redirect_to(root_path, alert: I18n.t('order.no_items')) if cart_is_empty?
+
     fast_authenticate_user!
     check_step
   end
@@ -36,8 +37,8 @@ class CheckoutsController < ApplicationController
     redirect_to new_fast_registration_path unless current_user
   end
 
-  def check_order_items
-    redirect_to(root_path, alert: I18n.t('order.no_items')) unless current_order.order_items.any?
+  def cart_is_empty?
+    current_order.order_items.empty?
   end
 
   def check_step
