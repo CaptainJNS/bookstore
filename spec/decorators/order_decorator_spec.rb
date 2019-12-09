@@ -41,4 +41,18 @@ RSpec.describe OrderDecorator do
       expect(decorator.show_status).to eq('Canceled')
     end
   end
+
+  describe '#delivery_price' do
+    it 'returns string In delivery' do
+      order.update(delivery: create(:delivery, price: 10))
+
+      expect(decorator.delivery_price).to eq(10)
+    end
+
+    it 'returns string Delivered' do
+      order.update(delivery: nil)
+
+      expect(decorator.delivery_price).to eq(0)
+    end
+  end
 end

@@ -28,6 +28,31 @@ let changeTotal = (total, price, old_price) => {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  $(".deliveries > tr").first().click();
-  $(".radio-input").first().prop('checked', true);
+  let deliveries = $(".deliveries > tr").first();
+
+  if (deliveries.exists()) {
+    deliveries.click();
+    $(".radio-input").first().prop('checked', true);
+
+    let price = parseFloat($(".delivery_price").first().text().substring(1));
+    setDeliveryPrice(price);
+
+    let total = parseFloat(document.getElementById('order_total').textContent.substring(1));
+    changeTotal(total, price)
+  }
 }, false);
+
+let delivery = (total, price, old_price) => {
+  changeTotal(total, price, old_price);
+  setDeliveryPrice(price);
+}
+
+let setDeliveryPrice = (price) => {
+  let delivery_element = document.getElementById('delivery');
+  let currency = delivery_element.textContent.substring(0, 1);
+  delivery_element.textContent = currency + price.toFixed(2);
+}
+
+$.fn.exists = function () {
+  return this.length !== 0;
+}

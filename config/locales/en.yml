@@ -140,6 +140,7 @@ en:
     completed_at: 'Completed at'
     status: 'Status'
     my_orders: 'My Orders'
+    delivery: 'Delivery:'
 
   checkout:
     titles:

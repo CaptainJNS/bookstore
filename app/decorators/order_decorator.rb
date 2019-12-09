@@ -25,4 +25,8 @@ class OrderDecorator < ApplicationDecorator
     when 'canceled' then I18n.t('order.statuses.canceled')
     end
   end
+
+  def delivery_price
+    delivery&.price || 0
+  end
 end

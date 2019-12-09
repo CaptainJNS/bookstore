@@ -77,6 +77,11 @@
           %p.font-16= number_to_currency(@order.discount)
       %tr
         %td
+          %p.font-16= t('order.delivery')
+        %td
+          %p.font-16= number_to_currency(@order.delivery_price)
+      %tr
+        %td
           %strong.font-18= t('order.total')
         %td
           %strong.font-18= number_to_currency(@order.total_price)
