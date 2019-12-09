@@ -23,7 +23,7 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'POST update' do
     before do
-      user.billing = Billing.create
+      user.billing = build(:billing)
     end
 
     context 'with valid params' do

@@ -9,7 +9,7 @@ class Shipping < ApplicationRecord
     :zip,
     :country,
     :phone,
-    presence: false
+    presence: true
   )
 
   validates_format_of :phone, with: Constants::PHONE_PATTERN, allow_blank: true

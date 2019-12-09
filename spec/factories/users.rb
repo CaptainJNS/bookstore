@@ -6,8 +6,8 @@ FactoryBot.define do
     confirmed_at { Time.zone.now }
 
     trait :addresses do
-      billing { Billing.create }
-      shipping { Shipping.create }
+      billing { build(:billing) }
+      shipping { build(:shipping) }
     end
 
     trait :credit_card do
