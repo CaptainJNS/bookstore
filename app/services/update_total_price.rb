@@ -25,6 +25,6 @@ class UpdateTotalPrice
 
     return order.discount if coupon
 
-    price * quantity - order.discount(price)
+    price * quantity - order.discount(price * quantity)
   end
 end

@@ -30,13 +30,13 @@
               = link_to order_item.book.title, order_item.book
 
           %td
-            %span.font-16.in-gold-500= number_to_currency(order_item.book.price)
+            %span.font-16.in-gold-500{ id: 'book_price' + order_item.id.to_s }= number_to_currency(order_item.book.price)
 
           %td
             .input-group
               = link_to order_order_item_path(current_order, order_item, quantity_action: :minus), remote: true, method: :put, class: 'input-link' do
                 %i.fa.fa-minus.line-height-40{ onclick: "decrementOrderItemQuantity(#{order_item.id}, #{order_item.book.price}, #{current_order.discount(order_item.book.price)})"}
-              %input.form-control.quantity-input{value: order_item.quantity, type: "text", id: 'quantity_input' + order_item.id.to_s}
+              %input.form-control.quantity-input.order_item_quantity{value: order_item.quantity, type: "number", id: 'quantity_input' + order_item.id.to_s, onkeyup: "changeInput(#{order_item.id}, #{order_item.book.price}, #{current_order.discount(order_item.book.price)}, #{order_item.quantity})" }
               = link_to order_order_item_path(current_order, order_item, quantity_action: :plus), remote: true, method: :put, class: 'input-link' do
                 %i.fa.fa-plus.line-height-40{ onclick: "incrementOrderItemQuantity(#{order_item.id}, #{order_item.book.price}, #{current_order.discount(order_item.book.price)})"}
 

@@ -24,7 +24,7 @@ class OrderItemsController < ApplicationController
   end
 
   def update
-    UpdateOrderItem.call(order: current_order, order_item_id: params[:id], action: params[:quantity_action])
+    UpdateOrderItem.call(order: current_order, params: params)
   end
 
   private
