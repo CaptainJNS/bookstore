@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  def show
+    edit
+    render :edit
+  end
 
   def edit
     @billing_builder = Billing.find_or_initialize_by(user: current_user)

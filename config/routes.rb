@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :books
-  resources :users, only: %i[update edit destroy]
+  resources :users, only: %i[update edit destroy show]
 
   resources :books, only: :show do
     resources :reviews, only: :create
