@@ -9,31 +9,12 @@ class DefaultBooksQuery
 
   def call
     Book
-      .yield_self(&method(:best_sellers))
       .yield_self(&method(:latest_books))
       .yield_self(&method(:filter))
       .yield_self(&method(:sort))
   end
 
   private
-
-  def best_sellers(relation)
-    return relation unless @params.include?(:best_sellers)
-
-    sql = %[SELECT DISTINCT ON (bc.category_id) b.*, SUM(oi.quantity) as total_quantity
-            FROM order_items oi JOIN
-                orders o
-                ON oi.order_id = o.id JOIN
-                books b
-                ON oi.book_id = b.id
-            INNER JOIN books_categories bc ON bc.book_id = b.id
-            WHERE o.status in (2, 3)
-            GROUP BY bc.category_id, b.id
-            ORDER BY bc.category_id, total_quantity DESC]
-
-    books_array = Book.find_by_sql(sql)
-    relation.where(id: books_array.map(&:id))
-  end
 
   def latest_books(relation)
     return relation unless @params.include?(:latest_books)
