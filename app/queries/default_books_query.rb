@@ -20,18 +20,19 @@ class DefaultBooksQuery
   def best_sellers(relation)
     return relation unless @params.include?(:best_sellers)
 
-    books_ids = []
+    sql = %[SELECT DISTINCT ON (bc.category_id) b.*, SUM(oi.quantity) as total_quantity
+            FROM order_items oi JOIN
+                orders o
+                ON oi.order_id = o.id JOIN
+                books b
+                ON oi.book_id = b.id
+            INNER JOIN books_categories bc ON bc.book_id = b.id
+            WHERE o.status in (2, 3)
+            GROUP BY bc.category_id, b.id
+            ORDER BY bc.category_id, total_quantity DESC]
 
-    Category.all.each do |category|
-      temp_hash = OrderItem.joins(book: :books_categories)
-        .where(books: { books_categories: { category: category } })
-        .joins(:order).where(orders: { status: [2, 3] })
-        .group(:book_id).sum(:quantity)
-
-      books_ids << temp_hash.key(temp_hash.values.max)
-    end
-
-    relation.where(id: books_ids)
+    books_array = Book.find_by_sql(sql)
+    relation.where(id: books_array.map(&:id))
   end
 
   def latest_books(relation)
