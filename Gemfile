@@ -9,7 +9,7 @@ gem 'aws-sdk', '~> 3.0', '>= 3.0.1'
 gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 gem 'cancancan', '~> 3.0', '>= 3.0.1'
 gem 'carrierwave', '~> 1.3', '>= 1.3.1'
-gem 'devise', '~> 4.6', '>= 4.6.2'
+gem 'devise', '>= 4.7.1'
 gem 'draper', '~> 3.1'
 gem 'ffaker', '~> 2.11'
 gem 'haml', '~> 5.1', '>= 5.1.1'
@@ -30,7 +30,7 @@ gem 'rails', '~> 5.2.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1', '>= 1.1.4'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '>= 3.12.2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
