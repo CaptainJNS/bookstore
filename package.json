@@ -1,5 +1,18 @@
 {
   "name": "bookstore",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.4.1",
+    "jquery-mask-plugin": "^1.14.16"
+  },
+  "version": "1",
+  "main": "index.js",
+  "repository": "https://github.com/CaptainJNS/bookstore.git",
+  "author": "Jason <sereda9623@gmail.com>",
+  "license": "MIT",
+  "description": "rg",
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2"
+  }
 }

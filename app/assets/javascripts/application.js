@@ -11,6 +11,11 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require activestorage
+//= require jquery3
+//= require bootstrap
 //= require turbolinks
+//= require activestorage
+//= require jquery-mask-plugin
 //= require_tree .
+
+$.jMaskGlobals.watchDataMask = true;
